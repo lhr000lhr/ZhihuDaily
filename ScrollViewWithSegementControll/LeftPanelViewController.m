@@ -7,7 +7,8 @@
 //
 
 #import "LeftPanelViewController.h"
-
+#import "AppDelegate.h"
+#import "OneViewController.h"
 @interface LeftPanelViewController ()
 
 @end
@@ -27,7 +28,42 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(test:)
+												 name:@"changeName" object:nil];
+    SinaWeibo *sinaWeibo =[self sinaweibo];
+    if ([sinaWeibo isAuthValid]) {
+        NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+        
+        [self.userName setTitle:temp forState:UIControlStateNormal];
+          [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        //[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+    }
+    
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+-(void)test:(NSNotification*)notify
+{
+    NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+    if (temp) {
+        [self.userName setTitle:temp forState:UIControlStateNormal];
+        [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+    }else{
+        [self.userName setTitle:@"使用新浪微博登陆" forState:UIControlStateNormal];
+        [self.userImage setImage:[UIImage imageNamed:@"gen_share_sine"]];
+    }
+    
+}
+
+- (SinaWeibo *)sinaweibo
+{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    return delegate.sinaweibo;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,22 +89,22 @@
    
     switch (sender.tag) {
         case 101:
-            [self.sideMenuViewController setContentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"]
+            [self.sideMenuViewController setContentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"mainContentViewController"]
                                                         animated:YES];
            [self.sideMenuViewController hideMenuViewController];
             break;
       case 102:
-        {   UITabBarController *i=[self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];;
+        {   UITabBarController *i=[self.storyboard instantiateViewControllerWithIdentifier:@"mainContentViewController"];;
             [i setSelectedIndex:1];
             [self.sideMenuViewController setContentViewController:i
                                                          animated:YES];
-        
+        [self.sideMenuViewController hideMenuViewController];
+            break;
             }
 //
 //           [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"secondViewController"]]
 //                                                        animated:YES];
-          [self.sideMenuViewController hideMenuViewController];
-            break;
+          
         case 103:
             [self.sideMenuViewController setContentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"FavoritesTableViewController"]
                                                          animated:YES];

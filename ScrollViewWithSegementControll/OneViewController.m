@@ -337,9 +337,12 @@ static NSString *CellIdentifier = @"Cell";
         //[url appendFormat:@"?access_token=%@&count=30",self.access_token];
         NSData *userdata = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
         
-        NSError *error;
-        NSDictionary *timeLine = [NSJSONSerialization JSONObjectWithData:userdata options:kNilOptions error:&error];
-        
+        NSError *error=nil;
+        NSDictionary *timeLine = [NSJSONSerialization JSONObjectWithData:userdata options:NSJSONReadingAllowFragments error:&error];
+        //[NSJSONSerialization JSONObjectWithData:userdata options:kNilOptions error:&error];
+        if (error) {
+                  NSLog(@"dic->%@",error);
+        }
         
         
         dispatch_async(dispatch_get_main_queue(), ^{

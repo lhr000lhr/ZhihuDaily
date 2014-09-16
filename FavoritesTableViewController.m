@@ -98,7 +98,7 @@ static NSString *CellIdentifier = @"Cell";
     
     cell.stars.tag=indexPath.section*10000+indexPath.row;///// 设置 star的tag
     
-    [cell.stars addTarget:self action:@selector(addStars:) forControlEvents:UIControlEventTouchUpInside];
+   // [cell.stars addTarget:self action:@selector(addStars:) forControlEvents:UIControlEventTouchUpInside];
     if (url) {
         // [cell creatThread:url];
         
@@ -160,10 +160,38 @@ static NSString *CellIdentifier = @"Cell";
         [favorites removeObjectForKey:tempUrl];
         [self.tableView reloadData];
    //     NSLog(@"index row%ld   移除收藏 tag:%ld", [path row],sender.tag);
-    }
+           }
       [[NSUserDefaults standardUserDefaults] setValue:favorites forKey:@"favorites"];
 }
 
+
+
+
+
+
+
+#warning /////////////////添加左划删除、、、、、、、、、、、、、、///////////
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:
+(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSUInteger row = [indexPath row];
+        
+        NSDictionary *rowData =storeFavorites[row];
+        NSArray *imageurl =[rowData objectForKey:@"images"];
+        NSString *url =[NSString stringWithFormat:@"%@",imageurl[0]];
+        
+        [favorites removeObjectForKey:url];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                         withRowAnimation:UITableViewRowAnimationAutomatic];
+        // 数据源也要相应删除一项
+        
+        [[NSUserDefaults standardUserDefaults] setValue:favorites forKey:@"favorites"];
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

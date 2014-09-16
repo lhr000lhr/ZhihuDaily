@@ -28,6 +28,20 @@
 		8C15AA0219C6C77E00EB3DE2 /* TOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C15A9FA19C6C77E00EB3DE2 /* TOWebViewController.m */; };
 		8C15AA0319C6C77E00EB3DE2 /* UIImage+TOWebViewControllerIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C15A9FC19C6C77E00EB3DE2 /* UIImage+TOWebViewControllerIcons.m */; };
 		8C15AA0719C6D4B600EB3DE2 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C15AA0619C6D4B600EB3DE2 /* SettingTableViewController.m */; };
+		8C15AA1C19C7CF2300EB3DE2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C15AA1B19C7CF2300EB3DE2 /* QuartzCore.framework */; };
+		8C15AA2A19C7CFA500EB3DE2 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C15AA2019C7CFA500EB3DE2 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8C15AA2B19C7CFA500EB3DE2 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C15AA2219C7CFA500EB3DE2 /* SinaWeibo.bundle */; };
+		8C15AA2C19C7CFA500EB3DE2 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C15AA2419C7CFA500EB3DE2 /* SinaWeibo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8C15AA2D19C7CFA500EB3DE2 /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C15AA2619C7CFA500EB3DE2 /* SinaWeiboAuthorizeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8C15AA2E19C7CFA500EB3DE2 /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C15AA2919C7CFA500EB3DE2 /* SinaWeiboRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8C15AA3519C7CFCD00EB3DE2 /* button_background_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C15AA2F19C7CFCD00EB3DE2 /* button_background_disabled.png */; };
+		8C15AA3619C7CFCD00EB3DE2 /* button_background_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C15AA3019C7CFCD00EB3DE2 /* button_background_disabled@2x.png */; };
+		8C15AA3719C7CFCD00EB3DE2 /* button_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C15AA3119C7CFCD00EB3DE2 /* button_background.png */; };
+		8C15AA3819C7CFCD00EB3DE2 /* button_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C15AA3219C7CFCD00EB3DE2 /* button_background@2x.png */; };
+		8C15AA3919C7CFCD00EB3DE2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C15AA3319C7CFCD00EB3DE2 /* logo.png */; };
+		8C15AA3A19C7CFCD00EB3DE2 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C15AA3419C7CFCD00EB3DE2 /* logo@2x.png */; };
+		8C15AA3D19C7D4A600EB3DE2 /* WeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C15AA3C19C7D4A600EB3DE2 /* WeiboViewController.m */; };
+		8C15AA3F19C8123C00EB3DE2 /* IMG_0536.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 8C15AA3E19C8123C00EB3DE2 /* IMG_0536.PNG */; };
 		8C21749319B9930C00E25097 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C21748319B9930B00E25097 /* MJRefresh.bundle */; };
 		8C21749419B9930C00E25097 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C21748619B9930C00E25097 /* MJRefreshBaseView.m */; };
 		8C21749519B9930C00E25097 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C21748819B9930C00E25097 /* MJRefreshConst.m */; };
@@ -36,6 +50,9 @@
 		8C21749819B9930C00E25097 /* UIScrollView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C21748E19B9930C00E25097 /* UIScrollView+Extension.m */; };
 		8C21749919B9930C00E25097 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C21749019B9930C00E25097 /* UIScrollView+MJRefresh.m */; };
 		8C21749A19B9930C00E25097 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C21749219B9930C00E25097 /* UIView+Extension.m */; };
+		8C47E41019C8380000F4FD27 /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C47E40F19C8380000F4FD27 /* weibo.png */; };
+		8C47E41219C8385A00F4FD27 /* Stars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C47E41119C8385A00F4FD27 /* Stars@2x.png */; };
+		8C47E41619C83A6B00F4FD27 /* gen_share_sine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C47E41519C83A6B00F4FD27 /* gen_share_sine@2x.png */; };
 		8C56ABD719BEC54E003A6D5A /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56ABC519BEC54E003A6D5A /* AFHTTPClient.m */; };
 		8C56ABD819BEC54E003A6D5A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56ABC719BEC54E003A6D5A /* AFHTTPRequestOperation.m */; };
 		8C56ABD919BEC54E003A6D5A /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56ABC919BEC54E003A6D5A /* AFImageRequestOperation.m */; };
@@ -55,7 +72,6 @@
 		8CAD97AC19C2CF0400B5878D /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97A919C2CF0400B5878D /* UIViewController+RESideMenu.m */; };
 		8CAD97AF19C2D06A00B5878D /* ReSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97AE19C2D06A00B5878D /* ReSideMenuViewController.m */; };
 		8CAD97B319C2D28F00B5878D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C514ADE19B9AA6A00022658 /* UIKit.framework */; };
-		8CAD97B619C2D75200B5878D /* Stars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD97B519C2D75200B5878D /* Stars@2x.png */; };
 		8CAD97B919C2D9D700B5878D /* nav_btn_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD97B819C2D9D700B5878D /* nav_btn_menu@2x.png */; };
 		8CAD97BF19C2E04800B5878D /* XBNavCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97BC19C2E04800B5878D /* XBNavCustomButton.m */; };
 		8CAD97C419C2F2A300B5878D /* LeftPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97C319C2F2A300B5878D /* LeftPanelViewController.m */; };
@@ -193,6 +209,26 @@
 		8C15A9FE19C6C77E00EB3DE2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TOWebViewControllerLocalizable.strings"; sourceTree = "<group>"; };
 		8C15AA0519C6D4B600EB3DE2 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		8C15AA0619C6D4B600EB3DE2 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		8C15AA1B19C7CF2300EB3DE2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8C15AA1F19C7CFA500EB3DE2 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		8C15AA2019C7CFA500EB3DE2 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		8C15AA2219C7CFA500EB3DE2 /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
+		8C15AA2319C7CFA500EB3DE2 /* SinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeibo.h; sourceTree = "<group>"; };
+		8C15AA2419C7CFA500EB3DE2 /* SinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeibo.m; sourceTree = "<group>"; };
+		8C15AA2519C7CFA500EB3DE2 /* SinaWeiboAuthorizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboAuthorizeView.h; sourceTree = "<group>"; };
+		8C15AA2619C7CFA500EB3DE2 /* SinaWeiboAuthorizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboAuthorizeView.m; sourceTree = "<group>"; };
+		8C15AA2719C7CFA500EB3DE2 /* SinaWeiboConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboConstants.h; sourceTree = "<group>"; };
+		8C15AA2819C7CFA500EB3DE2 /* SinaWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboRequest.h; sourceTree = "<group>"; };
+		8C15AA2919C7CFA500EB3DE2 /* SinaWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboRequest.m; sourceTree = "<group>"; };
+		8C15AA2F19C7CFCD00EB3DE2 /* button_background_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_background_disabled.png; sourceTree = "<group>"; };
+		8C15AA3019C7CFCD00EB3DE2 /* button_background_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_background_disabled@2x.png"; sourceTree = "<group>"; };
+		8C15AA3119C7CFCD00EB3DE2 /* button_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_background.png; sourceTree = "<group>"; };
+		8C15AA3219C7CFCD00EB3DE2 /* button_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_background@2x.png"; sourceTree = "<group>"; };
+		8C15AA3319C7CFCD00EB3DE2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		8C15AA3419C7CFCD00EB3DE2 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
+		8C15AA3B19C7D4A600EB3DE2 /* WeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboViewController.h; sourceTree = "<group>"; };
+		8C15AA3C19C7D4A600EB3DE2 /* WeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboViewController.m; sourceTree = "<group>"; };
+		8C15AA3E19C8123C00EB3DE2 /* IMG_0536.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0536.PNG; sourceTree = "<group>"; };
 		8C21748319B9930B00E25097 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		8C21748419B9930B00E25097 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		8C21748519B9930C00E25097 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -209,6 +245,9 @@
 		8C21749019B9930C00E25097 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		8C21749119B9930C00E25097 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		8C21749219B9930C00E25097 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		8C47E40F19C8380000F4FD27 /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
+		8C47E41119C8385A00F4FD27 /* Stars@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stars@2x.png"; sourceTree = "<group>"; };
+		8C47E41519C83A6B00F4FD27 /* gen_share_sine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gen_share_sine@2x.png"; sourceTree = "<group>"; };
 		8C514ADE19B9AA6A00022658 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8C514AE019B9AAF000022658 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8C56ABC419BEC54E003A6D5A /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -246,7 +285,6 @@
 		8CAD97AD19C2D06A00B5878D /* ReSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReSideMenuViewController.h; sourceTree = "<group>"; };
 		8CAD97AE19C2D06A00B5878D /* ReSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReSideMenuViewController.m; sourceTree = "<group>"; };
 		8CAD97B019C2D19700B5878D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		8CAD97B519C2D75200B5878D /* Stars@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Stars@2x.png"; path = "../../../../Downloads/RESideMenu-master/Examples/Storyboards/RESideMenuStoryboardsExample/Images.xcassets/Stars.imageset/Stars@2x.png"; sourceTree = "<group>"; };
 		8CAD97B819C2D9D700B5878D /* nav_btn_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_btn_menu@2x.png"; sourceTree = "<group>"; };
 		8CAD97BB19C2E04800B5878D /* XBNavCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBNavCustomButton.h; sourceTree = "<group>"; };
 		8CAD97BC19C2E04800B5878D /* XBNavCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBNavCustomButton.m; sourceTree = "<group>"; };
@@ -307,6 +345,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C15AA1C19C7CF2300EB3DE2 /* QuartzCore.framework in Frameworks */,
 				8CAD97B319C2D28F00B5878D /* UIKit.framework in Frameworks */,
 				8CDD193819B9B160003690EA /* MapKit.framework in Frameworks */,
 				8CDD193C19B9B173003690EA /* ImageIO.framework in Frameworks */,
@@ -364,6 +403,7 @@
 		8C056B1319B9B6790005C51B /* public */ = {
 			isa = PBXGroup;
 			children = (
+				8C15AA1D19C7CFA500EB3DE2 /* sinaweibo_ios_sdk */,
 				8C15A9ED19C6C77E00EB3DE2 /* TOWebViewController */,
 				8CAD97BA19C2E04800B5878D /* VIews */,
 				8CAD97A319C2CF0400B5878D /* RESideMenu */,
@@ -411,8 +451,43 @@
 				8C15A9EB19C6AE7A00EB3DE2 /* FavoritesTableViewController.m */,
 				8C15AA0519C6D4B600EB3DE2 /* SettingTableViewController.h */,
 				8C15AA0619C6D4B600EB3DE2 /* SettingTableViewController.m */,
+				8C15AA3B19C7D4A600EB3DE2 /* WeiboViewController.h */,
+				8C15AA3C19C7D4A600EB3DE2 /* WeiboViewController.m */,
 			);
 			name = "设置和收藏";
+			sourceTree = "<group>";
+		};
+		8C15AA1D19C7CFA500EB3DE2 /* sinaweibo_ios_sdk */ = {
+			isa = PBXGroup;
+			children = (
+				8C15AA1E19C7CFA500EB3DE2 /* JSONKit */,
+				8C15AA2119C7CFA500EB3DE2 /* SinaWeibo */,
+			);
+			path = sinaweibo_ios_sdk;
+			sourceTree = "<group>";
+		};
+		8C15AA1E19C7CFA500EB3DE2 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				8C15AA1F19C7CFA500EB3DE2 /* JSONKit.h */,
+				8C15AA2019C7CFA500EB3DE2 /* JSONKit.m */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		8C15AA2119C7CFA500EB3DE2 /* SinaWeibo */ = {
+			isa = PBXGroup;
+			children = (
+				8C15AA2219C7CFA500EB3DE2 /* SinaWeibo.bundle */,
+				8C15AA2319C7CFA500EB3DE2 /* SinaWeibo.h */,
+				8C15AA2419C7CFA500EB3DE2 /* SinaWeibo.m */,
+				8C15AA2519C7CFA500EB3DE2 /* SinaWeiboAuthorizeView.h */,
+				8C15AA2619C7CFA500EB3DE2 /* SinaWeiboAuthorizeView.m */,
+				8C15AA2719C7CFA500EB3DE2 /* SinaWeiboConstants.h */,
+				8C15AA2819C7CFA500EB3DE2 /* SinaWeiboRequest.h */,
+				8C15AA2919C7CFA500EB3DE2 /* SinaWeiboRequest.m */,
+			);
+			path = SinaWeibo;
 			sourceTree = "<group>";
 		};
 		8C21748219B9930B00E25097 /* MJRefresh */ = {
@@ -539,6 +614,8 @@
 		8CDD193D19B9B18E003690EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8CAD97B019C2D19700B5878D /* XCTest.framework */,
+				8C15AA1B19C7CF2300EB3DE2 /* QuartzCore.framework */,
 				8CDD193719B9B160003690EA /* MapKit.framework */,
 				8C514AE019B9AAF000022658 /* Foundation.framework */,
 				8CDD193919B9B16A003690EA /* CoreGraphics.framework */,
@@ -552,7 +629,6 @@
 		AD3BECD519B56EE7006B465C = {
 			isa = PBXGroup;
 			children = (
-				8CAD97B019C2D19700B5878D /* XCTest.framework */,
 				AD3BECE019B56EE7006B465C /* ScrollViewWithSegementControll */,
 				AD3BECF719B56EE8006B465C /* ScrollViewWithSegementControllTests */,
 				AD3BECDF19B56EE7006B465C /* Products */,
@@ -611,12 +687,21 @@
 		AD3BED1119B57607006B465C /* 图片 */ = {
 			isa = PBXGroup;
 			children = (
+				8C15AA3E19C8123C00EB3DE2 /* IMG_0536.PNG */,
+				8C15AA2F19C7CFCD00EB3DE2 /* button_background_disabled.png */,
+				8C15AA3019C7CFCD00EB3DE2 /* button_background_disabled@2x.png */,
+				8C15AA3119C7CFCD00EB3DE2 /* button_background.png */,
+				8C15AA3219C7CFCD00EB3DE2 /* button_background@2x.png */,
+				8C15AA3319C7CFCD00EB3DE2 /* logo.png */,
+				8C15AA3419C7CFCD00EB3DE2 /* logo@2x.png */,
 				8CAD97A019C2AE0A00B5878D /* bg.png */,
 				8CAD97C919C2FC8700B5878D /* icon.png */,
 				8CAD97B819C2D9D700B5878D /* nav_btn_menu@2x.png */,
 				8CAD97C519C2FA4200B5878D /* touxiang.jpeg */,
-				8CAD97B519C2D75200B5878D /* Stars@2x.png */,
+				8C47E40F19C8380000F4FD27 /* weibo.png */,
 				AD3BED1219B57607006B465C /* Expression_1@2x.png */,
+				8C47E41119C8385A00F4FD27 /* Stars@2x.png */,
+				8C47E41519C83A6B00F4FD27 /* gen_share_sine@2x.png */,
 				AD3BED1319B57607006B465C /* Expression_2@2x.png */,
 				AD3BED1419B57607006B465C /* Expression_3@2x.png */,
 				AD3BED1519B57607006B465C /* Expression_4@2x.png */,
@@ -730,20 +815,28 @@
 				8CC9214519B6C390008609C1 /* sub-selected.png in Resources */,
 				AD3BECED19B56EE7006B465C /* Main.storyboard in Resources */,
 				8CC9213B19B6C390008609C1 /* nav-back.png in Resources */,
+				8C15AA3519C7CFCD00EB3DE2 /* button_background_disabled.png in Resources */,
 				8CC9214419B6C390008609C1 /* sub-selected-line@2x.png in Resources */,
+				8C15AA3719C7CFCD00EB3DE2 /* button_background.png in Resources */,
 				AD3BED1719B57607006B465C /* Expression_2@2x.png in Resources */,
 				8CC9212B19B6BCAC008609C1 /* DoctorTableViewCell.xib in Resources */,
+				8C47E41219C8385A00F4FD27 /* Stars@2x.png in Resources */,
 				8C15A9FF19C6C77E00EB3DE2 /* TOWebViewControllerLocalizable.strings in Resources */,
 				8CC9214219B6C390008609C1 /* star-s@2x.png in Resources */,
+				8C47E41019C8380000F4FD27 /* weibo.png in Resources */,
+				8C47E41619C83A6B00F4FD27 /* gen_share_sine@2x.png in Resources */,
 				8CAD97C619C2FA4200B5878D /* touxiang.jpeg in Resources */,
 				AD3BED1619B57607006B465C /* Expression_1@2x.png in Resources */,
-				8CAD97B619C2D75200B5878D /* Stars@2x.png in Resources */,
 				8CC9213E19B6C390008609C1 /* nav-bg@2x.png in Resources */,
 				AD3BECEF19B56EE7006B465C /* Images.xcassets in Resources */,
+				8C15AA3F19C8123C00EB3DE2 /* IMG_0536.PNG in Resources */,
+				8C15AA3A19C7CFCD00EB3DE2 /* logo@2x.png in Resources */,
 				AD3BED1819B57607006B465C /* Expression_3@2x.png in Resources */,
 				8CC9214319B6C390008609C1 /* sub-selected-line.png in Resources */,
 				8CC9214619B6C390008609C1 /* sub-selected@2x.png in Resources */,
 				8C66E3BC19C03C8900411132 /* NewsDateViewController.xib in Resources */,
+				8C15AA3619C7CFCD00EB3DE2 /* button_background_disabled@2x.png in Resources */,
+				8C15AA3919C7CFCD00EB3DE2 /* logo.png in Resources */,
 				8CC9215719B715DE008609C1 /* DoctorDetailViewController.xib in Resources */,
 				8CC9213C19B6C390008609C1 /* nav-back@2x.png in Resources */,
 				8CC9213F19B6C390008609C1 /* star-rate-s.png in Resources */,
@@ -751,10 +844,12 @@
 				AD3BED1919B57607006B465C /* Expression_4@2x.png in Resources */,
 				8C66E3B719C0056100411132 /* CCAVSegmentController.xib in Resources */,
 				8CAD97B919C2D9D700B5878D /* nav_btn_menu@2x.png in Resources */,
+				8C15AA3819C7CFCD00EB3DE2 /* button_background@2x.png in Resources */,
 				8CAD97A119C2AE0A00B5878D /* bg.png in Resources */,
 				8C21749319B9930C00E25097 /* MJRefresh.bundle in Resources */,
 				8CAD97CA19C2FC8700B5878D /* icon.png in Resources */,
 				8CC9214019B6C390008609C1 /* star-rate-s@2x.png in Resources */,
+				8C15AA2B19C7CFA500EB3DE2 /* SinaWeibo.bundle in Resources */,
 				8CC9213A19B6C390008609C1 /* 1.5 随便看看+断网提示.png in Resources */,
 				8CC9214119B6C390008609C1 /* star-s.png in Resources */,
 			);
@@ -795,10 +890,12 @@
 				8C21749619B9930C00E25097 /* MJRefreshFooterView.m in Sources */,
 				8C15AA0119C6C77E00EB3DE2 /* TOActivitySafari.m in Sources */,
 				8C15A9EC19C6AE7A00EB3DE2 /* FavoritesTableViewController.m in Sources */,
+				8C15AA2C19C7CFA500EB3DE2 /* SinaWeibo.m in Sources */,
 				8C56ABDC19BEC54E003A6D5A /* AFPropertyListRequestOperation.m in Sources */,
 				8C056B1219B9B6710005C51B /* UIImageView+WebCache.m in Sources */,
 				8C56ABD919BEC54E003A6D5A /* AFImageRequestOperation.m in Sources */,
 				8C66E3BB19C03C8900411132 /* NewsDateViewController.m in Sources */,
+				8C15AA2D19C7CFA500EB3DE2 /* SinaWeiboAuthorizeView.m in Sources */,
 				8C21749819B9930C00E25097 /* UIScrollView+Extension.m in Sources */,
 				AD3BED2019B5A25E006B465C /* EScrollerView.m in Sources */,
 				AD250EBA19B5CA4B007AA65D /* OneViewController.m in Sources */,
@@ -810,12 +907,14 @@
 				8C15AA0319C6C77E00EB3DE2 /* UIImage+TOWebViewControllerIcons.m in Sources */,
 				AD250EBD19B5CE2D007AA65D /* TwoViewController.m in Sources */,
 				8C056B0919B9B6710005C51B /* SDWebImageDecoder.m in Sources */,
+				8C15AA2A19C7CFA500EB3DE2 /* JSONKit.m in Sources */,
 				8CB4C51919B8544D00641191 /* ScrollViewDetailViewController.m in Sources */,
 				8C056B0E19B9B6710005C51B /* UIButton+WebCache.m in Sources */,
 				8C56ABDA19BEC54E003A6D5A /* AFJSONRequestOperation.m in Sources */,
 				8C15AA0019C6C77E00EB3DE2 /* TOActivityChrome.m in Sources */,
 				8C056B0C19B9B6710005C51B /* SDWebImageManager.m in Sources */,
 				8CAD97AC19C2CF0400B5878D /* UIViewController+RESideMenu.m in Sources */,
+				8C15AA2E19C7CFA500EB3DE2 /* SinaWeiboRequest.m in Sources */,
 				8C21749919B9930C00E25097 /* UIScrollView+MJRefresh.m in Sources */,
 				8CC9215619B715DE008609C1 /* DoctorDetailViewController.m in Sources */,
 				8C15AA0219C6C77E00EB3DE2 /* TOWebViewController.m in Sources */,
@@ -827,6 +926,7 @@
 				8CAD97BF19C2E04800B5878D /* XBNavCustomButton.m in Sources */,
 				8C21749519B9930C00E25097 /* MJRefreshConst.m in Sources */,
 				8C21749419B9930C00E25097 /* MJRefreshBaseView.m in Sources */,
+				8C15AA3D19C7D4A600EB3DE2 /* WeiboViewController.m in Sources */,
 				8CAD97AF19C2D06A00B5878D /* ReSideMenuViewController.m in Sources */,
 				8C056B0A19B9B6710005C51B /* SDWebImageDownloader.m in Sources */,
 				8C56ABD819BEC54E003A6D5A /* AFHTTPRequestOperation.m in Sources */,

@@ -7,9 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SinaWeibo.h"
+#import "SinaWeiboRequest.h"
+#import "WeiboViewController.h"
+#import "OneViewController.h"
 @interface SettingTableViewController : UITableViewController
-
--(void) sendEmail:(NSString *)to cc:(NSString*)cc subject:(NSString*)subject body:(NSString*)body;
+- (IBAction)settingSwitch:(UISwitch *)sender;
 - (void) sendEmail:(NSString *)phoneNumber;
+-(void) sendEmail:(NSString *)to cc:(NSString*)cc subject:(NSString*)subject body:(NSString*)body;
+
+
+
+
+@property (strong, nonatomic) IBOutlet UISwitch *imageState;
+@property (strong, nonatomic) IBOutlet UISwitch *downLoadState;
+
+@property (strong, nonatomic) IBOutlet UILabel *userName;
+
+@property(strong,nonatomic) WeiboViewController *weibo;
+@property (strong, nonatomic) IBOutlet UIImageView *userImage;
 @end

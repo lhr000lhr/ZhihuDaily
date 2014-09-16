@@ -75,7 +75,7 @@ static NSString *CellIdentifier = @"Cell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 150;
+    return 80;
 
 }
 @end

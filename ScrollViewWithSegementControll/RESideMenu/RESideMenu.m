@@ -136,7 +136,7 @@
 {
     if (_contentViewController == contentViewController)
     {
-        return;
+       // return;
     }
     
     if (!animated) {

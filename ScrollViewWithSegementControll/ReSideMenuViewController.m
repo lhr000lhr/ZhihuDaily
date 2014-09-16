@@ -23,9 +23,8 @@
     self.contentViewShadowRadius = 12;
     self.contentViewShadowEnabled = YES;
     
-    self.contentViewController =[self.storyboard instantiateViewControllerWithIdentifier:@"contentViewController"];
-    self.leftMenuViewController =
-    [self.storyboard instantiateViewControllerWithIdentifier:@"LeftPanelViewController"];
+    self.contentViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"mainContentViewController"];
+    self.leftMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LeftPanelViewController"];
    // self.rightMenuViewController =[UIViewController new];
     //[self.storyboard instantiateViewControllerWithIdentifier:@"rightMenuViewController"];
     self.backgroundImage = [UIImage imageNamed:@"Stars"];

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 @interface LeftPanelViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIButton *userName;
+@property (strong, nonatomic) IBOutlet UIImageView *userImage;
 
 - (IBAction)switchViewController:(UIButton *)sender;
 

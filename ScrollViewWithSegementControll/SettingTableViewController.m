@@ -7,7 +7,7 @@
 //
 
 #import "SettingTableViewController.h"
-
+#import "AppDelegate.h"
 @interface SettingTableViewController ()
 
 @end
@@ -26,6 +26,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    SinaWeibo *sinaWeibo =[self sinaweibo];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(test:)
+												 name:@"changeName" object:nil];
+    if ([sinaWeibo isAuthValid]) {
+        NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+        
+        self.userName.text =temp;
+          [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        //[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+    }
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -33,6 +44,13 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+- (SinaWeibo *)sinaweibo
+{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    return delegate.sinaweibo;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -46,7 +64,7 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -54,6 +72,9 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (section==0) {
+        return 1;
+    }
+    if (section==3) {
         return 1;
     }
     return 2;
@@ -74,8 +95,35 @@
         }
         
         
-    }
+    }else if(indexPath.section == 3)
+        
+    { [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SinaWeiboAuthData"];
+          SinaWeibo *sinaWeibo =[self sinaweibo];
+        [self.weibo logoutButtonPressed];
+        [self.weibo sinaweiboDidLogOut:sinaWeibo];
+        [sinaWeibo removeAuthData];
+        [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"userName"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeName" object:nil];
+        UIAlertView *alert = [UIAlertView new];
+        
+        alert = [[UIAlertView alloc]initWithTitle:@"_(:з」∠)_" message:@"注销咯！！！！" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        [alert show];
+             }
+   
     
+}
+-(void)test:(NSNotification*)notify
+{
+    NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+    if (temp) {
+        [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        self.userName.text =temp;
+
+    }else{
+        self.userName.text =@"使用新浪微博登陆";
+         [self.userImage setImage:[UIImage imageNamed:@"gen_share_sine"]];
+    }
+
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,6 +189,24 @@
     NSURL *phoneNumberURL = [NSURL URLWithString:[NSString stringWithFormat:@"mailto:%@", phoneNumber]];
     NSLog(@"send sms, URL=%@", phoneNumberURL);
     [[UIApplication sharedApplication] openURL:phoneNumberURL];
+}
+
+- (IBAction)settingSwitch:(UISwitch *)sender {
+    
+    if (sender.tag==0) { /////无图模式
+        
+        BOOL storeState = sender.isOn;
+        [[NSUserDefaults standardUserDefaults]setBool:storeState forKey:@"picState"];
+    }
+    else if(sender.tag ==1){ ///离线下载
+        
+        BOOL storeState = sender.isOn;
+        [[NSUserDefaults standardUserDefaults]setBool:storeState forKey:@"downState"];
+    }
+    
+    
+    
+    
 }
 
 -(void) sendEmail:(NSString *)to cc:(NSString*)cc subject:(NSString*)subject body:(NSString*)body
