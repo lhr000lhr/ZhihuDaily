@@ -355,7 +355,7 @@ static NSString *CellIdentifier = @"Cell";
             [self.tableView headerEndRefreshing];
             NSMutableArray *indexImages=[[NSMutableArray alloc]init];
             NSMutableArray *title=[[NSMutableArray alloc]init];
-            for (int i = 0; i<[self.news count]; i++)
+            for (int i = 0; i<3; i++)
             {
                 NSDictionary *rowData = self.news[i];
                 NSArray *imageurl =[rowData objectForKey:@"images"];

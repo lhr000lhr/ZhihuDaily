@@ -126,11 +126,15 @@ static NSString *CellIdentifier = @"Cell";
     
     if (sender.imageView.image ==[UIImage imageNamed:@"star-rate-s"])
     {
+        UIAlertView *alertView =[UIAlertView new];
+        tempUrl = url;
+          alertView = [[UIAlertView alloc] initWithTitle:@"_(:з」∠)_" message:@"取消收藏~" delegate:self cancelButtonTitle:@"点错了( ⊙ o ⊙ )啊！" otherButtonTitles:@"是的呢！", nil];
+            [alertView show];
         
-        [sender setImage:[UIImage imageNamed:@"star-s"]forState:UIControlStateNormal];
-        
-        [favorites removeObjectForKey:url];
-        NSLog(@"index row%ld   移除收藏 tag:%ld", [path row],sender.tag);
+//        [sender setImage:[UIImage imageNamed:@"star-s"]forState:UIControlStateNormal];
+//        
+//        [favorites removeObjectForKey:url];
+//        NSLog(@"index row%ld   移除收藏 tag:%ld", [path row],sender.tag);
     }
     else
         
@@ -146,7 +150,19 @@ static NSString *CellIdentifier = @"Cell";
     [self.tableView reloadData];
     [[NSUserDefaults standardUserDefaults] setValue:favorites forKey:@"favorites"];
 }
-
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"点击了取消");
+    }else if (buttonIndex ==1){
+        //[sender setImage:[UIImage imageNamed:@"star-s"]forState:UIControlStateNormal];
+        
+        [favorites removeObjectForKey:tempUrl];
+        [self.tableView reloadData];
+   //     NSLog(@"index row%ld   移除收藏 tag:%ld", [path row],sender.tag);
+    }
+      [[NSUserDefaults standardUserDefaults] setValue:favorites forKey:@"favorites"];
+}
 
 /*
 // Override to support conditional editing of the table view.

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FavoritesTableViewController : UITableViewController
+@interface FavoritesTableViewController : UITableViewController<UIAlertViewDelegate>
 {
     NSMutableDictionary *favorites;
     NSMutableArray *storeFavorites;
+    NSString *tempUrl;
 }
 @end
