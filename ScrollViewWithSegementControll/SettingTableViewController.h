@@ -19,7 +19,7 @@
 
 
 
-@property (strong, nonatomic) IBOutlet UISwitch *imageState;
+@property (strong, nonatomic) IBOutlet UISwitch *picState;
 @property (strong, nonatomic) IBOutlet UISwitch *downLoadState;
 
 @property (strong, nonatomic) IBOutlet UILabel *userName;

@@ -27,6 +27,11 @@
 {
     [super viewDidLoad];
     SinaWeibo *sinaWeibo =[self sinaweibo];
+    
+    
+    //////////////按钮状态
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(test:)
 												 name:@"changeName" object:nil];
     if ([sinaWeibo isAuthValid]) {
@@ -201,7 +206,7 @@
     else if(sender.tag ==1){ ///离线下载
         
         BOOL storeState = sender.isOn;
-        [[NSUserDefaults standardUserDefaults]setBool:storeState forKey:@"downState"];
+        [[NSUserDefaults standardUserDefaults]setBool:storeState forKey:@"downLoadState"];
     }
     
     

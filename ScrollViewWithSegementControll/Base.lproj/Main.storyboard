@@ -208,7 +208,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-F3-Zl1">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-F3-Zl1">
                                                     <rect key="frame" x="251" y="20" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
@@ -232,7 +232,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sLg-hO-QXx">
+                                                <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sLg-hO-QXx">
                                                     <rect key="frame" x="251" y="20" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
@@ -321,7 +321,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="downLoadState" destination="sLg-hO-QXx" id="K0I-jx-o6o"/>
-                        <outlet property="imageState" destination="gIA-F3-Zl1" id="iBQ-L3-qNW"/>
+                        <outlet property="picState" destination="gIA-F3-Zl1" id="OXT-zd-rei"/>
                         <outlet property="userImage" destination="fpJ-eR-zw4" id="4aa-hc-a4o"/>
                         <outlet property="userName" destination="CgX-bc-wv8" id="Kzg-Ec-qJ4"/>
                     </connections>
