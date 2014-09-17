@@ -178,6 +178,12 @@ static NSString *CellIdentifier = @"Cell";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:
 (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        storeFavorites = [NSMutableArray new];
+        for (NSString *key in favorites) {
+            NSLog(@"%@ - %@", key, favorites[key]);
+            [storeFavorites addObject:favorites[key]];
+        }
+        
         NSUInteger row = [indexPath row];
         
         NSDictionary *rowData =storeFavorites[row];
@@ -185,6 +191,7 @@ static NSString *CellIdentifier = @"Cell";
         NSString *url =[NSString stringWithFormat:@"%@",imageurl[0]];
         
         [favorites removeObjectForKey:url];
+       
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];
         // 数据源也要相应删除一项

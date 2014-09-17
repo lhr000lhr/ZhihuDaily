@@ -113,6 +113,7 @@
         
         alert = [[UIAlertView alloc]initWithTitle:@"_(:з」∠)_" message:@"注销咯！！！！" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
         [alert show];
+        [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"userName"];
              }
    
     

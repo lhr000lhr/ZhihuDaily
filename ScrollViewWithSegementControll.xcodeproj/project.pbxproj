@@ -66,6 +66,11 @@
 		8C66E3B719C0056100411132 /* CCAVSegmentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66E3B519C0056100411132 /* CCAVSegmentController.xib */; };
 		8C66E3BB19C03C8900411132 /* NewsDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66E3B919C03C8900411132 /* NewsDateViewController.m */; };
 		8C66E3BC19C03C8900411132 /* NewsDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66E3BA19C03C8900411132 /* NewsDateViewController.xib */; };
+		8C6DEE7119C93F650095AD0C /* WeiboTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DEE6F19C93F650095AD0C /* WeiboTableViewCell.m */; };
+		8C6DEE7219C93F650095AD0C /* WeiboTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DEE7019C93F650095AD0C /* WeiboTableViewCell.xib */; };
+		8C6DEE7619C986B70095AD0C /* WeiboWithoutImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DEE7419C986B70095AD0C /* WeiboWithoutImageTableViewCell.m */; };
+		8C6DEE7719C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DEE7519C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib */; };
+		8C733C2C19C91E06005A60BF /* WeiboHomeLineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C733C2B19C91E06005A60BF /* WeiboHomeLineTableViewController.m */; };
 		8CAD97A119C2AE0A00B5878D /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD97A019C2AE0A00B5878D /* bg.png */; };
 		8CAD97AA19C2CF0400B5878D /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97A519C2CF0400B5878D /* RECommonFunctions.m */; };
 		8CAD97AB19C2CF0400B5878D /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97A719C2CF0400B5878D /* RESideMenu.m */; };
@@ -106,7 +111,6 @@
 		AD3BECEA19B56EE7006B465C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3BECE919B56EE7006B465C /* ViewController.m */; };
 		AD3BECED19B56EE7006B465C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3BECEB19B56EE7006B465C /* Main.storyboard */; };
 		AD3BECEF19B56EE7006B465C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD3BECEE19B56EE7006B465C /* Images.xcassets */; };
-		AD3BECFB19B56EE8006B465C /* ScrollViewWithSegementControllTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3BECFA19B56EE8006B465C /* ScrollViewWithSegementControllTests.m */; };
 		AD3BED1619B57607006B465C /* Expression_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3BED1219B57607006B465C /* Expression_1@2x.png */; };
 		AD3BED1719B57607006B465C /* Expression_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3BED1319B57607006B465C /* Expression_2@2x.png */; };
 		AD3BED1819B57607006B465C /* Expression_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3BED1419B57607006B465C /* Expression_3@2x.png */; };
@@ -275,6 +279,14 @@
 		8C66E3B819C03C8900411132 /* NewsDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDateViewController.h; sourceTree = "<group>"; };
 		8C66E3B919C03C8900411132 /* NewsDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDateViewController.m; sourceTree = "<group>"; };
 		8C66E3BA19C03C8900411132 /* NewsDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDateViewController.xib; sourceTree = "<group>"; };
+		8C6DEE6E19C93F650095AD0C /* WeiboTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboTableViewCell.h; sourceTree = "<group>"; };
+		8C6DEE6F19C93F650095AD0C /* WeiboTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboTableViewCell.m; sourceTree = "<group>"; };
+		8C6DEE7019C93F650095AD0C /* WeiboTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeiboTableViewCell.xib; sourceTree = "<group>"; };
+		8C6DEE7319C986B70095AD0C /* WeiboWithoutImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboWithoutImageTableViewCell.h; sourceTree = "<group>"; };
+		8C6DEE7419C986B70095AD0C /* WeiboWithoutImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboWithoutImageTableViewCell.m; sourceTree = "<group>"; };
+		8C6DEE7519C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeiboWithoutImageTableViewCell.xib; sourceTree = "<group>"; };
+		8C733C2A19C91E06005A60BF /* WeiboHomeLineTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboHomeLineTableViewController.h; sourceTree = "<group>"; };
+		8C733C2B19C91E06005A60BF /* WeiboHomeLineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboHomeLineTableViewController.m; sourceTree = "<group>"; };
 		8CAD97A019C2AE0A00B5878D /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		8CAD97A419C2CF0400B5878D /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		8CAD97A519C2CF0400B5878D /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
@@ -320,7 +332,7 @@
 		AD250EB919B5CA4B007AA65D /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		AD250EBB19B5CE2D007AA65D /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
 		AD250EBC19B5CE2D007AA65D /* TwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
-		AD3BECDE19B56EE7006B465C /* 知乎日报.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "知乎日报.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD3BECDE19B56EE7006B465C /* 浩然的机机.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "浩然的机机.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3BECE219B56EE7006B465C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD3BECE319B56EE7006B465C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AD3BECE519B56EE7006B465C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -331,7 +343,6 @@
 		AD3BECEE19B56EE7006B465C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AD3BECF419B56EE8006B465C /* ScrollViewWithSegementControllTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollViewWithSegementControllTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3BECF919B56EE8006B465C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD3BECFA19B56EE8006B465C /* ScrollViewWithSegementControllTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewWithSegementControllTests.m; sourceTree = "<group>"; };
 		AD3BED1219B57607006B465C /* Expression_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Expression_1@2x.png"; sourceTree = "<group>"; };
 		AD3BED1319B57607006B465C /* Expression_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Expression_2@2x.png"; sourceTree = "<group>"; };
 		AD3BED1419B57607006B465C /* Expression_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Expression_3@2x.png"; sourceTree = "<group>"; };
@@ -539,6 +550,21 @@
 			path = AFNetworking;
 			sourceTree = SOURCE_ROOT;
 		};
+		8C733C2919C91DB3005A60BF /* 微博浏览 */ = {
+			isa = PBXGroup;
+			children = (
+				8C733C2A19C91E06005A60BF /* WeiboHomeLineTableViewController.h */,
+				8C733C2B19C91E06005A60BF /* WeiboHomeLineTableViewController.m */,
+				8C6DEE6E19C93F650095AD0C /* WeiboTableViewCell.h */,
+				8C6DEE6F19C93F650095AD0C /* WeiboTableViewCell.m */,
+				8C6DEE7019C93F650095AD0C /* WeiboTableViewCell.xib */,
+				8C6DEE7319C986B70095AD0C /* WeiboWithoutImageTableViewCell.h */,
+				8C6DEE7419C986B70095AD0C /* WeiboWithoutImageTableViewCell.m */,
+				8C6DEE7519C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib */,
+			);
+			name = "微博浏览";
+			sourceTree = "<group>";
+		};
 		8CAD97A319C2CF0400B5878D /* RESideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,9 +581,10 @@
 		8CAD97B419C2D73300B5878D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD3BECEB19B56EE7006B465C /* Main.storyboard */,
 				8C15AA0419C6D3A800EB3DE2 /* 小标题 */,
 				8C15AA0819C6DBBA00EB3DE2 /* 设置和收藏 */,
-				AD3BECEB19B56EE7006B465C /* Main.storyboard */,
+				8C733C2919C91DB3005A60BF /* 微博浏览 */,
 				AD3BECE519B56EE7006B465C /* AppDelegate.h */,
 				AD3BECE619B56EE7006B465C /* AppDelegate.m */,
 				8CAD97AD19C2D06A00B5878D /* ReSideMenuViewController.h */,
@@ -638,7 +665,7 @@
 		AD3BECDF19B56EE7006B465C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD3BECDE19B56EE7006B465C /* 知乎日报.app */,
+				AD3BECDE19B56EE7006B465C /* 浩然的机机.app */,
 				AD3BECF419B56EE8006B465C /* ScrollViewWithSegementControllTests.xctest */,
 			);
 			name = Products;
@@ -670,7 +697,6 @@
 		AD3BECF719B56EE8006B465C /* ScrollViewWithSegementControllTests */ = {
 			isa = PBXGroup;
 			children = (
-				AD3BECFA19B56EE8006B465C /* ScrollViewWithSegementControllTests.m */,
 				AD3BECF819B56EE8006B465C /* Supporting Files */,
 			);
 			path = ScrollViewWithSegementControllTests;
@@ -736,7 +762,7 @@
 			);
 			name = ScrollViewWithSegementControll;
 			productName = ScrollViewWithSegementControll;
-			productReference = AD3BECDE19B56EE7006B465C /* 知乎日报.app */;
+			productReference = AD3BECDE19B56EE7006B465C /* 浩然的机机.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AD3BECF319B56EE8006B465C /* ScrollViewWithSegementControllTests */ = {
@@ -826,10 +852,12 @@
 				8C47E41019C8380000F4FD27 /* weibo.png in Resources */,
 				8C47E41619C83A6B00F4FD27 /* gen_share_sine@2x.png in Resources */,
 				8CAD97C619C2FA4200B5878D /* touxiang.jpeg in Resources */,
+				8C6DEE7219C93F650095AD0C /* WeiboTableViewCell.xib in Resources */,
 				AD3BED1619B57607006B465C /* Expression_1@2x.png in Resources */,
 				8CC9213E19B6C390008609C1 /* nav-bg@2x.png in Resources */,
 				AD3BECEF19B56EE7006B465C /* Images.xcassets in Resources */,
 				8C15AA3F19C8123C00EB3DE2 /* IMG_0536.PNG in Resources */,
+				8C6DEE7719C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib in Resources */,
 				8C15AA3A19C7CFCD00EB3DE2 /* logo@2x.png in Resources */,
 				AD3BED1819B57607006B465C /* Expression_3@2x.png in Resources */,
 				8CC9214319B6C390008609C1 /* sub-selected-line.png in Resources */,
@@ -885,6 +913,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C6DEE7619C986B70095AD0C /* WeiboWithoutImageTableViewCell.m in Sources */,
 				8C056B0F19B9B6710005C51B /* UIImage+GIF.m in Sources */,
 				8C56ABDF19BEC54E003A6D5A /* UIImageView+AFNetworking.m in Sources */,
 				8C21749619B9930C00E25097 /* MJRefreshFooterView.m in Sources */,
@@ -903,11 +932,13 @@
 				8CC9212A19B6BCAC008609C1 /* DoctorTableViewCell.m in Sources */,
 				8C56ABDE19BEC54E003A6D5A /* AFXMLRequestOperation.m in Sources */,
 				8CAD97AA19C2CF0400B5878D /* RECommonFunctions.m in Sources */,
+				8C733C2C19C91E06005A60BF /* WeiboHomeLineTableViewController.m in Sources */,
 				AD3BECEA19B56EE7006B465C /* ViewController.m in Sources */,
 				8C15AA0319C6C77E00EB3DE2 /* UIImage+TOWebViewControllerIcons.m in Sources */,
 				AD250EBD19B5CE2D007AA65D /* TwoViewController.m in Sources */,
 				8C056B0919B9B6710005C51B /* SDWebImageDecoder.m in Sources */,
 				8C15AA2A19C7CFA500EB3DE2 /* JSONKit.m in Sources */,
+				8C6DEE7119C93F650095AD0C /* WeiboTableViewCell.m in Sources */,
 				8CB4C51919B8544D00641191 /* ScrollViewDetailViewController.m in Sources */,
 				8C056B0E19B9B6710005C51B /* UIButton+WebCache.m in Sources */,
 				8C56ABDA19BEC54E003A6D5A /* AFJSONRequestOperation.m in Sources */,
@@ -950,7 +981,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD3BECFB19B56EE8006B465C /* ScrollViewWithSegementControllTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,7 +1140,7 @@
 				INFOPLIST_FILE = ScrollViewWithSegementControll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "知乎日报";
+				PRODUCT_NAME = "浩然的机机";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -1131,7 +1161,7 @@
 				INFOPLIST_FILE = ScrollViewWithSegementControll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "知乎日报";
+				PRODUCT_NAME = "浩然的机机";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;

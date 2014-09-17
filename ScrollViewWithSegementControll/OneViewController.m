@@ -28,12 +28,39 @@ static NSString *CellIdentifier = @"Cell";
     }
     return self;
 }
-
+-(void)reloadData{
+    NSDictionary *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"favorites"];
+    favorites =[NSMutableDictionary dictionaryWithDictionary:temp];
+    storeFavorites = [NSMutableArray new];
+    for (NSString *key in favorites) {
+        NSLog(@"%@ - %@", key, favorites[key]);
+        [storeFavorites addObject:favorites[key]];
+    }
+    temp = [NSDictionary new];
+    temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"history"];
+    history =[NSMutableDictionary dictionaryWithDictionary:temp];
+    storeHistory = [NSMutableArray new];
+    for (NSString *key in storeHistory) {
+        NSLog(@"%@ - %@", key, history[key]);
+        [storeHistory addObject:history[key]];
+    }
+    
+    [self.tableView reloadData];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ////////////////加载 收藏 和浏览历史
     NSDictionary *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"favorites"];
     favorites =[NSMutableDictionary dictionaryWithDictionary:temp];
+    
+    temp= [[NSUserDefaults standardUserDefaults]objectForKey:@"history"];
+    history = [NSMutableDictionary dictionaryWithDictionary:temp];
+    ///////////////
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData)
+												 name:@"reloadData" object:nil];
+    
     loadDayFlag = 0;
     _storeNewsArray=[NSMutableDictionary new];
   //  favorites =[NSMutableDictionary new];
@@ -190,7 +217,10 @@ static NSString *CellIdentifier = @"Cell";
         [favorites setObject :rowData forKey:url];
     }
     [self.tableView reloadData];
+
     [[NSUserDefaults standardUserDefaults] setValue:favorites forKey:@"favorites"];
+    
+     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -291,6 +321,7 @@ static NSString *CellIdentifier = @"Cell";
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSString *heroSelected=[NSString stringWithFormat:@"%ld",(long)indexPath.row];
     //indexPath.row得到选中的行号，提取出在数组中的内容。
     UIAlertView *myAlertView;
@@ -309,6 +340,17 @@ static NSString *CellIdentifier = @"Cell";
     NSDictionary *rowData1 =tempNews[indexPath.row];
     NSLog(@"%@",rowData1);
     id i =[rowData1 objectForKey:@"share_url"];
+    
+    ////////////////浏览记录
+   
+    
+    NSArray *imageurl =[rowData1 objectForKey:@"images"];
+    NSString *url =[NSString stringWithFormat:@"%@",imageurl[0]];
+    
+    [history setObject :rowData1 forKey:url];
+    [[NSUserDefaults standardUserDefaults] setValue:history forKey:@"history"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+
  //  view.url = [rowData1 objectForKey:@"share_url"];
    
  
@@ -492,7 +534,7 @@ static NSString *CellIdentifier = @"Cell";
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
-        [self.tableView reloadData];
+      //  [self.tableView reloadData];
         
         // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
         //[self.tableView headerEndRefreshing];

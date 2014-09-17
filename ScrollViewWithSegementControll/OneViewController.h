@@ -21,6 +21,9 @@
    // NSDictionary *storeNewsArray;
     int loadDayFlag;
     NSMutableDictionary *favorites;
+     NSMutableArray *storeFavorites;
+    NSMutableDictionary *history;
+    NSMutableArray *storeHistory;
 
 }
 @property(strong,nonatomic)NSMutableArray *news;

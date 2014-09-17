@@ -116,6 +116,11 @@
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
+        case 105 :
+            [self.sideMenuViewController setContentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"WeiboHomeLineTableViewController"]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
         default:
             break;
     }

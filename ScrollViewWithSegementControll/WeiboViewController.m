@@ -5,7 +5,7 @@
 //  Created by zagger on 14-9-16.
 //  Copyright (c) 2014年 浩然. All rights reserved.
 //
-#import "AppDelegate.h"
+
 #import "WeiboViewController.h"
 
 @interface WeiboViewController ()
@@ -33,6 +33,7 @@
     if(!sinaWeibo.isAuthValid)
     {
         [self loginButtonPressed];
+        [self homelineButtonPressed];
     }
     else{
         
@@ -319,4 +320,105 @@ didRecieveAuthorizationCode:(NSString *)code
     
    // [self resetButtons];
 }
+
+
+#pragma mark - SinaWeibo各种请求
+
+- (void)homelineButtonPressed
+{
+    SinaWeibo *sinaweibo = [self sinaweibo];
+    SinaWeiboRequest *Requst;
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithObjectsAndKeys:since_id,@"since_id",nil];
+    Requst=[sinaweibo requestWithURL:@"statuses/home_timeline.json"
+                              params:param
+                          httpMethod:@"GET"
+                            delegate:self];
+    for (NSString *show in param) {
+        NSLog(@"显示%@",show);
+    }
+    //NSLog(@"显示%@",[NSMutableDictionary dictionaryWithObject:sinaweibo.userID forKey:@"uid"]);
+    
+}
+- (void)getWeiboContent
+{
+    SinaWeibo *sinaweibo = [self sinaweibo];
+    SinaWeiboRequest *Requst;
+    Requst=[sinaweibo requestWithURL:@"comments/show.json"
+                              params:[NSMutableDictionary dictionaryWithObject:WeiboId forKey:@"id"]
+                          httpMethod:@"GET"
+                            delegate:self];
+    
+    
+    //NSLog(@"显示%@",[NSMutableDictionary dictionaryWithObject:sinaweibo.userID forKey:@"uid"]);
+    
+}static int post_status_times = 0;
+- (void)postStatusButtonPressed
+{
+    if (!postStatusText)
+    {
+        post_status_times ++;
+        postStatusText = nil;
+  //      postStatusText = [[NSString alloc] initWithFormat:@"%@",self.testField.text];
+        
+    }
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
+                                                        message:[NSString stringWithFormat:@"Will post status with text \"%@\"", postStatusText]
+                                                       delegate:self cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+    alertView.tag = 0;
+    [alertView show];
+}
+
+static int post_image_status_times = 0;
+- (void)postImageStatusButtonPressed
+{
+    if (!postImageStatusText)
+    {
+        post_image_status_times ++;
+        postImageStatusText = nil;
+        
+      //  postImageStatusText = [[NSString alloc] initWithFormat:@"%@",self.testField.text];
+  
+    }
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
+                                                        message:[NSString stringWithFormat:@"Will post image status with text \"%@\"", postImageStatusText]
+                                                       delegate:self cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+    alertView.tag = 1;
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        if (alertView.tag == 0)
+        {
+            // post status
+            SinaWeibo *sinaweibo = [self sinaweibo];
+            [sinaweibo requestWithURL:@"statuses/update.json"
+                               params:[NSMutableDictionary dictionaryWithObjectsAndKeys:postStatusText, @"status", nil]
+                           httpMethod:@"POST"
+                             delegate:self];
+            
+        }
+        else if (alertView.tag == 1)
+        {
+//            // post image status
+//            SinaWeibo *sinaweibo = [self sinaweibo];
+//            
+//            [sinaweibo requestWithURL:@"statuses/upload.json"
+//                               params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                       postImageStatusText, @"status",
+//                                       self.imageView.image, @"pic", nil]
+//                           httpMethod:@"POST"
+//                             delegate:self];
+            
+        }
+    }
+}
+
+
 @end
