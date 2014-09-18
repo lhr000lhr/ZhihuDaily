@@ -64,6 +64,7 @@
 - (void)removeAuthData
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SinaWeiboAuthData"];
+   
 }
 
 - (void)storeAuthData
@@ -76,7 +77,7 @@
                               sinaweibo.userID, @"UserIDKey",
                               sinaweibo.refreshToken, @"refresh_token", nil];
     [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"SinaWeiboAuthData"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+  
 }
 
 - (void)loginButtonPressed
@@ -317,7 +318,6 @@ didRecieveAuthorizationCode:(NSString *)code
         // [self logInDidFinishWithAuthInfo:result];
         
     }
-    
    // [self resetButtons];
 }
 
@@ -351,7 +351,8 @@ didRecieveAuthorizationCode:(NSString *)code
     
     //NSLog(@"显示%@",[NSMutableDictionary dictionaryWithObject:sinaweibo.userID forKey:@"uid"]);
     
-}static int post_status_times = 0;
+}
+static int post_status_times = 0;
 - (void)postStatusButtonPressed
 {
     if (!postStatusText)

@@ -70,6 +70,12 @@
 		8C6DEE7219C93F650095AD0C /* WeiboTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DEE7019C93F650095AD0C /* WeiboTableViewCell.xib */; };
 		8C6DEE7619C986B70095AD0C /* WeiboWithoutImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DEE7419C986B70095AD0C /* WeiboWithoutImageTableViewCell.m */; };
 		8C6DEE7719C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DEE7519C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib */; };
+		8C6DEE7D19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DEE7C19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.m */; };
+		8C6DEE8819CA78E30095AD0C /* WeiboDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DEE8619CA78E30095AD0C /* WeiboDetailViewController.m */; };
+		8C6DEE8919CA78E30095AD0C /* WeiboDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DEE8719CA78E30095AD0C /* WeiboDetailViewController.xib */; };
+		8C6DEE8D19CAB1F40095AD0C /* WeiboCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DEE8B19CAB1F40095AD0C /* WeiboCommentTableViewCell.m */; };
+		8C6DEE8E19CAB1F40095AD0C /* WeiboCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DEE8C19CAB1F40095AD0C /* WeiboCommentTableViewCell.xib */; };
+		8C6DEE9219CAD6BE0095AD0C /* PostWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DEE9119CAD6BE0095AD0C /* PostWeiboViewController.m */; };
 		8C733C2C19C91E06005A60BF /* WeiboHomeLineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C733C2B19C91E06005A60BF /* WeiboHomeLineTableViewController.m */; };
 		8CAD97A119C2AE0A00B5878D /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD97A019C2AE0A00B5878D /* bg.png */; };
 		8CAD97AA19C2CF0400B5878D /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97A519C2CF0400B5878D /* RECommonFunctions.m */; };
@@ -285,6 +291,16 @@
 		8C6DEE7319C986B70095AD0C /* WeiboWithoutImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboWithoutImageTableViewCell.h; sourceTree = "<group>"; };
 		8C6DEE7419C986B70095AD0C /* WeiboWithoutImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboWithoutImageTableViewCell.m; sourceTree = "<group>"; };
 		8C6DEE7519C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeiboWithoutImageTableViewCell.xib; sourceTree = "<group>"; };
+		8C6DEE7B19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboDetailAndCommentTableViewController.h; sourceTree = "<group>"; };
+		8C6DEE7C19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboDetailAndCommentTableViewController.m; sourceTree = "<group>"; };
+		8C6DEE8519CA78E30095AD0C /* WeiboDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboDetailViewController.h; sourceTree = "<group>"; };
+		8C6DEE8619CA78E30095AD0C /* WeiboDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboDetailViewController.m; sourceTree = "<group>"; };
+		8C6DEE8719CA78E30095AD0C /* WeiboDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeiboDetailViewController.xib; sourceTree = "<group>"; };
+		8C6DEE8A19CAB1F40095AD0C /* WeiboCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboCommentTableViewCell.h; sourceTree = "<group>"; };
+		8C6DEE8B19CAB1F40095AD0C /* WeiboCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboCommentTableViewCell.m; sourceTree = "<group>"; };
+		8C6DEE8C19CAB1F40095AD0C /* WeiboCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeiboCommentTableViewCell.xib; sourceTree = "<group>"; };
+		8C6DEE9019CAD6BE0095AD0C /* PostWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostWeiboViewController.h; sourceTree = "<group>"; };
+		8C6DEE9119CAD6BE0095AD0C /* PostWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostWeiboViewController.m; sourceTree = "<group>"; };
 		8C733C2A19C91E06005A60BF /* WeiboHomeLineTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboHomeLineTableViewController.h; sourceTree = "<group>"; };
 		8C733C2B19C91E06005A60BF /* WeiboHomeLineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboHomeLineTableViewController.m; sourceTree = "<group>"; };
 		8CAD97A019C2AE0A00B5878D /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -550,7 +566,22 @@
 			path = AFNetworking;
 			sourceTree = SOURCE_ROOT;
 		};
-		8C733C2919C91DB3005A60BF /* 微博浏览 */ = {
+		8C6DEE8119CA706B0095AD0C /* 微博详情 */ = {
+			isa = PBXGroup;
+			children = (
+				8C6DEE7B19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.h */,
+				8C6DEE7C19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.m */,
+				8C6DEE8519CA78E30095AD0C /* WeiboDetailViewController.h */,
+				8C6DEE8619CA78E30095AD0C /* WeiboDetailViewController.m */,
+				8C6DEE8719CA78E30095AD0C /* WeiboDetailViewController.xib */,
+				8C6DEE8A19CAB1F40095AD0C /* WeiboCommentTableViewCell.h */,
+				8C6DEE8B19CAB1F40095AD0C /* WeiboCommentTableViewCell.m */,
+				8C6DEE8C19CAB1F40095AD0C /* WeiboCommentTableViewCell.xib */,
+			);
+			name = "微博详情";
+			sourceTree = "<group>";
+		};
+		8C6DEE8F19CAD5DE0095AD0C /* 微博主页 */ = {
 			isa = PBXGroup;
 			children = (
 				8C733C2A19C91E06005A60BF /* WeiboHomeLineTableViewController.h */,
@@ -561,6 +592,25 @@
 				8C6DEE7319C986B70095AD0C /* WeiboWithoutImageTableViewCell.h */,
 				8C6DEE7419C986B70095AD0C /* WeiboWithoutImageTableViewCell.m */,
 				8C6DEE7519C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib */,
+			);
+			name = "微博主页";
+			sourceTree = "<group>";
+		};
+		8C6DEE9319CAD6D30095AD0C /* 微博发送 */ = {
+			isa = PBXGroup;
+			children = (
+				8C6DEE9019CAD6BE0095AD0C /* PostWeiboViewController.h */,
+				8C6DEE9119CAD6BE0095AD0C /* PostWeiboViewController.m */,
+			);
+			name = "微博发送";
+			sourceTree = "<group>";
+		};
+		8C733C2919C91DB3005A60BF /* 微博浏览 */ = {
+			isa = PBXGroup;
+			children = (
+				8C6DEE9319CAD6D30095AD0C /* 微博发送 */,
+				8C6DEE8F19CAD5DE0095AD0C /* 微博主页 */,
+				8C6DEE8119CA706B0095AD0C /* 微博详情 */,
 			);
 			name = "微博浏览";
 			sourceTree = "<group>";
@@ -859,6 +909,8 @@
 				8C15AA3F19C8123C00EB3DE2 /* IMG_0536.PNG in Resources */,
 				8C6DEE7719C986B70095AD0C /* WeiboWithoutImageTableViewCell.xib in Resources */,
 				8C15AA3A19C7CFCD00EB3DE2 /* logo@2x.png in Resources */,
+				8C6DEE8919CA78E30095AD0C /* WeiboDetailViewController.xib in Resources */,
+				8C6DEE8E19CAB1F40095AD0C /* WeiboCommentTableViewCell.xib in Resources */,
 				AD3BED1819B57607006B465C /* Expression_3@2x.png in Resources */,
 				8CC9214319B6C390008609C1 /* sub-selected-line.png in Resources */,
 				8CC9214619B6C390008609C1 /* sub-selected@2x.png in Resources */,
@@ -915,6 +967,7 @@
 			files = (
 				8C6DEE7619C986B70095AD0C /* WeiboWithoutImageTableViewCell.m in Sources */,
 				8C056B0F19B9B6710005C51B /* UIImage+GIF.m in Sources */,
+				8C6DEE8D19CAB1F40095AD0C /* WeiboCommentTableViewCell.m in Sources */,
 				8C56ABDF19BEC54E003A6D5A /* UIImageView+AFNetworking.m in Sources */,
 				8C21749619B9930C00E25097 /* MJRefreshFooterView.m in Sources */,
 				8C15AA0119C6C77E00EB3DE2 /* TOActivitySafari.m in Sources */,
@@ -934,9 +987,11 @@
 				8CAD97AA19C2CF0400B5878D /* RECommonFunctions.m in Sources */,
 				8C733C2C19C91E06005A60BF /* WeiboHomeLineTableViewController.m in Sources */,
 				AD3BECEA19B56EE7006B465C /* ViewController.m in Sources */,
+				8C6DEE7D19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.m in Sources */,
 				8C15AA0319C6C77E00EB3DE2 /* UIImage+TOWebViewControllerIcons.m in Sources */,
 				AD250EBD19B5CE2D007AA65D /* TwoViewController.m in Sources */,
 				8C056B0919B9B6710005C51B /* SDWebImageDecoder.m in Sources */,
+				8C6DEE9219CAD6BE0095AD0C /* PostWeiboViewController.m in Sources */,
 				8C15AA2A19C7CFA500EB3DE2 /* JSONKit.m in Sources */,
 				8C6DEE7119C93F650095AD0C /* WeiboTableViewCell.m in Sources */,
 				8CB4C51919B8544D00641191 /* ScrollViewDetailViewController.m in Sources */,
@@ -973,6 +1028,7 @@
 				8C056B0819B9B6710005C51B /* SDWebImageCompat.m in Sources */,
 				8C21749A19B9930C00E25097 /* UIView+Extension.m in Sources */,
 				AD3BECE419B56EE7006B465C /* main.m in Sources */,
+				8C6DEE8819CA78E30095AD0C /* WeiboDetailViewController.m in Sources */,
 				8C15AA0719C6D4B600EB3DE2 /* SettingTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

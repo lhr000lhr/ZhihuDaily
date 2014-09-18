@@ -87,6 +87,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     if (indexPath.section==2) {
         if (indexPath.row==0) {
             [self sendEmail:@"lee_peter@foxmail.com" cc:@"" subject:@"报告问题" body:@"( ⊙ o ⊙ )啊！_(:з」∠)_啊！"];

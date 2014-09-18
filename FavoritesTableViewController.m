@@ -249,6 +249,7 @@ static NSString *CellIdentifier = @"Cell";
 */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *heroSelected=[NSString stringWithFormat:@"%ld",(long)indexPath.row];
     //indexPath.row得到选中的行号，提取出在数组中的内容。
     UIAlertView *myAlertView;

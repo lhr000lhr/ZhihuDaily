@@ -7,7 +7,9 @@
 //
 
 #import "WeiboHomeLineTableViewController.h"
-
+#import "WeiboDetailAndCommentTableViewController.h"
+#import "ScrollViewDetailViewController.h"
+#import "UIButton+WebCache.h"
 @interface WeiboHomeLineTableViewController ()
 
 @end
@@ -27,23 +29,40 @@
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     return delegate.sinaweibo;
 }
+-(void)getUserName:(NSNotification*)notify
+{
+    // NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+    [self homelineButtonPressed];
+     [self userInfoButtonPressed];
+    // self.userName.text =temp;
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserName:)
+												 name:@"getUserName" object:nil];
+    loadingMore =NO ;
     UINib *nib = [UINib nibWithNibName:@"WeiboTableViewCell" bundle:nil];
-   
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"WeiboCell"];
+   [self.tableView registerNib:nib forCellReuseIdentifier:@"WeiboCell"];
     
     UINib *nib2 =[UINib nibWithNibName:@"WeiboWithoutImageTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:@"WeiboWithoutImageCell"];
 
   
-     since_id = nil;
-    self.title=[[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+    since_id = nil;
+    SinaWeibo *sinaWeibo =[self sinaweibo];
+    if (sinaWeibo.isAuthValid) {
+        self.title=[[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+    }
     
     
     [self setupRefresh];
+    
+  
+   
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -113,13 +132,23 @@
     cell.content.text = desContent;
     
     if ( [tableviewlist[indexPath.row] objectForKey:@"thumbnail_pic"] != nil) {
-        [cell.weiboImage setImageWithURL: [NSURL URLWithString: [rowData objectForKey:@"bmiddle_pic"]]];
+        
+    //    UIImageView *temp =[UIImageView new];
+        //[temp setImageWithURL: [NSURL URLWithString: [rowData objectForKey:@"bmiddle_pic"]]];
+        //[cell.weiboImage setImage: temp.image forState:UIControlStateNormal];
+        
+        [cell.weiboImage setImageWithURL:[tableviewlist[indexPath.row] objectForKey:@"bmiddle_pic"]];
         cell.weiboImage.hidden = NO;
-    }else{
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yourHandlingCode:)];
+        [cell.weiboImage addGestureRecognizer:singleTap];
+          cell.weiboImage.tag=indexPath.section*10000+indexPath.row;///// 设置 star的tag
+    }
+    
+    else{
         CGRect orgRect=cell.weiboImage.frame;
         
         orgRect.size.height =0;
-        orgRect.origin.y = cell.contentView.frame.size.height-5;
+        orgRect.origin.y = cell.content.frame.size.height-5;
         cell.weiboImage.frame= orgRect;
        // cell.weiboImage.hidden = YES;
     }
@@ -133,33 +162,28 @@
     
     
     
-    
-    
-    
-    
-    
-    if ( [rowData objectForKey:@"retweeted_status"]!= nil) {  /////显示转发微博
-        
-    }
+
     return cell;
         
         
     }
-    else{
+    else
+    {
+        
+            WeiboWithoutImageTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"WeiboWithoutImageCell" forIndexPath:indexPath];
         
         
-           WeiboWithoutImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WeiboWithoutImageCell" forIndexPath:indexPath];
-        
-        
-        cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
-        cell.time.text =  [rowData objectForKey:@"created_at"];
-         NSString *desContent =[rowData objectForKey:@"text"];
-        cell.content.text = desContent;
-        NSString *userurl= [[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];////设置cell中的头像
-        [cell.userImage setImageWithURL:[NSURL URLWithString:userurl]
+            cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
+            cell.time.text =  [rowData objectForKey:@"created_at"];
+            NSString *desContent =[rowData objectForKey:@"text"];
+            cell.content.text = desContent;
+            NSString *userurl= [[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];////设置cell中的头像
+            [cell.userImage setImageWithURL:[NSURL URLWithString:userurl]
                        placeholderImage:[UIImage imageNamed:@"Expression_2"]];
         
-
+           if ( [rowData objectForKey:@"retweeted_status"]!= nil) {  /////显示转发微博
+     
+           }
         return cell;
     }
 }
@@ -261,6 +285,7 @@
 }
 
 #pragma mark 开始进入刷新状态
+
 - (void)headerRereshing
 {
     // 1.添加假数据
@@ -270,13 +295,24 @@
   //  [self getData];
     // 2.2秒后刷新表格UI
     [self homelineButtonPressed];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
         // 刷新表格
        // [self.tableView reloadData];
-        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            SinaWeibo *sinaWeibo = [self sinaweibo];
+            if (!sinaWeibo.isAuthValid) {
+                UIAlertView *alert = [UIAlertView new];
+                
+                alert = [[UIAlertView alloc]initWithTitle:@"_(:з」∠)_" message:@"还没有登陆微博呢！" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+                // [alert show];
+                [self.tableView headerEndRefreshing];
+                [sinaWeibo logIn];//两秒后返回上一页 ~~~~~~~~~
+            }
+            
+        });
         // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
       //  [self.tableView headerEndRefreshing];
-    });
+   
 }
 
 - (void)footerRereshing
@@ -288,14 +324,33 @@
     //
    // [self getOneDayData];
     //
+    
+    
+    
+    
+    loadingMore = YES;
+    [self homelineWithPageButtonPressed];//////  上拉加载更多
+    
+    
+    
+    
     //    // 2.2秒后刷新表格UI
    // [self homelineButtonPressed];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+             SinaWeibo *sinaWeibo = [self sinaweibo];
+            if (!sinaWeibo.isAuthValid) {
+                UIAlertView *alert = [UIAlertView new];
+                
+                alert = [[UIAlertView alloc]initWithTitle:@"_(:з」∠)_" message:@"还没有登陆微博呢！" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+                [alert show];
+                [self.tableView footerEndRefreshing];
+            }
     //        // 刷新表格
     //        [self.tableView reloadData];
     //
+            
     //        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
-          [self.tableView footerEndRefreshing];
+//          [self.tableView footerEndRefreshing];
     });
 }
 
@@ -345,6 +400,7 @@
         [temp addObject:userInfo];
         
         [[NSUserDefaults standardUserDefaults] setObject:[userInfo objectForKey:@"screen_name"] forKey:[NSString stringWithFormat:@"userName"]];
+        self.title =[userInfo objectForKey:@"screen_name"];
         NSString * i =[userInfo objectForKey:@"profile_image_url"] ;
         NSArray * array = [i componentsSeparatedByString:@"/50/"];
         NSString *new = [NSString stringWithFormat:@"%@/180/%@",array[0],array[1]];
@@ -367,13 +423,23 @@
         //  tableviewlist =[[NSMutableArray alloc] init];
         if ([homeline count]!= 0)
         {
+            if (loadingMore)
+            {
+                NSMutableArray *temp = [homeline mutableCopy];
+                [temp removeObjectAtIndex:0];
+                tableviewlist = [[tableviewlist arrayByAddingObjectsFromArray:temp] mutableCopy];
+                NSLog(@"222222%lu",(unsigned long)[tableviewlist count]);
+                loadingMore = NO;
+            }
+            else{
+            
             
             tableviewlist = [[homeline arrayByAddingObjectsFromArray:tableviewlist] mutableCopy];
             NSLog(@" %d %@",[homeline count],[[homeline objectAtIndex:0] objectForKey:@"id"]);
             NSString *ValueString =[NSString stringWithFormat:@"%@",[[homeline objectAtIndex:0] objectForKey:@"id"]];
             since_id = ValueString;
         
-        
+                }
         }
         
         
@@ -388,6 +454,7 @@
         //  [viewData setObject:rowData forKey:@"rowData"];
         // [viewData synchronize];
         [self.tableView reloadData];
+        [self.tableView footerEndRefreshing];
         [self.tableView headerEndRefreshing];
         
     }
@@ -438,18 +505,45 @@
         // [self logInDidFinishWithAuthInfo:result];
         
     }
-    
+   
     // [self resetButtons];
 }
 
 
 #pragma mark - SinaWeibo各种请求
 
+- (void)userInfoButtonPressed
+{
+    SinaWeibo *sinaweibo = [self sinaweibo];
+    [sinaweibo requestWithURL:@"users/show.json"
+                       params:[NSMutableDictionary dictionaryWithObject:sinaweibo.userID forKey:@"uid"]
+                   httpMethod:@"GET"
+                     delegate:self];
+}
+
+
 - (void)homelineButtonPressed
 {
     SinaWeibo *sinaweibo = [self sinaweibo];
     SinaWeiboRequest *Requst;
     NSMutableDictionary *param = [NSMutableDictionary dictionaryWithObjectsAndKeys:since_id,@"since_id",nil];
+    Requst=[sinaweibo requestWithURL:@"statuses/home_timeline.json"
+                              params:param
+                          httpMethod:@"GET"
+                            delegate:self];
+    for (NSString *show in param) {
+        NSLog(@"显示%@",show);
+    }
+    //NSLog(@"显示%@",[NSMutableDictionary dictionaryWithObject:sinaweibo.userID forKey:@"uid"]);
+    
+}
+- (void)homelineWithPageButtonPressed
+{
+    SinaWeibo *sinaweibo = [self sinaweibo];
+    SinaWeiboRequest *Requst;
+    NSString *ValueString =[NSString stringWithFormat:@"%@",[[tableviewlist objectAtIndex:[tableviewlist count]-1] objectForKey:@"id"]];
+    max_id = ValueString;
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithObjectsAndKeys:max_id,@"max_id",nil];
     Requst=[sinaweibo requestWithURL:@"statuses/home_timeline.json"
                               params:param
                           httpMethod:@"GET"
@@ -540,7 +634,66 @@ static int post_image_status_times = 0;
         }
     }
 }
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *rowData2 =tableviewlist[indexPath.row];
+    NSString *weiboUserName = [[rowData2 objectForKey:@"user"] objectForKey:@"name"];
+    WeiboId =   [NSString stringWithFormat:@"%@",[rowData2 objectForKey:@"id"]];
+        
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    WeiboDetailAndCommentTableViewController *content =  [self.storyboard instantiateViewControllerWithIdentifier:@"WeiboDetailAndCommentTableViewController"];
+    
+     NSLog(@"weiboid!!!!!%@",WeiboId);
+      content.navigationItem.title = weiboUserName;
+    
+    content.weiboContent=[rowData2 objectForKey:@"text"];
+    content.weiboUserName=[[rowData2 objectForKey:@"user"] objectForKey:@"name"];
+    NSString *fileName = [[rowData2 objectForKey:@"thumbnail_pic"]  lastPathComponent];
+    NSData *imageData = [NSData dataWithContentsOfFile: [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName]];
+    content.weiboImagesData=imageData;
+    content.weiboUserUrl= [[rowData2 objectForKey:@"user"] objectForKey:@"profile_image_url"];
+    // NSDictionary * rowData3 =WeiboContent[indexPath.row];
+    content.WeiboId =WeiboId;
+    content.weiboComments =WeiboContent;
+    content.original_pic =[rowData2 objectForKey:@"original_pic"];
+    content.rowData = rowData2;
+    
+    
+    
+    
+    
+    [self.navigationController pushViewController:content animated:YES];
+    
+    
+    
+    
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	
+    UITouch *touch = [[event allTouches] anyObject];
+    
+    if ([touch view] != [UIImageView new])
+    {
+		NSLog(@"图片点击");
+        //do some method.....
+        
+    }
+    
+}
 
-
-
+-(void)yourHandlingCode:(UIGestureRecognizer *)gestureRecognizer
+{
+    UIImageView *view = (UIImageView *)[gestureRecognizer view];
+    int tagvalue = view.tag;
+    int section = tagvalue/10000;
+    int row = tagvalue- section*10000;
+    NSString *url=[tableviewlist[row] objectForKey:@"original_pic"];
+    
+    TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURLString:[NSString stringWithFormat:@"%@",url]];
+  //  webViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:webViewController animated:YES];
+}
 @end

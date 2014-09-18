@@ -45,6 +45,6 @@
     BOOL isflage;
     BOOL _reloading;
     BOOL isPic;
-
+    BOOL loadingMore;
 }
 @end

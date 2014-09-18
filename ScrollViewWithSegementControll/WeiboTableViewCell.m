@@ -13,6 +13,12 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    CALayer *userImage = [self.userImage layer];   //获取ImageView的层
+    [userImage setMasksToBounds:YES];
+    [userImage setCornerRadius:6.0];
+    CALayer *weiboImage = [self.weiboImage layer];   //获取ImageView的层
+    [weiboImage setMasksToBounds:YES];
+    [weiboImage setCornerRadius:6.0];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

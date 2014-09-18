@@ -6,11 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeiboCell" rowHeight="422" id="KGk-i7-Jjw" customClass="WeiboTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="422"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeiboCell" rowHeight="261" id="KGk-i7-Jjw" customClass="WeiboTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="261"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="421"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VjS-Mg-PaI">
@@ -44,29 +44,31 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="0cN-f2-H1U">
-                        <rect key="frame" x="20" y="76" width="280" height="230"/>
+                        <rect key="frame" x="20" y="76" width="280" height="79"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VUf-fW-csO">
-                        <rect key="frame" x="20" y="331" width="66" height="70"/>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tHg-7Z-BzU">
+                        <rect key="frame" x="20" y="170" width="66" height="70"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="1" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="70" id="ULo-cc-t0f"/>
+                            <constraint firstAttribute="width" constant="66" id="PDb-Cf-xtn"/>
+                            <constraint firstAttribute="height" constant="70" id="bqh-cY-3Jo"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="rde-GU-k8c" firstAttribute="leading" secondItem="wLf-xB-nVl" secondAttribute="trailing" constant="8" symbolic="YES" id="CiJ-hu-2Dh"/>
-                    <constraint firstAttribute="bottom" secondItem="VUf-fW-csO" secondAttribute="bottom" constant="20" id="GLA-KU-PMB"/>
+                    <constraint firstAttribute="bottom" secondItem="tHg-7Z-BzU" secondAttribute="bottom" constant="20" symbolic="YES" id="HWZ-Ip-33m"/>
+                    <constraint firstItem="0cN-f2-H1U" firstAttribute="leading" secondItem="tHg-7Z-BzU" secondAttribute="leading" id="JRs-gQ-76T"/>
                     <constraint firstItem="0cN-f2-H1U" firstAttribute="trailing" secondItem="oIm-ZE-VMU" secondAttribute="trailing" id="LnX-Yk-Rpj"/>
                     <constraint firstItem="rde-GU-k8c" firstAttribute="baseline" secondItem="oIm-ZE-VMU" secondAttribute="baseline" id="Nu2-yN-B7u"/>
                     <constraint firstItem="wLf-xB-nVl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="OKD-q6-50x"/>
-                    <constraint firstItem="VUf-fW-csO" firstAttribute="top" secondItem="0cN-f2-H1U" secondAttribute="bottom" constant="25" id="Ohu-xi-wMF"/>
                     <constraint firstItem="oIm-ZE-VMU" firstAttribute="leading" secondItem="wLf-xB-nVl" secondAttribute="trailing" constant="71" id="QWN-g1-aDg"/>
                     <constraint firstItem="0cN-f2-H1U" firstAttribute="leading" secondItem="wLf-xB-nVl" secondAttribute="leading" id="SJl-S5-TZd"/>
+                    <constraint firstItem="tHg-7Z-BzU" firstAttribute="top" secondItem="0cN-f2-H1U" secondAttribute="bottom" constant="15" id="Sh2-hK-KPD"/>
                     <constraint firstItem="wLf-xB-nVl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="UQb-uJ-wFW"/>
                     <constraint firstItem="VjS-Mg-PaI" firstAttribute="trailing" secondItem="oIm-ZE-VMU" secondAttribute="trailing" id="gSf-Zk-Dgm"/>
                     <constraint firstItem="0cN-f2-H1U" firstAttribute="top" secondItem="wLf-xB-nVl" secondAttribute="bottom" constant="8" symbolic="YES" id="kSf-a7-fiC"/>
@@ -76,8 +78,6 @@
                     <constraint firstItem="VjS-Mg-PaI" firstAttribute="leading" secondItem="wLf-xB-nVl" secondAttribute="trailing" constant="8" symbolic="YES" id="rmK-yP-mMX"/>
                     <constraint firstItem="wLf-xB-nVl" firstAttribute="top" secondItem="VjS-Mg-PaI" secondAttribute="top" id="rwh-gH-c27"/>
                     <constraint firstItem="0cN-f2-H1U" firstAttribute="top" secondItem="rde-GU-k8c" secondAttribute="bottom" constant="8" symbolic="YES" id="sRc-Ik-ceJ"/>
-                    <constraint firstItem="VUf-fW-csO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="tPa-w2-eoa"/>
-                    <constraint firstAttribute="trailing" secondItem="VUf-fW-csO" secondAttribute="trailing" constant="234" id="uYq-ZY-pDp"/>
                     <constraint firstItem="oIm-ZE-VMU" firstAttribute="trailing" secondItem="rde-GU-k8c" secondAttribute="trailing" id="xfF-Pb-6bd"/>
                 </constraints>
             </tableViewCellContentView>
@@ -87,7 +87,7 @@
                 <outlet property="name" destination="VjS-Mg-PaI" id="e7Q-N0-qMg"/>
                 <outlet property="time" destination="rde-GU-k8c" id="fL4-5K-Qen"/>
                 <outlet property="userImage" destination="wLf-xB-nVl" id="MRu-LY-qig"/>
-                <outlet property="weiboImage" destination="VUf-fW-csO" id="oqO-VZ-ZOn"/>
+                <outlet property="weiboImage" destination="tHg-7Z-BzU" id="IZo-IF-Sps"/>
             </connections>
         </tableViewCell>
     </objects>

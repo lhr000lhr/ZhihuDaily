@@ -1,16 +1,16 @@
 //
-//  WeiboViewController.h
+//  PostWeiboViewController.h
 //  ScrollViewWithSegementControll
 //
-//  Created by zagger on 14-9-16.
+//  Created by zagger on 14-9-18.
 //  Copyright (c) 2014年 浩然. All rights reserved.
 //
-
 #import <UIKit/UIKit.h>
 #import "SinaWeibo.h"
 #import "AppDelegate.h"
 #import "SinaWeiboRequest.h"
-@interface WeiboViewController : UIViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,SinaWeiboAuthorizeViewDelegate>
+@interface PostWeiboViewController : UIViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,SinaWeiboAuthorizeViewDelegate>
+
 {
     UIButton  *loginButton;
     UIButton *logoutButton;
@@ -43,9 +43,10 @@
     BOOL isflage;
     BOOL _reloading;
     BOOL isPic;
-    
+
 }
-@property (strong, nonatomic) IBOutlet UILabel *userName;
-- (void)logoutButtonPressed;
-- (void)sinaweiboDidLogOut:(SinaWeibo *)sinaweibo;
+- (IBAction)chooseImage:(id)sender;
+- (IBAction)post:(id)sender;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UITextView *textField;
 @end

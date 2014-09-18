@@ -1,21 +1,18 @@
 //
-//  WeiboWithoutImageTableViewCell.m
+//  WeiboCommentTableViewCell.m
 //  ScrollViewWithSegementControll
 //
-//  Created by zagger on 14-9-17.
+//  Created by zagger on 14-9-18.
 //  Copyright (c) 2014年 浩然. All rights reserved.
 //
 
-#import "WeiboWithoutImageTableViewCell.h"
+#import "WeiboCommentTableViewCell.h"
 
-@implementation WeiboWithoutImageTableViewCell
+@implementation WeiboCommentTableViewCell
 
 - (void)awakeFromNib
 {
     // Initialization code
-    CALayer *userImage = [self.userImage layer];   //获取ImageView的层
-    [userImage setMasksToBounds:YES];
-    [userImage setCornerRadius:6.0];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

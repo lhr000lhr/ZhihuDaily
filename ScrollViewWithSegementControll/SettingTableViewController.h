@@ -14,7 +14,7 @@
 @interface SettingTableViewController : UITableViewController
 - (IBAction)settingSwitch:(UISwitch *)sender;
 - (void) sendEmail:(NSString *)phoneNumber;
--(void) sendEmail:(NSString *)to cc:(NSString*)cc subject:(NSString*)subject body:(NSString*)body;
+- (void) sendEmail:(NSString *)to cc:(NSString*)cc subject:(NSString*)subject body:(NSString*)body;
 
 
 
