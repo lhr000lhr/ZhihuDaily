@@ -48,7 +48,9 @@
     
     UINib *nib2 =[UINib nibWithNibName:@"WeiboWithoutImageTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:@"WeiboWithoutImageCell"];
-    UINib *nib3 =[UINib nibWithNibName:@"WeiboWithoutImageTableViewCell" bundle:nil];
+    
+    
+    UINib *nib3 =[UINib nibWithNibName:@"WeiboAllInOneTableViewCell" bundle:nil];
     [self.tableView registerNib:nib3 forCellReuseIdentifier:@"WeiboAllInOneTableViewCell"];
 
     
@@ -101,116 +103,145 @@
     
     
        rowData = tableviewlist[indexPath.row];
- 
-//    CGRect orgRect=cell.content.frame;
-//
-    if ( [tableviewlist[indexPath.row] objectForKey:@"thumbnail_pic"] != nil) {
-        
-     
-        NSString *desContent =[rowData objectForKey:@"text"];
-    WeiboTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WeiboCell" forIndexPath:indexPath];
-    
-//    CGSize  size = [desContent sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:UILineBreakModeWordWrap];
-//    orgRect.size.height=size.height+20;
-//    cell.content.frame=orgRect;
-//
-    
-//    CGSize size = CGSizeMake(320,2000);
-//    //计算实际frame大小，并将label的frame变成实际大小
-//    CGSize labelsize = [desContent sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
-//    //[cell.content setFrame:CGRectMake:(0,0, labelsize.width, labelsize.height)];
-//    orgRect.size.height=size.height+20;
-//    cell.content.frame=orgRect;
   
-    /*
-     This method returns fractional sizes (in the size component of the returned CGRect); to use a returned size to size views, you must use raise its value to the nearest higher integer using the ceil function.
-     */
-   
-        NSString *from =[rowData objectForKey:@"source"];
-        NSArray * array = [from componentsSeparatedByString:@"\">"];
-
-        NSString *temp = array[1];
-        array = [temp componentsSeparatedByString:@"<"];
-        from = array[0];
-    cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
-        if ([from isEqualToString:@"知乎Plus"]) {
-               cell.from.textColor=[UIColor orangeColor];
-        }else{
-            cell.from.textColor=[UIColor lightGrayColor];
-        }
-        
-    cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
-    cell.time.text =  [rowData objectForKey:@"created_at"];
-    cell.content.text = desContent;
-    
-    if ( [tableviewlist[indexPath.row] objectForKey:@"thumbnail_pic"] != nil) {
-        
-    //    UIImageView *temp =[UIImageView new];
-        //[temp setImageWithURL: [NSURL URLWithString: [rowData objectForKey:@"bmiddle_pic"]]];
-        //[cell.weiboImage setImage: temp.image forState:UIControlStateNormal];
-        
-        [cell.weiboImage setImageWithURL:[tableviewlist[indexPath.row] objectForKey:@"bmiddle_pic"]];
-        cell.weiboImage.hidden = NO;
-        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yourHandlingCode:)];
-        [cell.weiboImage addGestureRecognizer:singleTap];
-          cell.weiboImage.tag=indexPath.section*10000+indexPath.row;///// 设置 star的tag
-    }
-//    
-//    else{
-//        CGRect orgRect=cell.weiboImage.frame;
-//        
-//        orgRect.size.height =0;
-//        orgRect.origin.y = cell.content.frame.size.height-5;
-//        cell.weiboImage.frame= orgRect;
-//       // cell.weiboImage.hidden = YES;
-//    }
-//           
-//    
-    
-    NSString *userurl= [[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];////设置cell中的头像
-
-    [cell.userImage setImageWithURL:[NSURL URLWithString:userurl]
-                   placeholderImage:[UIImage imageNamed:@"Expression_2"]];
+    static NSString * cellID=@"cellID";
+    UITableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellID];
     
     
-    
-
-    return cell;
+    if(cell==nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];    }
+    for (UIView *subview in [cell.contentView subviews])
         
-        
-    }
-    else
     {
         
+        [subview removeFromSuperview];
         
-            WeiboWithoutImageTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"WeiboWithoutImageCell" forIndexPath:indexPath];
-        
-        NSString *from =[rowData objectForKey:@"source"];
-        NSArray * array = [from componentsSeparatedByString:@"\">"];
-        
-        NSString *temp = array[1];
-        array = [temp componentsSeparatedByString:@"<"];
-        from = array[0];
-        cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
-        if ([from isEqualToString:@"知乎Plus"]) {
-            cell.from.textColor=[UIColor orangeColor];
-        }else{
-            cell.from.textColor=[UIColor lightGrayColor];
-        }
-        
-            cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
-            cell.time.text =  [rowData objectForKey:@"created_at"];
-            NSString *desContent =[rowData objectForKey:@"text"];
-            cell.content.text = desContent;
-            NSString *userurl= [[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];////设置cell中的头像
-            [cell.userImage setImageWithURL:[NSURL URLWithString:userurl]
-                       placeholderImage:[UIImage imageNamed:@"Expression_2"]];
-        
-           if ( [rowData objectForKey:@"retweeted_status"]!= nil) {  /////显示转发微博
-     
-           }
-        return cell;
     }
+    
+    WeiboDetailViewController *view=[WeiboDetailViewController new];
+    view.rowData =rowData;
+    view.view;
+//    if (indexPath.row %2 == 0) {
+//        view.view.backgroundColor = [UIColor greenColor];
+//    } else
+//        view.view.backgroundColor = [UIColor blueColor];
+//    
+    [cell.contentView addSubview:view.view];
+    view.view.frame = cell.contentView.bounds;
+//    cell.backgroundColor=[UIColor yellowColor];
+//    
+//
+    [self addChildViewController:view];
+    return cell;
+//    CGRect orgRect=cell.content.frame;
+//
+//    if ( [tableviewlist[indexPath.row] objectForKey:@"thumbnail_pic"] != nil) {
+//        
+//     
+//        NSString *desContent =[rowData objectForKey:@"text"];
+//    WeiboTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WeiboCell" forIndexPath:indexPath];
+//    
+////    CGSize  size = [desContent sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:UILineBreakModeWordWrap];
+////    orgRect.size.height=size.height+20;
+////    cell.content.frame=orgRect;
+////
+//    
+////    CGSize size = CGSizeMake(320,2000);
+////    //计算实际frame大小，并将label的frame变成实际大小
+////    CGSize labelsize = [desContent sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+////    //[cell.content setFrame:CGRectMake:(0,0, labelsize.width, labelsize.height)];
+////    orgRect.size.height=size.height+20;
+////    cell.content.frame=orgRect;
+//  
+//    /*
+//     This method returns fractional sizes (in the size component of the returned CGRect); to use a returned size to size views, you must use raise its value to the nearest higher integer using the ceil function.
+//     */
+//   
+//        NSString *from =[rowData objectForKey:@"source"];
+//        NSArray * array = [from componentsSeparatedByString:@"\">"];
+//
+//        NSString *temp = array[1];
+//        array = [temp componentsSeparatedByString:@"<"];
+//        from = array[0];
+//    cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+//        if ([from isEqualToString:@"知乎Plus"]) {
+//               cell.from.textColor=[UIColor orangeColor];
+//        }else{
+//            cell.from.textColor=[UIColor lightGrayColor];
+//        }
+//        
+//    cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
+//    cell.time.text =  [rowData objectForKey:@"created_at"];
+//    cell.content.text = desContent;
+//    
+//    if ( [tableviewlist[indexPath.row] objectForKey:@"thumbnail_pic"] != nil) {
+//        
+//    //    UIImageView *temp =[UIImageView new];
+//        //[temp setImageWithURL: [NSURL URLWithString: [rowData objectForKey:@"bmiddle_pic"]]];
+//        //[cell.weiboImage setImage: temp.image forState:UIControlStateNormal];
+//        
+//        [cell.weiboImage setImageWithURL:[tableviewlist[indexPath.row] objectForKey:@"bmiddle_pic"]];
+//        cell.weiboImage.hidden = NO;
+//        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yourHandlingCode:)];
+//        [cell.weiboImage addGestureRecognizer:singleTap];
+//          cell.weiboImage.tag=indexPath.section*10000+indexPath.row;///// 设置 star的tag
+//    }
+////    
+////    else{
+////        CGRect orgRect=cell.weiboImage.frame;
+////        
+////        orgRect.size.height =0;
+////        orgRect.origin.y = cell.content.frame.size.height-5;
+////        cell.weiboImage.frame= orgRect;
+////       // cell.weiboImage.hidden = YES;
+////    }
+////           
+////    
+//    
+//    NSString *userurl= [[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];////设置cell中的头像
+//
+//    [cell.userImage setImageWithURL:[NSURL URLWithString:userurl]
+//                   placeholderImage:[UIImage imageNamed:@"Expression_2"]];
+//    
+//    
+//    
+//
+//    return cell;
+//        
+//        
+//    }
+//    else
+//    {
+//        
+//        
+//            WeiboWithoutImageTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"WeiboWithoutImageCell" forIndexPath:indexPath];
+//        
+//        NSString *from =[rowData objectForKey:@"source"];
+//        NSArray * array = [from componentsSeparatedByString:@"\">"];
+//        
+//        NSString *temp = array[1];
+//        array = [temp componentsSeparatedByString:@"<"];
+//        from = array[0];
+//        cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+//        if ([from isEqualToString:@"知乎Plus"]) {
+//            cell.from.textColor=[UIColor orangeColor];
+//        }else{
+//            cell.from.textColor=[UIColor lightGrayColor];
+//        }
+//        
+//            cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
+//            cell.time.text =  [rowData objectForKey:@"created_at"];
+//            NSString *desContent =[rowData objectForKey:@"text"];
+//            cell.content.text = desContent;
+//            NSString *userurl= [[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];////设置cell中的头像
+//            [cell.userImage setImageWithURL:[NSURL URLWithString:userurl]
+//                       placeholderImage:[UIImage imageNamed:@"Expression_2"]];
+//        
+//           if ( [rowData objectForKey:@"retweeted_status"]!= nil) {  /////显示转发微博
+//     
+//           }
+//        return cell;
+//    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -220,20 +251,23 @@
  //   WeiboTableViewCell *cell = (WeiboTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
     
     NSDictionary *rowData1 = tableviewlist[indexPath.row];
-    NSString *content = [tableviewlist[indexPath.row]  objectForKey:@"text"];
-    // 計算出顯示完內容需要的最小尺寸
-      CGSize  size = [content sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:UILineBreakModeWordWrap];
-    
-   
-    if ([tableviewlist[indexPath.row] objectForKey:@"thumbnail_pic"] != nil) {
-         return size.height+100+100;
-    }
-    
-    return size.height+140;
-    //cell.content.frame.size.height+cell.userImage.frame.size.height;
-    
-    
-}
+//    NSString *content = [tableviewlist[indexPath.row]  objectForKey:@"text"];
+//    // 計算出顯示完內容需要的最小尺寸
+//      CGSize  size = [content sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:UILineBreakModeWordWrap];
+//    
+//   
+//    if ([tableviewlist[indexPath.row] objectForKey:@"thumbnail_pic"] != nil) {
+//         return size.height+100+100;
+//    }
+//    
+//    return size.height+140;
+//    //cell.content.frame.size.height+cell.userImage.frame.size.height;
+//    
+    WeiboDetailViewController *view=[WeiboDetailViewController new];
+    view.rowData =rowData1;
+    view.view;
+    return view.view.frame.size.height;
+   }
 
 
 /*
@@ -690,6 +724,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     
     [self.navigationController pushViewController:content animated:YES];
+    
     
     
     

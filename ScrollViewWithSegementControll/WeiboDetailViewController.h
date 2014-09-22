@@ -21,4 +21,14 @@
 @property (strong, nonatomic) IBOutlet UIImageView *weiboImage;
 @property (strong, nonatomic) IBOutlet UILabel *from;
 
+
+
+
+@property (strong, nonatomic) IBOutlet UIView *retweetView;
+@property (strong, nonatomic) IBOutlet UILabel *retweetFrom;
+@property (strong, nonatomic) IBOutlet UILabel *retweetName;
+@property (strong, nonatomic) IBOutlet UILabel *retweetTime;
+@property (strong, nonatomic) IBOutlet UILabel *retweetContent;
+@property (strong, nonatomic) IBOutlet UIImageView *retweetWeiboImage;
+
 @end

@@ -7,13 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WeiboDetailViewController.h"
 @interface WeiboAllInOneTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *from;
 @property (strong, nonatomic) IBOutlet UILabel *time;
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
 @property (strong, nonatomic) IBOutlet UILabel *content;
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *weiboImage;
+@property (strong, nonatomic) IBOutlet UIImageView *weiboImage;
 
+
+
+@property (strong, nonatomic) IBOutlet UIView *retweetView;
+@property (strong, nonatomic) IBOutlet UILabel *retweetFrom;
+@property (strong, nonatomic) IBOutlet UILabel *retweetName;
+@property (strong, nonatomic) IBOutlet UILabel *retweetTime;
+@property (strong, nonatomic) IBOutlet UILabel *retweetContent;
+@property (strong, nonatomic) IBOutlet UIImageView *retweetWeiboImage;
+
+
+@property(strong,nonatomic) NSDictionary *rowData;
+@property (strong,nonatomic)WeiboDetailViewController *viewController;
 @end

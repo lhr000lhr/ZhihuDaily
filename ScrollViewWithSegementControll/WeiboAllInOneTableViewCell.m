@@ -7,13 +7,13 @@
 //
 
 #import "WeiboAllInOneTableViewCell.h"
-
+#import "WeiboDetailViewController.h"
 @implementation WeiboAllInOneTableViewCell
 
 - (void)awakeFromNib
 {
     // Initialization code
-    
+ 
     
     
 }

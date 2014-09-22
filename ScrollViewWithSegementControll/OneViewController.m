@@ -98,12 +98,12 @@ static NSString *CellIdentifier = @"Cell";
     
     
     
-    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 175)
-                                                          ImageArray:
-                             [NSArray arrayWithObjects:@"Expression_1@2x.png",@"Expression_2@2x.png",@"Expression_3@2x.png", nil]
-                                                          TitleArray:[NSArray arrayWithObjects:@"11",@"22",@"33", nil]];
-    scroller.delegate=self;
-    self.tableView.tableHeaderView= scroller;
+//    EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, 320, 175)
+//                                                          ImageArray:
+//                             [NSArray arrayWithObjects:@"Expression_1@2x.png",@"Expression_2@2x.png",@"Expression_3@2x.png", nil]
+//                                                          TitleArray:[NSArray arrayWithObjects:@"11",@"22",@"33", nil]];
+//    scroller.delegate=self;
+//    self.tableView.tableHeaderView= scroller;
     
     // Uncomment the followin/Users/mini1/Desktop/test/ScrollViewWithSegementControll/design/star-rate-s@2x.pngg line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
