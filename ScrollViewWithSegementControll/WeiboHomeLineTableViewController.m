@@ -48,8 +48,10 @@
     
     UINib *nib2 =[UINib nibWithNibName:@"WeiboWithoutImageTableViewCell" bundle:nil];
     [self.tableView registerNib:nib2 forCellReuseIdentifier:@"WeiboWithoutImageCell"];
+    UINib *nib3 =[UINib nibWithNibName:@"WeiboWithoutImageTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib3 forCellReuseIdentifier:@"WeiboAllInOneTableViewCell"];
 
-  
+    
     since_id = nil;
     SinaWeibo *sinaWeibo =[self sinaweibo];
     if (sinaWeibo.isAuthValid) {
@@ -124,9 +126,19 @@
      This method returns fractional sizes (in the size component of the returned CGRect); to use a returned size to size views, you must use raise its value to the nearest higher integer using the ceil function.
      */
    
- 
-    
-    
+        NSString *from =[rowData objectForKey:@"source"];
+        NSArray * array = [from componentsSeparatedByString:@"\">"];
+
+        NSString *temp = array[1];
+        array = [temp componentsSeparatedByString:@"<"];
+        from = array[0];
+    cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+        if ([from isEqualToString:@"知乎Plus"]) {
+               cell.from.textColor=[UIColor orangeColor];
+        }else{
+            cell.from.textColor=[UIColor lightGrayColor];
+        }
+        
     cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
     cell.time.text =  [rowData objectForKey:@"created_at"];
     cell.content.text = desContent;
@@ -143,17 +155,17 @@
         [cell.weiboImage addGestureRecognizer:singleTap];
           cell.weiboImage.tag=indexPath.section*10000+indexPath.row;///// 设置 star的tag
     }
-    
-    else{
-        CGRect orgRect=cell.weiboImage.frame;
-        
-        orgRect.size.height =0;
-        orgRect.origin.y = cell.content.frame.size.height-5;
-        cell.weiboImage.frame= orgRect;
-       // cell.weiboImage.hidden = YES;
-    }
-           
-    
+//    
+//    else{
+//        CGRect orgRect=cell.weiboImage.frame;
+//        
+//        orgRect.size.height =0;
+//        orgRect.origin.y = cell.content.frame.size.height-5;
+//        cell.weiboImage.frame= orgRect;
+//       // cell.weiboImage.hidden = YES;
+//    }
+//           
+//    
     
     NSString *userurl= [[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];////设置cell中的头像
 
@@ -170,8 +182,21 @@
     else
     {
         
+        
             WeiboWithoutImageTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"WeiboWithoutImageCell" forIndexPath:indexPath];
         
+        NSString *from =[rowData objectForKey:@"source"];
+        NSArray * array = [from componentsSeparatedByString:@"\">"];
+        
+        NSString *temp = array[1];
+        array = [temp componentsSeparatedByString:@"<"];
+        from = array[0];
+        cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+        if ([from isEqualToString:@"知乎Plus"]) {
+            cell.from.textColor=[UIColor orangeColor];
+        }else{
+            cell.from.textColor=[UIColor lightGrayColor];
+        }
         
             cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
             cell.time.text =  [rowData objectForKey:@"created_at"];
@@ -204,7 +229,7 @@
          return size.height+100+100;
     }
     
-    return size.height+100;
+    return size.height+140;
     //cell.content.frame.size.height+cell.userImage.frame.size.height;
     
     
@@ -463,8 +488,8 @@
         //NSLog(@"3");
         WeiboContent = [result objectForKey:@"comments"];
         
-        NSLog(@" 1111111%@",[[[homeline objectAtIndex:0] objectForKey:@"user"]  objectForKey:@"name"]);
-        NSLog(@"WeiboContent%@",WeiboContent);
+     //   NSLog(@" 1111111%@",[[[homeline objectAtIndex:0] objectForKey:@"user"]  objectForKey:@"name"]);
+   //     NSLog(@"WeiboContent%@",WeiboContent);
         
         //[tableView2 reloadData];
         

@@ -57,6 +57,9 @@ static NSString *CellIdentifier = @"Cell";
     
     temp= [[NSUserDefaults standardUserDefaults]objectForKey:@"history"];
     history = [NSMutableDictionary dictionaryWithDictionary:temp];
+    
+    temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"storeNewsByDate"];
+    storeNewsByDate =[NSMutableDictionary dictionaryWithDictionary:temp];
     ///////////////
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData)
 												 name:@"reloadData" object:nil];
@@ -239,8 +242,11 @@ static NSString *CellIdentifier = @"Cell";
       
         
         
-        return segmentView.view;
-
+        //return segmentView.view;
+                NewsDateViewController *newView= [NewsDateViewController new];
+        newView.date=[NSDate date];
+        
+        return newView.view;
  
     }else{
       //  return segmentView.view;
@@ -261,12 +267,12 @@ static NSString *CellIdentifier = @"Cell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section==0) {
-         return segmentView.view.frame.size.height;
-    }else{
+//    if (section==0) {
+//         return segmentView.view.frame.size.height;
+//    }else{
         return  newsDate.view.frame.size.height;
         //segmentView.view.frame.size.height;
-    }
+//    }
 }
 
 /*
@@ -425,7 +431,7 @@ static NSString *CellIdentifier = @"Cell";
             scroller.delegate=self;
             self.tableView.tableHeaderView= scroller;
 
-            
+            [[NSUserDefaults standardUserDefaults]setObject:_storeNewsArray forKey:@"storeNewsArray"];
             [self.tableView reloadData];
         });
     });
@@ -440,12 +446,25 @@ static NSString *CellIdentifier = @"Cell";
 //        NSDate *whichDay = [NSDate dateWithTimeIntervalSinceNow: -(24 * 60 * 60)*loadDayFlag];
              // NSMutableArray *thisDayNews = [timeLine objectForKey:@"stories"];
            NSDate *whichDay = [NSDate dateWithTimeIntervalSinceNow: -(24 * 60 * 60)*loadDayFlag];
-             
+              NSDate *findInDay = [NSDate dateWithTimeIntervalSinceNow: -(24 * 60 * 60)*(loadDayFlag+1)];
              // if ([_storeNewsArray objectForKey:[NSString stringWithFormat:@"%i",loadDayFlag]]!=nil) {
              loadDayFlag++;
+         if ([storeNewsByDate objectForKey:[self stringFromDate:findInDay]]!=nil) {////////从本地缓存获取数据
              
+             dispatch_async(dispatch_get_main_queue(), ^{
+             [_storeNewsArray setObject:[storeNewsByDate objectForKey:[self stringFromDate:findInDay]] forKey:[NSString stringWithFormat:@"%i",loadDayFlag]];
+              [self.tableView footerEndRefreshing];
+             [self.tableView reloadData];
+            
+           });
+             
+             NSLog(@"使用缓存数据~~~~~~%@",[self stringFromDate:findInDay]);
+         }
+         
+         else
+         {
              //   }
-             NSMutableString *url = [NSMutableString stringWithFormat:@"http://news.at.zhihu.com/api/3/news/before/%@",[self stringFromDate:whichDay]];
+        NSMutableString *url = [NSMutableString stringWithFormat:@"http://news.at.zhihu.com/api/3/news/before/%@",[self stringFromDate:whichDay]];
          NSData *userdata = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:url]];
          
          NSError *error;
@@ -461,7 +480,8 @@ static NSString *CellIdentifier = @"Cell";
              }
           
                         [_storeNewsArray setObject:timeLine forKey:[NSString stringWithFormat:@"%i",loadDayFlag]];
-             
+             [storeNewsByDate setObject:timeLine forKey:[self stringFromDate:findInDay]];
+            
              // self.news = [timeLine objectForKey:@"stories"];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyyMMdd"];
@@ -491,9 +511,11 @@ static NSString *CellIdentifier = @"Cell";
         
         
         
-        
+             
+    [[NSUserDefaults standardUserDefaults]setObject:storeNewsByDate forKey:@"storeNewsByDate"];
     [self.tableView reloadData];
     });
+         }
     
 });
     

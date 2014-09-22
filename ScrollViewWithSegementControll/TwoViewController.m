@@ -34,7 +34,7 @@ static NSString *CellIdentifier = @"Cell";
     temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"history"];
     history =[NSMutableDictionary dictionaryWithDictionary:temp];
     storeHistory = [NSMutableArray new];
-    for (NSString *key in storeHistory) {
+    for (NSString *key in history) {
         NSLog(@"%@ - %@", key, history[key]);
         [storeHistory addObject:history[key]];
     }
@@ -48,24 +48,24 @@ static NSString *CellIdentifier = @"Cell";
     [self.tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData)
 												 name:@"reloadData" object:nil];
-    NSDictionary *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"favorites"];
-    favorites =[NSMutableDictionary dictionaryWithDictionary:temp];
-    storeFavorites = [NSMutableArray new];
-    for (NSString *key in favorites) {
-        NSLog(@"%@ - %@", key, favorites[key]);
-        [storeFavorites addObject:favorites[key]];
-    }
-    temp = [NSDictionary new];
-    temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"history"];
-    history =[NSMutableDictionary dictionaryWithDictionary:temp];
-    storeHistory = [NSMutableArray new];
-    for (NSString *key in storeHistory) {
-        NSLog(@"%@ - %@", key, history[key]);
-        [storeHistory addObject:history[key]];
-    }
-    
-    
-    
+    [self reloadData];
+//    NSDictionary *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"favorites"];
+//    favorites =[NSMutableDictionary dictionaryWithDictionary:temp];
+//    storeFavorites = [NSMutableArray new];
+//    for (NSString *key in favorites) {
+//        NSLog(@"%@ - %@", key, favorites[key]);
+//        [storeFavorites addObject:favorites[key]];
+//    }
+//    temp = [NSDictionary new];
+//    temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"history"];
+//    history =[NSMutableDictionary dictionaryWithDictionary:temp];
+//    storeHistory = [NSMutableArray new];
+//    for (NSString *key in history) {
+//        NSLog(@"%@ - %@", key, history[key]);
+//        [storeHistory addObject:history[key]];
+//     
+//    }
+//    storeHistory;
     // Uncomment the followin/Users/mini1/Desktop/test/ScrollViewWithSegementControll/design/star-rate-s@2x.pngg line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -100,12 +100,12 @@ static NSString *CellIdentifier = @"Cell";
     DoctorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                                 forIndexPath:indexPath];
     // Configure the cell...
-    storeHistory = [NSMutableArray new];
-    for (NSString *key in history) {
-        NSLog(@"%@ - %@", key, history[key]);
-        [storeHistory addObject:history[key]];
-    }
-    
+//    storeHistory = [NSMutableArray new];
+//    for (NSString *key in history) {
+//        NSLog(@"%@ - %@", key, history[key]);
+//        [storeHistory addObject:history[key]];
+//    }
+//    
     NSDictionary *rowData =storeHistory[indexPath.row];
     //self.news[indexPath.row];
     cell.Name.text=[rowData objectForKey:@"title"] ;
@@ -206,6 +206,7 @@ static NSString *CellIdentifier = @"Cell";
              case 0:
                  history = [NSMutableDictionary new];
                  [[NSUserDefaults standardUserDefaults]setObject:history forKey:@"history"];
+            
                  [self.tableView reloadData];
                  [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];            
                  break;

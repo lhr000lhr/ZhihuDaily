@@ -42,7 +42,27 @@
     self.name.text=  [[self.rowData objectForKey:@"user"] objectForKey:@"name"];
     self.time.text=  [self.rowData objectForKey:@"created_at"];
     self.content.text=[self.rowData objectForKey:@"text"];
-   
+    
+    
+    
+    
+    NSArray *picsArray =[self.rowData objectForKey:@"pic_urls"];/////// 多图地址、、、、、、、、、
+    
+    
+    
+    NSString *from =[self.rowData objectForKey:@"source"];
+    NSArray * array = [from componentsSeparatedByString:@"\">"];
+    NSString *temp = array[1];
+    array = [temp componentsSeparatedByString:@"<"];
+    from = array[0];
+    self.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+    
+    if ([from isEqualToString:@"知乎Plus"]) {
+        self.from.textColor=[UIColor orangeColor];
+    }else{
+        self.from.textColor=[UIColor lightGrayColor];
+    }
+    
     CGRect orgRect=self.content.frame;
     CGSize  size = [[self.rowData objectForKey:@"text"] sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:UILineBreakModeWordWrap];
     orgRect.size.height=size.height+20;
@@ -52,17 +72,83 @@
     frame.origin.y = self.content.frame.size.height + self.content.frame.origin.y+10.f;
     self.weiboImage.frame = frame;
     
+    
+    for (int i=0; i<[picsArray count]; i++) {
+        
+        UIImageView *weiboImage1 = [UIImageView new];
+        
+        
+        NSArray * array = [[picsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+        NSString *transferUrl =[NSString stringWithFormat:@"%@bmiddle%@",array[0],array[1]];
+        [weiboImage1 setImageWithURL:[NSURL URLWithString:transferUrl]];
+        
+        
+        CALayer *weiboImage = [weiboImage1 layer];   //获取ImageView的层
+        [weiboImage setMasksToBounds:YES];
+        [weiboImage setCornerRadius:6.0];
+        
+       
+        weiboImage1.frame=frame;
+        
+        frame.origin.x = frame.origin.x +88;
+        
+      
+        
+        [self.view addSubview:weiboImage1];
+        
+        
+        if (i==2) {
+            frame = self.weiboImage.frame;
+            frame.origin.y = frame.origin.y+88;
+            
+            
+        }
+        if (i==5) {
+            frame.origin.x =self.weiboImage.frame.origin.x;
+            frame.origin.y = frame.origin.y+88;
+        }
+    }
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
     frame = self.view.frame;
     if ([NSURL URLWithString: [self.rowData objectForKey:@"bmiddle_pic"]]==nil) {
         
         frame.size.height = self.content.frame.size.height + self.content.frame.origin.y+10.f;
-    
+        self.view.frame= frame;
+
     }else{
         
-    frame.size.height = self.weiboImage.frame.size.height + self.weiboImage.frame.origin.y+20.f;
-   
+        int height = 0;
+        
+  //  frame.size.height = self.weiboImage.frame.size.height + self.weiboImage.frame.origin.y+20.f;
+        if ([picsArray count]>6) {
+            
+            height = 88;
+          //  frame.size.height = self.weiboImage.frame.origin.y+ self.weiboImage.frame.size.height +88 ;
+        }
+        if ([picsArray count]>3) {
+            height = height +88;
+             // frame.size.height = self.weiboImage.frame.origin.y+ self.weiboImage.frame.size.height +88 ;
+        }
+        
+            
+            
+            frame.size.height = self.weiboImage.frame.size.height + self.weiboImage.frame.origin.y+20.f+height;
+        
+            
+            self.view.frame= frame;
+        
+        
     }
-    self.view.frame= frame;
     
 }
 

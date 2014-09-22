@@ -1,18 +1,21 @@
 //
-//  WeiboCommentTableViewCell.m
+//  WeiboAllInOneTableViewCell.m
 //  ScrollViewWithSegementControll
 //
-//  Created by zagger on 14-9-18.
+//  Created by zagger on 14-9-19.
 //  Copyright (c) 2014年 浩然. All rights reserved.
 //
 
-#import "WeiboCommentTableViewCell.h"
+#import "WeiboAllInOneTableViewCell.h"
 
-@implementation WeiboCommentTableViewCell
+@implementation WeiboAllInOneTableViewCell
 
 - (void)awakeFromNib
 {
     // Initialization code
+    
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

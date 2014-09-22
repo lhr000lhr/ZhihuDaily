@@ -260,34 +260,88 @@
             <point key="canvasLocation" x="-1026" y="3779"/>
         </scene>
         <!--Weibo Detail And Comment Table View Controller-->
-        <scene sceneID="8Ya-6h-gHi">
+        <scene sceneID="f6I-ux-O5H">
             <objects>
-                <tableViewController storyboardIdentifier="WeiboDetailAndCommentTableViewController" id="JBX-Ji-tIr" customClass="WeiboDetailAndCommentTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="205" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zos-A5-l0U">
+                <viewController storyboardIdentifier="WeiboDetailAndCommentTableViewController" id="fBY-VU-L3Q" customClass="WeiboDetailAndCommentTableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cjy-CJ-XVC"/>
+                        <viewControllerLayoutGuide type="bottom" id="lQr-tS-UOU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lqx-hM-3g2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="205" id="ZJY-to-Mha" customClass="WeiboCommentTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="205"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZJY-to-Mha" id="sxw-Gu-U0b">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="204"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="JBX-Ji-tIr" id="YA6-40-E1P"/>
-                            <outlet property="delegate" destination="JBX-Ji-tIr" id="2hM-It-bIA"/>
-                        </connections>
-                    </tableView>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NnQ-aS-jOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ElV-Rz-EsE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="fBY-VU-L3Q" id="Gqr-EN-eKK"/>
+                                    <outlet property="delegate" destination="fBY-VU-L3Q" id="Qqr-Pw-UHa"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRx-bM-NWd">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="转发" id="VIq-jq-GvV"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="UC6-9H-K70"/>
+                                    <barButtonItem title="评论" id="TtL-iz-ZMe">
+                                        <connections>
+                                            <action selector="review:" destination="fBY-VU-L3Q" id="Acg-S0-tYF"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="U43-j7-TxU"/>
+                                    <barButtonItem title="~\(≧▽≦)/~赞" id="eLz-g4-W42"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ElV-Rz-EsE" firstAttribute="top" secondItem="lqx-hM-3g2" secondAttribute="top" id="1Vk-pD-Oq4"/>
+                            <constraint firstItem="BRx-bM-NWd" firstAttribute="leading" secondItem="ElV-Rz-EsE" secondAttribute="leading" id="21v-lZ-fTM"/>
+                            <constraint firstItem="ElV-Rz-EsE" firstAttribute="leading" secondItem="lqx-hM-3g2" secondAttribute="leading" id="2QE-Xd-wb2"/>
+                            <constraint firstItem="ElV-Rz-EsE" firstAttribute="bottom" secondItem="BRx-bM-NWd" secondAttribute="bottom" id="Che-7M-sdM"/>
+                            <constraint firstAttribute="bottom" secondItem="ElV-Rz-EsE" secondAttribute="bottom" id="Evw-P0-HBa"/>
+                            <constraint firstItem="ElV-Rz-EsE" firstAttribute="trailing" secondItem="BRx-bM-NWd" secondAttribute="trailing" id="qps-e1-gea"/>
+                            <constraint firstAttribute="trailing" secondItem="BRx-bM-NWd" secondAttribute="trailing" id="tjc-g6-Qha"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wzF-4g-6DS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-188" y="3799"/>
+            <point key="canvasLocation" x="-583" y="3809"/>
+        </scene>
+        <!--Weibo Review View Controller-->
+        <scene sceneID="jde-QQ-NxP">
+            <objects>
+                <viewController storyboardIdentifier="WeiboReviewViewController" id="rAs-xr-j4y" customClass="WeiboReviewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="92a-jS-85K"/>
+                        <viewControllerLayoutGuide type="bottom" id="TD1-yh-aYC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dn1-v2-ZrS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3JJ-qO-x7S">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Cr-bB-UxP"/>
+                    <connections>
+                        <outlet property="textField" destination="3JJ-qO-x7S" id="S00-1N-bKj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HLJ-ue-Znf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-137" y="3809"/>
         </scene>
         <!--Weibo Detail View Controller-->
         <scene sceneID="omG-zB-sdU">
@@ -301,32 +355,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wYq-KU-XNY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYq-KU-XNY">
                                 <rect key="frame" x="20" y="20" width="66" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOg-FE-m3a">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOg-FE-m3a">
                                 <rect key="frame" x="94" y="20" width="206" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="GTX-7P-xBz">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="时间" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="GTX-7P-xBz">
                                 <rect key="frame" x="94" y="49" width="206" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="123" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N12-ha-OFB">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="123" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N12-ha-OFB">
                                 <rect key="frame" x="20" y="98" width="280" height="111"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-8B-7aU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-8B-7aU">
                                 <rect key="frame" x="20" y="217" width="66" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
@@ -357,7 +411,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXE-Jw-GKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="3799"/>
+            <point key="canvasLocation" x="390" y="3162"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kt2-dA-3wj">

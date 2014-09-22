@@ -10,7 +10,7 @@
 #import "OneViewController.h"
 #import "CCAVSegmentController.h"
 #import "WeiboHomeLineTableViewController.h"
-@interface WeiboDetailAndCommentTableViewController : UITableViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,CCAVSegmentControllerDelegate>
+@interface WeiboDetailAndCommentTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,CCAVSegmentControllerDelegate>
 {
     BOOL _reloading;
     NSString * since_id;
@@ -18,6 +18,7 @@
     NSMutableArray *Commentslist;
     CCAVSegmentController *segmentView;
     BOOL loadingMore;
+    
 }
 @property(strong, nonatomic) NSString *weiboContent;
 @property(strong, nonatomic) NSString *weiboUserName;
@@ -28,4 +29,6 @@
 @property(strong, nonatomic) NSString *WeiboId;
 @property(nonatomic) BOOL *getFlag;
 @property(strong,nonatomic)NSDictionary *rowData;
+@property(strong,nonatomic) UITableView *tableView;
+- (IBAction)review:(id)sender;
 @end

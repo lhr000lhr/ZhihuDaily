@@ -9,24 +9,29 @@
 #import "WeiboDetailAndCommentTableViewController.h"
 #import "WeiboCommentTableViewCell.h"
 #import "ScrollViewDetailViewController.h"
+#import "WeiboReviewViewController.h"
 @interface WeiboDetailAndCommentTableViewController ()
 
 @end
 
 @implementation WeiboDetailAndCommentTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+//- (id)initWithStyle:(UITableViewStyle)style
+//{
+//    self = [super initWithStyle:style];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headerRereshing)
+												 name:@"headerRereshing" object:nil];
+    self.tableView = (id)[self.view viewWithTag:1];
+    self.tableView.contentInset =UIEdgeInsetsMake(0, 0, 44, 0);
     UINib *nib = [UINib nibWithNibName:@"WeiboCommentTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"WeiboCommentCell"];
     
@@ -90,6 +95,20 @@
     cell.time.text=  [rowData objectForKey:@"created_at"];
     // Configure the cell...
     
+    
+    NSString *from =[rowData objectForKey:@"source"];
+    NSArray * array = [from componentsSeparatedByString:@"\">"];
+    
+    NSString *temp = array[1];
+    array = [temp componentsSeparatedByString:@"<"];
+    from = array[0];
+    cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+    if ([from isEqualToString:@"知乎Plus"]) {
+        cell.from.textColor=[UIColor orangeColor];
+    }else{
+        cell.from.textColor=[UIColor lightGrayColor];
+    }
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,7 +120,7 @@
     
     
 
-    return size.height+100;
+    return size.height+120;
     
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -117,7 +136,19 @@
     }
     return 0;
 }
-
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    WeiboReviewViewController *huifu=[self.storyboard instantiateViewControllerWithIdentifier:@"WeiboReviewViewController"];
+        huifu.weiboid =self.WeiboId;
+        int i =indexPath.row;
+        NSDictionary *rowData = Commentslist[i];
+        
+        huifu.weibousername= [[rowData objectForKey:@"user"] objectForKey:@"name"];
+        [self.navigationController pushViewController:huifu animated:YES];
+   
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
@@ -216,13 +247,16 @@
     //       [self.fakeData insertObject:MJRandomData atIndex:0];
     //  }
      // 2.2秒后刷新表格UI
-    [self getWeiboContent];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+   
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 刷新表格
         //  [self.tableView reloadData];
         
         // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
       //  [self.tableView headerEndRefreshing];
+        NSString *ValueString =[NSString stringWithFormat:@"%@",[[Commentslist objectAtIndex:0] objectForKey:@"id"]];
+        since_id = ValueString;
+         [self getWeiboContent];
     });
 }
 
@@ -236,16 +270,17 @@
    // [self getOneDayData];
     //
     //    // 2.2秒后刷新表格UI
-    NSString *ValueString =[NSString stringWithFormat:@"%@",[[Commentslist objectAtIndex:[Commentslist count]-1] objectForKey:@"id"]];
-    max_id = ValueString;
-    loadingMore = YES;
-    [self getWeiboContentMore];
-       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     //        // 刷新表格
     //        [self.tableView reloadData];
     //
     //        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
          //  [self.tableView footerEndRefreshing];
+           NSString *ValueString =[NSString stringWithFormat:@"%@",[[Commentslist objectAtIndex:[Commentslist count]-1] objectForKey:@"id"]];
+           max_id = ValueString;
+           loadingMore = YES;
+           [self getWeiboContentMore];
        });
 }
 
@@ -320,7 +355,7 @@
             
             
             //NSLog(@" 1111111%@",[[[homeline objectAtIndex:1] objectForKey:@"user"]  objectForKey:@"name"]);
-            NSLog(@"WeiboContent%@",Commentslist);
+     //       NSLog(@"WeiboContent%@",Commentslist);
             
             
             
@@ -354,4 +389,12 @@
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
+- (IBAction)review:(id)sender {
+    
+    WeiboReviewViewController *huifu=[self.storyboard instantiateViewControllerWithIdentifier:@"WeiboReviewViewController"];
+
+    huifu.weiboid =  self.WeiboId;
+    [self.navigationController pushViewController:huifu animated:YES];
+    
+}
 @end

@@ -24,6 +24,7 @@
      NSMutableArray *storeFavorites;
     NSMutableDictionary *history;
     NSMutableArray *storeHistory;
+    NSMutableDictionary *storeNewsByDate;
 
 }
 @property(strong,nonatomic)NSMutableArray *news;

@@ -24,14 +24,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3lb-42-2gn">
-                        <rect key="frame" x="78" y="49" width="222" height="21"/>
+                        <rect key="frame" x="78" y="56" width="222" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来自：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="keG-v3-0Fc">
+                        <rect key="frame" x="78" y="39" width="161" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U0h-vh-Xzm">
-                        <rect key="frame" x="20" y="78" width="280" height="115"/>
+                        <rect key="frame" x="20" y="85" width="280" height="108"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="highlightedColor"/>
@@ -40,6 +47,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="comment" destination="U0h-vh-Xzm" id="spn-d3-2ae"/>
+                <outlet property="from" destination="keG-v3-0Fc" id="NBP-yk-nKd"/>
                 <outlet property="name" destination="0Ta-EI-1OO" id="CQS-EC-ezD"/>
                 <outlet property="time" destination="3lb-42-2gn" id="wif-lf-RsE"/>
                 <outlet property="userImage" destination="hBb-dz-eXl" id="0hJ-Wu-oCI"/>

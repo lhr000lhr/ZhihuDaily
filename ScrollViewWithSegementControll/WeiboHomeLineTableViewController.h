@@ -11,6 +11,7 @@
 #import "OneViewController.h"
 #import "WeiboTableViewCell.h"
 #import "WeiboWithoutImageTableViewCell.h"
+#import "WeiboAllInOneTableViewCell.h"
 @interface WeiboHomeLineTableViewController : UITableViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate>
 
 {
