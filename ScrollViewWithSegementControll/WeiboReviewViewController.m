@@ -72,7 +72,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
                                                             message:[NSString stringWithFormat:@"Post status \"%@\" succeed!", [result objectForKey:@"text"]]
                                                            delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        [alertView show];
+       // [alertView show];
         
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"headerRereshing" object:nil];
@@ -119,8 +119,7 @@ static int post_status_times = 0;
     
 }
 - (void)sendComment{
-    if (!postStatusText)
-    {
+   
         post_status_times ++;
         postStatusText = nil;
         if (self.weibousername !=nil) {
@@ -128,7 +127,7 @@ static int post_status_times = 0;
         }else{
             postStatusText = [[NSString alloc] initWithFormat:@"%@",self.textField.text];
         }
-    }
+    
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
                                                         message:[NSString stringWithFormat:@"Will post status with text \"%@\"", postStatusText]
@@ -136,8 +135,12 @@ static int post_status_times = 0;
                                               otherButtonTitles:@"OK", nil];
     
     alertView.tag = 0;
-    [alertView show];
-    
+    //[alertView show];
+    SinaWeibo *sinaweibo = [self sinaweibo];
+    [sinaweibo requestWithURL:@"comments/create.json"
+                       params:[NSMutableDictionary dictionaryWithObjectsAndKeys:postStatusText, @"comment",self.weiboid,@"id", nil]
+                   httpMethod:@"POST"
+                     delegate:self];
     
 }
 @end

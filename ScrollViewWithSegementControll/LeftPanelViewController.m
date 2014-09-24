@@ -35,7 +35,18 @@
         NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
         
         [self.userName setTitle:temp forState:UIControlStateNormal];
-          [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        [self.userImage sd_setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        self.userImage.layer.masksToBounds =YES;
+        self.userImage.layer.cornerRadius =50;
+        self.userImage.layer.cornerRadius = self.userImage.frame.size.height/2;
+        self.userImage.layer.masksToBounds = YES; [self.userImage setContentMode:UIViewContentModeScaleAspectFill];
+        [self.userImage setClipsToBounds:YES];
+        self.userImage.layer.shadowColor = [UIColor whiteColor].CGColor;
+        self.userImage.layer.shadowOffset = CGSizeMake(4.0, 4.0);
+        self.userImage.layer.shadowOpacity = 0.5;
+        self.userImage.layer.shadowRadius = 2.0;
+        self.userImage.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.userImage.layer.borderWidth = 2.0f;
         //[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
     }
     
@@ -51,7 +62,18 @@
     NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
     if (temp) {
         [self.userName setTitle:temp forState:UIControlStateNormal];
-        [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        [self.userImage sd_setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        self.userImage.layer.masksToBounds =YES;    
+        self.userImage.layer.cornerRadius =50;
+        self.userImage.layer.cornerRadius = self.userImage.frame.size.height/2;
+        self.userImage.layer.masksToBounds = YES; [self.userImage setContentMode:UIViewContentModeScaleAspectFill];
+        [self.userImage setClipsToBounds:YES];
+        self.userImage.layer.shadowColor = [UIColor whiteColor].CGColor;
+        self.userImage.layer.shadowOffset = CGSizeMake(4.0, 4.0);
+        self.userImage.layer.shadowOpacity = 0.5;
+        self.userImage.layer.shadowRadius = 2.0;
+        self.userImage.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.userImage.layer.borderWidth = 2.0f;
     }else{
         [self.userName setTitle:@"使用新浪微博登陆" forState:UIControlStateNormal];
         [self.userImage setImage:[UIImage imageNamed:@"gen_share_sine"]];

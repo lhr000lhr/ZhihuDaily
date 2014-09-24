@@ -56,7 +56,7 @@
     else if ([request.url hasSuffix:@"statuses/update.json"])
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
-                                                            message:[NSString stringWithFormat:@"Post status \"%@\" failed!", postStatusText]
+                                                            message:[NSString stringWithFormat:@"Post status \"%@\" failed!", [[NSString alloc] initWithFormat:@"%@",self.textField.text]]
                                                            delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
         
@@ -209,7 +209,7 @@ static int post_status_times = 0;
     }
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
-                                                        message:[NSString stringWithFormat:@"Will post status with text \"%@\"", postStatusText]
+                                                        message:[NSString stringWithFormat:@"Will post status with text \"%@\"", [[NSString alloc] initWithFormat:@"%@",self.textField.text]]
                                                        delegate:self cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"OK", nil];
     alertView.tag = 0;
@@ -245,7 +245,7 @@ static int post_image_status_times = 0;
             // post status
             SinaWeibo *sinaweibo = [self sinaweibo];
             [sinaweibo requestWithURL:@"statuses/update.json"
-                               params:[NSMutableDictionary dictionaryWithObjectsAndKeys:postStatusText, @"status", nil]
+                               params:[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSString alloc] initWithFormat:@"%@",self.textField.text], @"status", nil]
                            httpMethod:@"POST"
                              delegate:self];
             

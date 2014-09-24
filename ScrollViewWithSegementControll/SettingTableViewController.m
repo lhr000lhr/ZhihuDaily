@@ -38,7 +38,18 @@
         NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
         
         self.userName.text =temp;
-          [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+          [self.userImage sd_setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        self.userImage.layer.masksToBounds =YES;
+        self.userImage.layer.cornerRadius =50;
+        self.userImage.layer.cornerRadius = self.userImage.frame.size.height/2;
+        self.userImage.layer.masksToBounds = YES; [self.userImage setContentMode:UIViewContentModeScaleAspectFill];
+        [self.userImage setClipsToBounds:YES];
+        self.userImage.layer.shadowColor = [UIColor whiteColor].CGColor;
+        self.userImage.layer.shadowOffset = CGSizeMake(4.0, 4.0);
+        self.userImage.layer.shadowOpacity = 0.5;
+        self.userImage.layer.shadowRadius = 2.0;
+        self.userImage.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.userImage.layer.borderWidth = 2.0f;
         //[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
     }
     
@@ -124,7 +135,18 @@
 {
     NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
     if (temp) {
-        [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        [self.userImage sd_setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        self.userImage.layer.masksToBounds =YES;
+        self.userImage.layer.cornerRadius =50;
+        self.userImage.layer.cornerRadius = self.userImage.frame.size.height/2;
+        self.userImage.layer.masksToBounds = YES; [self.userImage setContentMode:UIViewContentModeScaleAspectFill];
+        [self.userImage setClipsToBounds:YES];
+        self.userImage.layer.shadowColor = [UIColor whiteColor].CGColor;
+        self.userImage.layer.shadowOffset = CGSizeMake(4.0, 4.0);
+        self.userImage.layer.shadowOpacity = 0.5;
+        self.userImage.layer.shadowRadius = 2.0;
+        self.userImage.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.userImage.layer.borderWidth = 2.0f;
         self.userName.text =temp;
 
     }else{

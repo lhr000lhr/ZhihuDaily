@@ -52,7 +52,7 @@
             UIImageView *imgView=[[[UIImageView alloc] init] autorelease];
             if ([imgURL hasPrefix:@"http://"]) {
                 //网络图片 请使用ego异步图片库
-                [imgView setImageWithURL:[NSURL URLWithString:imgURL] placeholderImage:[UIImage imageNamed:@"Expression_1.png"]];
+                [imgView sd_setImageWithURL:[NSURL URLWithString:imgURL]];
 
             }
             else

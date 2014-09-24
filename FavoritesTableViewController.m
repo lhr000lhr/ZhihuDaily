@@ -102,7 +102,7 @@ static NSString *CellIdentifier = @"Cell";
     if (url) {
         // [cell creatThread:url];
         
-        [cell.DoctorImage setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Expression_1.png"]];
+        [cell.DoctorImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Expression_1.png"]];
         NSLog(@"%@",NSHomeDirectory());
     }
     [cell.stars setImage:[UIImage imageNamed:@"star-rate-s"]forState:UIControlStateNormal];

@@ -47,6 +47,7 @@
 //    [weiboDetailViewController.weiboImage addGestureRecognizer:singleTap];
    // [weiboDetailViewController.userImage setImageWithURL:[NSURL URLWithString:self.weiboUserUrl]];
     weiboDetailViewController.rowData =self.rowData;
+    weiboDetailViewController.playGif =NO;
     self.tableView.tableHeaderView = weiboDetailViewController.view;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -90,9 +91,15 @@
     cell.comment.frame=orgRect;
     cell.comment.text=desContent;
     cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
-    NSString *userurl= [[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];
-    [cell.userImage setImageWithURL:[NSURL URLWithString:userurl]];
-    cell.time.text=  [rowData objectForKey:@"created_at"];
+    
+    NSString * userImageUrl =[[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];
+    NSArray * array1 = [userImageUrl componentsSeparatedByString:@"/50/"];
+    NSString *new = [NSString stringWithFormat:@"%@/180/%@",array1[0],array1[1]];
+    
+    
+    
+    [cell.userImage setImageWithURL:[NSURL URLWithString:new]];
+    cell.time.text=  [self getTimeString:[rowData objectForKey:@"created_at"]];
     // Configure the cell...
     
     
@@ -103,7 +110,7 @@
     array = [temp componentsSeparatedByString:@"<"];
     from = array[0];
     cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
-    if ([from isEqualToString:@"知乎Plus"]) {
+    if ([from isEqualToString:@"知乎Plus"]|| [from isEqualToString:@"浩然的小尾巴"]) {
         cell.from.textColor=[UIColor orangeColor];
     }else{
         cell.from.textColor=[UIColor lightGrayColor];
@@ -139,8 +146,9 @@
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    WeiboReviewViewController *huifu=[self.storyboard instantiateViewControllerWithIdentifier:@"WeiboReviewViewController"];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+        WeiboReviewViewController *huifu=[self.storyboard instantiateViewControllerWithIdentifier:@"WeiboReviewViewController"];
         huifu.weiboid =self.WeiboId;
         int i =indexPath.row;
         NSDictionary *rowData = Commentslist[i];
@@ -396,5 +404,48 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     huifu.weiboid =  self.WeiboId;
     [self.navigationController pushViewController:huifu animated:YES];
     
+}
+- (NSString *) getTimeString : (NSString *) string {
+    
+    NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
+    [inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [inputFormatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
+    NSDate* inputDate = [inputFormatter dateFromString:string];
+    
+    NSDate *creatDate = [inputFormatter dateFromString:string];
+    NSDateFormatter *fmt=[[NSDateFormatter alloc]init];
+    //时间格式
+    fmt=inputFormatter;
+    if (creatDate.isThisYear) {//今年
+        if (creatDate.isToday) {
+            //获得微博发布的时间与当前时间的差距
+            NSDateComponents *cmps=[creatDate deltaWithNow];
+            if (cmps.hour>=1) {//至少是一个小时之前发布的
+                return [NSString stringWithFormat:@"%d小时前",cmps.hour];
+            }else if(cmps.minute>=1){//1~59分钟之前发布的
+                return [NSString stringWithFormat:@"%d分钟前",cmps.minute];
+            }else{//1分钟内发布的
+                return @"刚刚";
+            }
+        }else if(creatDate.isYesterday){//昨天发的
+            fmt.dateFormat=@"昨天 HH:mm";
+            return [fmt stringFromDate:creatDate];
+        }else{//至少是前天发布的
+            fmt.dateFormat=@"MM-dd HH:mm";
+            return [fmt stringFromDate:creatDate];
+        }
+    }else           //  往年
+    {
+        fmt.dateFormat=@"yyyy-MM-dd";
+        return [fmt stringFromDate:creatDate];
+    }
+    //
+    //    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+    //    [outputFormatter setLocale:[NSLocale currentLocale]];
+    //    [outputFormatter setDateFormat:@"HH:mm:ss"];
+    //    NSString *str = [outputFormatter stringFromDate:inputDate];
+    //
+    //
+    //    return str;
 }
 @end

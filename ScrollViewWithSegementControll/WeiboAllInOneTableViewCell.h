@@ -14,8 +14,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *time;
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
 @property (strong, nonatomic) IBOutlet UILabel *content;
-@property (strong, nonatomic) IBOutlet UIImageView *weiboImage;
 
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *weiboImages;
 
 
 @property (strong, nonatomic) IBOutlet UIView *retweetView;
@@ -23,9 +23,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *retweetName;
 @property (strong, nonatomic) IBOutlet UILabel *retweetTime;
 @property (strong, nonatomic) IBOutlet UILabel *retweetContent;
-@property (strong, nonatomic) IBOutlet UIImageView *retweetWeiboImage;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *retweetWeiboImages;
+//@property (strong, nonatomic) IBOutlet UIView *gap;
 
 
 @property(strong,nonatomic) NSDictionary *rowData;
-@property (strong,nonatomic)WeiboDetailViewController *viewController;
+//@property (strong,nonatomic)WeiboDetailViewController *viewController;
 @end

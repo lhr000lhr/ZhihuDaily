@@ -21,4 +21,11 @@
             completed:(SDWebImageDownloaderCompletedBlock)completedBlock
             cancelled:(void (^)())cancelBlock;
 
+- (id)initWithRequest:(NSURLRequest *)request
+              options:(SDWebImageDownloaderOptions)options
+             progress:(SDWebImageDownloaderProgressBlock)progressBlock
+            completed:(SDWebImageDownloaderCompletedBlock)completedBlock
+            cancelled:(void (^)())cancelBlock
+               dealed:(MJWebImageDealedBlock)dealedBlock;
+
 @end

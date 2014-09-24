@@ -12,24 +12,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view alpha="0.90000000000000002" contentMode="scaleToFill" id="Lbs-00-ZOS">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="23"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9月10日 星期三" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFl-bZ-UA9">
-                    <rect key="frame" x="20" y="12" width="285" height="14"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9月10日 星期三" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFl-bZ-UA9">
+                    <rect key="frame" x="18" y="2" width="285" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstItem="LFl-bZ-UA9" firstAttribute="leading" secondItem="Lbs-00-ZOS" secondAttribute="leading" constant="20" id="0q6-23-f59"/>
-                <constraint firstAttribute="bottom" secondItem="LFl-bZ-UA9" secondAttribute="bottom" constant="12" id="XiK-o5-fRT"/>
-                <constraint firstAttribute="trailing" secondItem="LFl-bZ-UA9" secondAttribute="trailing" constant="15" id="j7B-KK-Mkh"/>
-                <constraint firstItem="LFl-bZ-UA9" firstAttribute="top" secondItem="Lbs-00-ZOS" secondAttribute="top" constant="12" id="k73-jf-aby"/>
-            </constraints>
         </view>
     </objects>
 </document>

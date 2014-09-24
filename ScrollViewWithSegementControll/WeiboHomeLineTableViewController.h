@@ -12,9 +12,14 @@
 #import "WeiboTableViewCell.h"
 #import "WeiboWithoutImageTableViewCell.h"
 #import "WeiboAllInOneTableViewCell.h"
+#import "NSDate+MJ.h"
+#import "UIImageView+MJWebCache.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 @interface WeiboHomeLineTableViewController : UITableViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate>
 
 {
+    
     UIButton  *loginButton;
     UIButton *logoutButton;
     UIButton *userInfoButton;
@@ -23,6 +28,7 @@
     UIButton *postImageStatusButton;
     UIImage *postImage;
     UITextField *text ;
+    NSDictionary *read;
     NSDictionary *userInfo;
     NSArray *statuses;
     NSString *postStatusText;

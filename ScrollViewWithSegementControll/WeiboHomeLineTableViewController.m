@@ -40,6 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getUnreadCountButtonPressed) userInfo:nil repeats:YES];
+ 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserName:)
 												 name:@"getUserName" object:nil];
     loadingMore =NO ;
@@ -102,37 +104,320 @@
     
     
     
-       rowData = tableviewlist[indexPath.row];
+    rowData = tableviewlist[indexPath.row];
   
-    static NSString * cellID=@"cellID";
-    UITableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    WeiboAllInOneTableViewCell *cell= [tableView dequeueReusableCellWithIdentifier:@"WeiboAllInOneTableViewCell" forIndexPath:indexPath];
+    
+    NSString * userImageUrl =[[rowData objectForKey:@"user"] objectForKey:@"profile_image_url"];
+    NSArray * array1 = [userImageUrl componentsSeparatedByString:@"/50/"];
+    NSString *new = [NSString stringWithFormat:@"%@/180/%@",array1[0],array1[1]];
     
     
-    if(cell==nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];    }
-    for (UIView *subview in [cell.contentView subviews])
-        
-    {
-        
-        [subview removeFromSuperview];
-        
+    
+    
+    
+    [cell.userImage setImageWithURL:[NSURL URLWithString:new]];
+    cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
+    cell.time.text =[self getTimeString:[rowData objectForKey:@"created_at"]];
+    cell.content.text = [rowData objectForKey:@"text"];
+    NSString *from =[rowData objectForKey:@"source"];
+    NSArray * array = [from componentsSeparatedByString:@"\">"];
+    
+    NSString *temp = array[1];
+    array = [temp componentsSeparatedByString:@"<"];
+    from = array[0];
+    cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+    if ([from isEqualToString:@"知乎Plus"]|| [from isEqualToString:@"浩然的小尾巴"]) {
+        cell.from.textColor=[UIColor orangeColor];
+    }else{
+        cell.from.textColor=[UIColor lightGrayColor];
     }
     
-    WeiboDetailViewController *view=[WeiboDetailViewController new];
-    view.rowData =rowData;
-    view.view;
+    
+    CGRect orgRect=cell.content.frame;
+    CGSize  size = [[rowData objectForKey:@"text"] sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:UILineBreakModeWordWrap];
+    orgRect.size.height=size.height+20;
+    cell.content.frame=orgRect;
+
+    
+    CGRect frame = [cell.weiboImages[0] frame];
+    frame.origin.y = cell.content.frame.size.height + cell.content.frame.origin.y+10.f;
+   
+    
+    
+    
+    
+    NSArray *picsArray =[rowData objectForKey:@"pic_urls"];/////// 多图地址、、、、、、、、、
+    int i =0;
+    
+    for (UIImageView *weiboImages in cell.weiboImages) {
+        
+        if (i<[picsArray count]) {
+            
+            
+            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
+            [weiboImages addGestureRecognizer:singleTap];
+            
+            weiboImages.tag=indexPath.row*10000+i;
+            
+            
+            weiboImages.frame=frame;
+            frame.origin.x = frame.origin.x +88;
+            
+            if (i==2) {
+                frame = [cell.weiboImages[0] frame];
+                frame.origin.y = frame.origin.y+88;
+                
+                
+            }
+            if (i==5) {
+                CGRect temp = [cell.weiboImages[0] frame];
+                frame.origin.x =temp.origin.x;
+                frame.origin.y = frame.origin.y+88;
+            }
+     
+            
+        NSArray * array = [[picsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+        NSString *transferUrl =[NSString stringWithFormat:@"%@bmiddle%@",array[0],array[1]];
+            transferUrl =[NSString stringWithFormat:@"%@thumbnail%@",array[0],array[1]];
+
+            NSString *fileName = [transferUrl lastPathComponent];
+            if ([fileName hasSuffix:@".gif"]) {
+                transferUrl =[NSString stringWithFormat:@"%@thumbnail%@",array[0],array[1]];
+            }
+        [weiboImages setImageURLStr:transferUrl placeholder:[UIImage imageNamed:@"timeline_image_loading.png"]];
+        i++;
+            weiboImages.hidden=NO;
+         }
+        
+        else
+        {
+            weiboImages.hidden=YES;
+        }
+    }
+    
+    /////////////////////////////转发内容布局、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+    
+    if ([rowData objectForKey:@"retweeted_status"]!=nil) {
+        
+        NSDictionary *retweetRowData = [rowData objectForKey:@"retweeted_status"];
+        cell.retweetView.hidden=NO;
+        cell.retweetView.tag = indexPath.row;
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(retweetViewDetail:)];
+        [cell.retweetView addGestureRecognizer:singleTap];
+        
+        
+        
+        
+        frame = cell.retweetView.frame;
+        frame.origin.y =cell.content.frame.size.height + cell.content.frame.origin.y+10.f;
+        cell.retweetView.frame = frame;
+        
+        cell.retweetName.text = [[retweetRowData objectForKey:@"user"] objectForKey:@"name"];
+        cell.retweetTime.text =[self getTimeString:[retweetRowData objectForKey:@"created_at"]];
+        cell.retweetContent.text=[retweetRowData objectForKey:@"text"];
+        
+        CGRect orgRect=cell.retweetContent.frame;
+        CGSize  size = [[retweetRowData objectForKey:@"text"] sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:UILineBreakModeWordWrap];
+        orgRect.size.height=size.height+20;
+        cell.retweetContent.frame=orgRect;
+        
+        size=[[[retweetRowData objectForKey:@"user"] objectForKey:@"name"] sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(280, 2000) lineBreakMode:UILineBreakModeWordWrap];
+        frame = cell.retweetFrom.frame;
+        frame.origin.x = size.width + cell.retweetName.frame.origin.x +10;
+        cell.retweetFrom.frame= frame;
+        
+        NSString *retweetFrom =[retweetRowData objectForKey:@"source"];///////来源处理////////
+        NSArray * retweetArray = [retweetFrom componentsSeparatedByString:@"\">"];
+        NSString *retweetTemp = retweetArray[1];
+        retweetArray = [retweetTemp componentsSeparatedByString:@"<"];
+        retweetFrom = retweetArray[0];
+        cell.retweetFrom.text =[NSString stringWithFormat:@"来自%@",retweetArray[0]];///////来源处理////////
+        
+        
+        if ([cell.from.text isEqualToString:@"来自知乎Plus"]||[cell.from.text isEqualToString:@"来自浩然的小尾巴"]) {
+            cell.retweetFrom.textColor=[UIColor orangeColor];
+        }else{
+            cell.retweetFrom.textColor=[UIColor lightGrayColor];
+        }
+        
+        
+        
+        
+        CGRect frame = [cell.retweetWeiboImages[0] frame];
+        frame.origin.y = cell.retweetContent.frame.size.height + cell.retweetContent.frame.origin.y+10.f;
+        
+        NSArray *retweetPicsArray =[retweetRowData objectForKey:@"pic_urls"];/////// 多图地址、、、、、、、、、
+        
+
+        
+        for (UIImageView *weiboImages in cell.retweetWeiboImages) {
+            
+            if (i<[retweetPicsArray count]) {
+                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
+                [weiboImages addGestureRecognizer:singleTap];
+                
+                weiboImages.tag=indexPath.row*10000+i;
+                
+                
+                
+                
+                weiboImages.frame=frame;
+                frame.origin.x = frame.origin.x +88;
+                
+                if (i==2) {
+                    frame = [cell.retweetWeiboImages[0] frame];
+                    frame.origin.y = frame.origin.y+88;
+                    
+                    
+                }
+                if (i==5) {
+                    CGRect temp = [cell.retweetWeiboImages[0] frame];
+                    frame.origin.x =temp.origin.x;
+                    frame.origin.y = frame.origin.y+88;
+                }
+                
+                
+                NSArray * array = [[retweetPicsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+                NSString *transferUrl =[NSString stringWithFormat:@"%@bmiddle%@",array[0],array[1]];
+                transferUrl =[NSString stringWithFormat:@"%@thumbnail%@",array[0],array[1]];
+                NSString *fileName = [transferUrl lastPathComponent];
+                if ([fileName hasSuffix:@".gif"]) {
+                    transferUrl =[NSString stringWithFormat:@"%@thumbnail%@",array[0],array[1]];
+                }
+                [weiboImages setImageURLStr:transferUrl placeholder:[UIImage imageNamed:@"timeline_image_loading.png"]];
+                i++;
+                weiboImages.hidden=NO;
+            }
+            
+            else
+            {
+                weiboImages.hidden=YES;
+            }
+        }
+        
+        
+        frame =cell.retweetView.frame;
+        
+        if ([retweetPicsArray count] != 0) {
+            
+            int height = 0;
+            cell.retweetView.hidden=NO;
+            //  frame.size.height = self.weiboImage.frame.size.height + self.weiboImage.frame.origin.y+20.f;
+            if ([retweetPicsArray count]>6) {
+                
+                height = 88;
+                //  frame.size.height = self.weiboImage.frame.origin.y+ self.weiboImage.frame.size.height +88 ;
+            }
+            if ([retweetPicsArray count]>3) {
+                height = height +88;
+                // frame.size.height = self.weiboImage.frame.origin.y+ self.weiboImage.frame.size.height +88 ;
+            }
+            
+            CGRect temp = [cell.retweetWeiboImages[0] frame];
+            
+            frame.size.height = temp.size.height + temp.origin.y+20.f+height;
+            
+            
+            cell.retweetView.frame= frame;
+            
+        }
+        else{   /////////////转发的微博不带图片retweetView 的布局
+            frame.size.height = cell.retweetContent.frame.size.height + cell.retweetContent.frame.origin.y+20.f;
+            
+            
+            cell.retweetView.frame= frame;
+            
+        }
+        
+       // frame =cell.gap.frame;
+       // frame.origin.y = cell.retweetView.frame.origin.y+cell.retweetView.frame.size.height;
+       // cell.gap.frame=frame;
+    }
+    
+    
+    
+    
+    frame = cell.content.frame;
+    if ([NSURL URLWithString: [rowData objectForKey:@"bmiddle_pic"]]==nil) {
+        
+        frame.size.height = cell.content.frame.size.height + cell.content.frame.origin.y+20.f;
+        cell.contentView.frame= frame;
+        
+        if ([rowData objectForKey:@"retweeted_status"]!=nil) {
+            frame.size.height =cell.retweetView.frame.size.height + cell.retweetView.frame.origin.y+0.f;
+            cell.contentView.frame= frame;
+            cell.retweetView.hidden=NO;
+        }else{
+            cell.retweetView.hidden=YES;
+        }
+        
+    }else{
+        
+        int height = 0;
+        cell.retweetView.hidden=YES;
+        //  frame.size.height = self.weiboImage.frame.size.height + self.weiboImage.frame.origin.y+20.f;
+        if ([picsArray count]>6) {
+            
+            height = 88;
+            //  frame.size.height = self.weiboImage.frame.origin.y+ self.weiboImage.frame.size.height +88 ;
+        }
+        if ([picsArray count]>3) {
+            height = height +88;
+            // frame.size.height = self.weiboImage.frame.origin.y+ self.weiboImage.frame.size.height +88 ;
+        }
+        
+        
+          CGRect temp = [cell.weiboImages[0] frame];
+        frame.size.height = temp.size.height + temp.origin.y+20.f+height;
+        
+        
+        cell.contentView.frame= frame;
+        
+        
+    }
+
+    
+    
+    
+    return  cell;
+    
+//    static NSString * cellID=@"cellID";
+//    UITableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellID];
+//    
+//    
+//    if(cell==nil){
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];    }
+//    for (UIView *subview in [cell.contentView subviews])
+//        
+//    {
+//        
+//        [subview removeFromSuperview];
+//        
+//    }
+//    
+//    WeiboDetailViewController *view=[WeiboDetailViewController new];
+//    view.rowData =rowData;
+//    view.playGif =NO;
+//    
+//    
+//    [cell.contentView addSubview:view.view];
+//    view.view.frame = cell.contentView.bounds;
+//    
+//    [self addChildViewController:view];
+//    return cell;
+//
 //    if (indexPath.row %2 == 0) {
 //        view.view.backgroundColor = [UIColor greenColor];
 //    } else
 //        view.view.backgroundColor = [UIColor blueColor];
 //    
-    [cell.contentView addSubview:view.view];
-    view.view.frame = cell.contentView.bounds;
+   
 //    cell.backgroundColor=[UIColor yellowColor];
 //    
 //
-    [self addChildViewController:view];
-    return cell;
+   
 //    CGRect orgRect=cell.content.frame;
 //
 //    if ( [tableviewlist[indexPath.row] objectForKey:@"thumbnail_pic"] != nil) {
@@ -265,7 +550,7 @@
 //    
     WeiboDetailViewController *view=[WeiboDetailViewController new];
     view.rowData =rowData1;
-    view.view;
+    
     return view.view.frame.size.height;
    }
 
@@ -353,11 +638,11 @@
     //  }
   //  [self getData];
     // 2.2秒后刷新表格UI
-    [self homelineButtonPressed];
+   
     
         // 刷新表格
        // [self.tableView reloadData];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             SinaWeibo *sinaWeibo = [self sinaweibo];
             if (!sinaWeibo.isAuthValid) {
                 UIAlertView *alert = [UIAlertView new];
@@ -367,6 +652,7 @@
                 [self.tableView headerEndRefreshing];
                 [sinaWeibo logIn];//两秒后返回上一页 ~~~~~~~~~
             }
+             [self homelineButtonPressed];
             
         });
         // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
@@ -387,15 +673,14 @@
     
     
     
-    loadingMore = YES;
-    [self homelineWithPageButtonPressed];//////  上拉加载更多
+    //////  上拉加载更多
     
     
     
     
     //    // 2.2秒后刷新表格UI
    // [self homelineButtonPressed];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
              SinaWeibo *sinaWeibo = [self sinaweibo];
             if (!sinaWeibo.isAuthValid) {
                 UIAlertView *alert = [UIAlertView new];
@@ -404,6 +689,8 @@
                 [alert show];
                 [self.tableView footerEndRefreshing];
             }
+            loadingMore = YES;
+            [self homelineWithPageButtonPressed];
     //        // 刷新表格
     //        [self.tableView reloadData];
     //
@@ -450,7 +737,15 @@
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
 {
-    
+    if ([request.url hasSuffix:@"https://rm.api.weibo.com/2/remind/unread_count.json"])
+    {
+        
+        read = result;
+     //   NSLog(@"request%@",read);
+        [[[[[self tabBarController] viewControllers] objectAtIndex: 0] tabBarItem] setBadgeValue:[NSString stringWithFormat:@"%@",[read objectForKey:@"status"]]];
+      
+       
+    }
     //    PullTableView *tableView =(id)[self.view viewWithTag:1];
     if ([request.url hasSuffix:@"users/show.json"])
     {
@@ -497,7 +792,7 @@
             NSLog(@" %d %@",[homeline count],[[homeline objectAtIndex:0] objectForKey:@"id"]);
             NSString *ValueString =[NSString stringWithFormat:@"%@",[[homeline objectAtIndex:0] objectForKey:@"id"]];
             since_id = ValueString;
-        
+            [self getUnreadCountButtonPressed];////获取角标、、、、、、、、
                 }
         }
         
@@ -505,7 +800,7 @@
         
         
         
-        
+      
         
         // [[NSUserDefaults standardUserDefaults] setObject:homeline forKey:@"homeline"];
         //   [[NSUserDefaults standardUserDefaults] synchronize];
@@ -542,7 +837,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
                                                             message:[NSString stringWithFormat:@"Post status \"%@\" succeed!", [result objectForKey:@"text"]]
                                                            delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        [alertView show];
+     //   [alertView show];
         
         postStatusText = nil;
         [self.navigationController popViewControllerAnimated:YES];
@@ -552,7 +847,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
                                                             message:[NSString stringWithFormat:@"Post image status \"%@\" succeed!", [result objectForKey:@"text"]]
                                                            delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        [alertView show];
+       // [alertView show];
         
         postImageStatusText = nil;isPic = NO;
         [self.navigationController popViewControllerAnimated:YES];
@@ -613,6 +908,19 @@
     //NSLog(@"显示%@",[NSMutableDictionary dictionaryWithObject:sinaweibo.userID forKey:@"uid"]);
     
 }
+- (void)getUnreadCountButtonPressed
+{
+    SinaWeibo *sinaweibo = [self sinaweibo];
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    [params setValue:sinaweibo.accessToken forKey:@"access_token"];
+    SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:@"https://rm.api.weibo.com/2/remind/unread_count.json"
+                                                       httpMethod:@"GET"
+                                                           params:[NSMutableDictionary dictionaryWithObjectsAndKeys:sinaweibo.userID, @"uid",sinaweibo.accessToken,@"access_token" ,nil]
+                                                         delegate:self];
+    NSMutableSet *requests;
+    [requests addObject:_request];
+    [_request connect];
+   }
 - (void)getWeiboContent
 {
     SinaWeibo *sinaweibo = [self sinaweibo];
@@ -719,7 +1027,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     content.original_pic =[rowData2 objectForKey:@"original_pic"];
     content.rowData = rowData2;
     
-    
+    content.hidesBottomBarWhenPushed = YES;
     
     
     
@@ -730,30 +1038,218 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-	
-    UITouch *touch = [[event allTouches] anyObject];
-    
-    if ([touch view] != [UIImageView new])
-    {
-		NSLog(@"图片点击");
-        //do some method.....
-        
-    }
-    
-}
 
 -(void)yourHandlingCode:(UIGestureRecognizer *)gestureRecognizer
 {
+    
+  
     UIImageView *view = (UIImageView *)[gestureRecognizer view];
-    int tagvalue = view.tag;
-    int section = tagvalue/10000;
-    int row = tagvalue- section*10000;
-    NSString *url=[tableviewlist[row] objectForKey:@"original_pic"];
+    int tagvalue = abs(view.tag);
+    int row = tagvalue/10000;
+    int i = tagvalue - 10000*row;
+    NSString *url=[NSString new];
+    
+    NSDictionary *rowData1 = tableviewlist[row];
+    
+    if ([[rowData1 objectForKey:@"pic_urls"] count]!=0) {
+        NSArray *picsArray =[rowData1 objectForKey:@"pic_urls"];
+        NSArray * array = [[picsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+        NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+        //url = [self.rowData objectForKey:@"original_pic"];
+        url=transferUrl;
+        
+    }else{
+        NSDictionary *retweetRowData = [rowData1 objectForKey:@"retweeted_status"];
+        
+        NSArray *retweetPicsArray =[retweetRowData objectForKey:@"pic_urls"];
+        
+        
+        NSArray * array = [[retweetPicsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+        NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+        
+        url=transferUrl;
+        
+        
+    }
     
     TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURLString:[NSString stringWithFormat:@"%@",url]];
-  //  webViewController.hidesBottomBarWhenPushed = YES;
+    //  webViewController.hidesBottomBarWhenPushed = YES;
+    
+    webViewController.hidesBottomBarWhenPushed = YES;
+
     [self.navigationController pushViewController:webViewController animated:YES];
 }
+
+-(void)retweetViewDetail:(UIGestureRecognizer *)gestureRecognizer
+{
+    
+    
+    UIImageView *view = (UIImageView *)[gestureRecognizer view];
+    
+    
+    NSDictionary *tempRowData=tableviewlist[view.tag];
+    NSDictionary *rowData2 = [tempRowData objectForKey:@"retweeted_status"];
+    NSString *weiboUserName = [[rowData2 objectForKey:@"user"] objectForKey:@"name"];
+    WeiboId =   [NSString stringWithFormat:@"%@",[rowData2 objectForKey:@"id"]];
+    
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    WeiboDetailAndCommentTableViewController *content =  [self.storyboard instantiateViewControllerWithIdentifier:@"WeiboDetailAndCommentTableViewController"];
+    
+    NSLog(@"weiboid!!!!!%@",WeiboId);
+    content.navigationItem.title = weiboUserName;
+    
+    content.weiboContent=[rowData2 objectForKey:@"text"];
+    content.weiboUserName=[[rowData2 objectForKey:@"user"] objectForKey:@"name"];
+    NSString *fileName = [[rowData2 objectForKey:@"thumbnail_pic"]  lastPathComponent];
+    NSData *imageData = [NSData dataWithContentsOfFile: [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName]];
+    content.weiboImagesData=imageData;
+    content.weiboUserUrl= [[rowData2 objectForKey:@"user"] objectForKey:@"profile_image_url"];
+    // NSDictionary * rowData3 =WeiboContent[indexPath.row];
+    content.WeiboId =WeiboId;
+    content.weiboComments =WeiboContent;
+    content.original_pic =[rowData2 objectForKey:@"original_pic"];
+    content.rowData = rowData2;
+    
+    content.hidesBottomBarWhenPushed = YES;
+    
+    
+    
+    [self.navigationController pushViewController:content animated:YES];
+
+}
+
+- (NSString *) getTimeString : (NSString *) string {
+    
+    NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
+    [inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [inputFormatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
+    NSDate* inputDate = [inputFormatter dateFromString:string];
+   
+     NSDate *creatDate = [inputFormatter dateFromString:string];
+    NSDateFormatter *fmt=[[NSDateFormatter alloc]init];
+    //时间格式
+    fmt=inputFormatter;
+    if (creatDate.isThisYear) {//今年
+        if (creatDate.isToday) {
+            //获得微博发布的时间与当前时间的差距
+            NSDateComponents *cmps=[creatDate deltaWithNow];
+            if (cmps.hour>=1) {//至少是一个小时之前发布的
+                return [NSString stringWithFormat:@"%d小时前",cmps.hour];
+            }else if(cmps.minute>=1){//1~59分钟之前发布的
+                return [NSString stringWithFormat:@"%d分钟前",cmps.minute];
+            }else{//1分钟内发布的
+                return @"刚刚";
+            }
+        }else if(creatDate.isYesterday){//昨天发的
+            fmt.dateFormat=@"昨天 HH:mm";
+            return [fmt stringFromDate:creatDate];
+        }else{//至少是前天发布的
+            fmt.dateFormat=@"MM-dd HH:mm";
+            return [fmt stringFromDate:creatDate];
+        }
+    }else           //  往年
+    {
+        fmt.dateFormat=@"yyyy-MM-dd";
+        return [fmt stringFromDate:creatDate];
+    }
+//    
+//    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+//    [outputFormatter setLocale:[NSLocale currentLocale]];
+//    [outputFormatter setDateFormat:@"HH:mm:ss"];
+//    NSString *str = [outputFormatter stringFromDate:inputDate];
+//    
+//    
+//    return str;
+}
+
+
+- (void)tapImage:(UITapGestureRecognizer *)tap
+{
+    UIImageView *view = (UIImageView *)[tap view];
+    int tagvalue = abs(view.tag);
+    int row = tagvalue/10000;
+    int i = tagvalue - 10000*row;
+    
+   NSDictionary *rowData1 = tableviewlist[row];
+    
+    NSString *url=[NSString new];
+    
+ 
+    if ([[rowData1 objectForKey:@"pic_urls"] count]!=0) {
+        NSArray *picsArray =[rowData1 objectForKey:@"pic_urls"];
+        NSArray * array = [[picsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+        NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+        //url = [self.rowData objectForKey:@"original_pic"];
+        url=transferUrl;
+        
+        
+        int count = picsArray.count;
+        // 1.封装图片数据
+        NSMutableArray *photos = [NSMutableArray new];
+        for (int i = 0; i<count; i++) {
+            // 替换为中等尺寸图片
+            
+            NSArray * array = [[picsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+            NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+            //url = [self.rowData objectForKey:@"original_pic"];
+            url=transferUrl;
+            
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.url = [NSURL URLWithString:url]; // 图片路径
+            photo.srcImageView = view; // 来源于哪个UIImageView
+            [photos addObject:photo];
+        }
+        
+        // 2.显示相册
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.currentPhotoIndex = i; // 弹出相册时显示的第一张图片是？
+     
+        browser.photos = photos; // 设置所有的图片
+        [browser show];
+
+        
+        
+        
+    }else{
+        NSDictionary *retweetRowData = [rowData1 objectForKey:@"retweeted_status"];
+        
+        NSArray *retweetPicsArray =[retweetRowData objectForKey:@"pic_urls"];
+        
+        
+        NSArray * array = [[retweetPicsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+        NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+        
+        url=transferUrl;
+        
+        int count = retweetPicsArray.count;
+        // 1.封装图片数据
+        NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+        for (int i = 0; i<count; i++) {
+            // 替换为中等尺寸图片
+            NSArray * array = [[retweetPicsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+            NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+            //url = [self.rowData objectForKey:@"original_pic"];
+            url=transferUrl;
+           
+            
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.url = [NSURL URLWithString:url]; // 图片路径
+            photo.srcImageView = view;  // 来源于哪个UIImageView
+            [photos addObject:photo];
+        
+    }
+        // 2.显示相册
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+       
+        browser.currentPhotoIndex = i; // 弹出相册时显示的第一张图片是？
+        browser.photos = photos; // 设置所有的图片
+        [browser show];
+        
+        
+    
+    
+  }
+}
+
 @end

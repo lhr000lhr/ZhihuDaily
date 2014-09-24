@@ -380,8 +380,10 @@
     
     if ([self isAuthValid])
     {
+        NSString *fullURL = [NSString new];
         [params setValue:self.accessToken forKey:@"access_token"];
-        NSString *fullURL = [kSinaWeiboSDKAPIDomain stringByAppendingString:url];
+       
+        fullURL = [kSinaWeiboSDKAPIDomain stringByAppendingString:url];
         
         SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:fullURL
                                                            httpMethod:httpMethod

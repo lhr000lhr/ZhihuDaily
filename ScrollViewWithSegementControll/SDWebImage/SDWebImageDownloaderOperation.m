@@ -12,11 +12,9 @@
 #import <ImageIO/ImageIO.h>
 
 @interface SDWebImageDownloaderOperation ()
-{
-    
-}
 
 @property (copy, nonatomic) SDWebImageDownloaderProgressBlock progressBlock;
+@property (copy, nonatomic) MJWebImageDealedBlock dealedBlock;
 @property (copy, nonatomic) SDWebImageDownloaderCompletedBlock completedBlock;
 @property (copy, nonatomic) void (^cancelBlock)();
 
@@ -25,11 +23,6 @@
 @property (assign, nonatomic) long long expectedSize;
 @property (strong, nonatomic) NSMutableData *imageData;
 @property (strong, nonatomic) NSURLConnection *connection;
-@property (strong, atomic) NSThread *thread;
-
-#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-@property (assign, nonatomic) UIBackgroundTaskIdentifier backgroundTaskId;
-#endif
 
 @end
 
@@ -38,9 +31,13 @@
     size_t width, height;
     BOOL responseFromCached;
 }
-@synthesize executing = _executing;
-@synthesize finished = _finished;
+
 - (id)initWithRequest:(NSURLRequest *)request options:(SDWebImageDownloaderOptions)options progress:(void (^)(NSUInteger, long long))progressBlock completed:(void (^)(UIImage *, NSData *, NSError *, BOOL))completedBlock cancelled:(void (^)())cancelBlock
+{
+    return [self initWithRequest:request options:options progress:progressBlock completed:completedBlock cancelled:cancelBlock dealed:nil];
+}
+
+- (id)initWithRequest:(NSURLRequest *)request options:(SDWebImageDownloaderOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageDownloaderCompletedBlock)completedBlock cancelled:(void (^)())cancelBlock dealed:(MJWebImageDealedBlock)dealedBlock
 {
     if ((self = [super init]))
     {
@@ -49,6 +46,7 @@
         _progressBlock = [progressBlock copy];
         _completedBlock = [completedBlock copy];
         _cancelBlock = [cancelBlock copy];
+        _dealedBlock = [dealedBlock copy];
         _executing = NO;
         _finished = NO;
         _expectedSize = 0;
@@ -59,38 +57,15 @@
 
 - (void)start
 {
-    @synchronized(self)
+    if (self.isCancelled)
     {
-        if (self.isCancelled)
-        {
-            self.finished = YES;
-            [self reset];
-            return;
-        }
-
-#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-        if ([self shouldContinueWhenAppEntersBackground])
-        {
-            __weak __typeof__(self) wself = self;
-            self.backgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^
-            {
-                __strong __typeof(wself)sself = wself;
-
-                if (sself)
-                {
-                    [sself cancel];
-
-                    [[UIApplication sharedApplication] endBackgroundTask:sself.backgroundTaskId];
-                    sself.backgroundTaskId = UIBackgroundTaskInvalid;
-                }
-            }];
-        }
-#endif
-
-        self.executing = YES;
-        self.connection = [NSURLConnection.alloc initWithRequest:self.request delegate:self startImmediately:NO];
-        self.thread = [NSThread currentThread];
+        self.finished = YES;
+        [self reset];
+        return;
     }
+
+    self.executing = YES;
+    self.connection = [NSURLConnection.alloc initWithRequest:self.request delegate:self startImmediately:NO];
 
     [self.connection start];
 
@@ -102,18 +77,10 @@
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:self];
 
-        if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_5_1)
-        {
-            // Make sure to run the runloop in our background thread so it can process downloaded data
-            // Note: we use a timeout to work around an issue with NSURLConnection cancel under iOS 5
-            //       not waking up the runloop, leading to dead threads (see https://github.com/rs/SDWebImage/issues/466)
-            CFRunLoopRunInMode(kCFRunLoopDefaultMode, 10, false);
-        }
-        else
-        {
-            CFRunLoopRun();
-        }
-
+        // Make sure to run the runloop in our background thread so it can process downloaded data
+        // Note: we use a timeout to work around an issue with NSURLConnection cancel under iOS 5
+        //       not waking up the runloop, leading to dead threads (see https://github.com/rs/SDWebImage/issues/466)
+        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 10, false);
         if (!self.isFinished)
         {
             [self.connection cancel];
@@ -130,27 +97,6 @@
 }
 
 - (void)cancel
-{
-    @synchronized(self)
-    {
-        if (self.thread)
-        {
-            [self performSelector:@selector(cancelInternalAndStop) onThread:self.thread withObject:nil waitUntilDone:NO];
-        }
-        else
-        {
-            [self cancelInternal];
-        }
-    }
-}
-
-- (void)cancelInternalAndStop
-{
-    [self cancelInternal];
-    CFRunLoopStop(CFRunLoopGetCurrent());
-}
-
-- (void)cancelInternal
 {
     if (self.isFinished) return;
     [super cancel];
@@ -184,7 +130,6 @@
     self.progressBlock = nil;
     self.connection = nil;
     self.imageData = nil;
-    self.thread = nil;
 }
 
 - (void)setFinished:(BOOL)finished
@@ -311,7 +256,7 @@
 
         CFRelease(imageSource);
     }
-
+    
     if (self.progressBlock)
     {
         self.progressBlock(self.imageData.length, self.expectedSize);
@@ -334,19 +279,15 @@
 
     if (completionBlock)
     {
-        if (self.options & SDWebImageDownloaderIgnoreCachedResponse && responseFromCached)
-        {
+        if (self.options & SDWebImageDownloaderIgnoreCachedResponse && responseFromCached) {
             completionBlock(nil, nil, nil, YES);
             self.completionBlock = nil;
             [self done];
-        }
-        else
-        {
-
+        } else {
             UIImage *image = [UIImage sd_imageWithData:self.imageData];
-
+            
             image = [self scaledImageForKey:self.request.URL.absoluteString image:image];
-
+            
             if (!image.images) // Do not force decod animated GIFs
             {
                 image = [UIImage decodedImageWithImage:image];
@@ -358,6 +299,11 @@
             }
             else
             {
+                #warning 图片处理
+                if (_dealedBlock) {
+                    self.imageData = _dealedBlock(image, self.imageData);
+                    image = [UIImage imageWithData:self.imageData];
+                }
                 completionBlock(image, self.imageData, nil, YES);
             }
             self.completionBlock = nil;
@@ -397,26 +343,5 @@
     }
 }
 
-- (BOOL)shouldContinueWhenAppEntersBackground
-{
-    return self.options & SDWebImageDownloaderContinueInBackground;
-}
-
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
-{
-    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-    BOOL trustAllCertificates = (self.options & SDWebImageDownloaderAllowInvalidSSLCertificates);
-    if (trustAllCertificates && [challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
-    {
-        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
-             forAuthenticationChallenge:challenge];
-    }
-
-    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
-}
 
 @end
