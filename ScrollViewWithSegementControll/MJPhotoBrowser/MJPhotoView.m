@@ -10,7 +10,7 @@
 #import "MJPhotoLoadingView.h"
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "UIImageView+MJWebCache.h"
 @interface MJPhotoView ()
 {
     BOOL _doubleTap;

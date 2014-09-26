@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6fh-R0-emk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6fh-R0-emk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -23,11 +23,11 @@
             </objects>
             <point key="canvasLocation" x="-2564" y="946"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - 首页-->
         <scene sceneID="ZWX-GR-kfF">
             <objects>
                 <navigationController storyboardIdentifier="contentViewController" autoresizesArchivedViewToFullSize="NO" id="4p8-1h-OxM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="wxN-Gy-mhl"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="IconHome.png" id="wxN-Gy-mhl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NyN-9Z-SnS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -122,15 +122,7 @@
                             <outlet property="delegate" destination="5kv-yI-vZw" id="aT8-fo-cog"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem image="nav_btn_menu.png" style="plain" id="KZI-1h-0aI">
-                            <inset key="imageInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="presentLeftMenuViewController:" destination="uet-N6-SQF" id="mZG-sD-oNd"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="我的收藏" id="C3M-6B-6zj">
                         <barButtonItem key="leftBarButtonItem" image="nav_btn_menu.png" id="owA-W2-JeJ">
                             <inset key="imageInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -190,7 +182,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hlR-Sg-1V7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1507" y="3779"/>
+            <point key="canvasLocation" x="-3795" y="3795"/>
         </scene>
         <!--Table View Controller - 消息-->
         <scene sceneID="qgO-nx-K9L">
@@ -266,7 +258,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQs-KR-lsE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1507" y="4495"/>
+            <point key="canvasLocation" x="-3795" y="4511"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mdY-7e-ybr">
@@ -282,7 +274,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ey5-fi-JHo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1959" y="4495"/>
+            <point key="canvasLocation" x="-4247" y="4511"/>
         </scene>
         <!--Post Weibo View Controller - 编写微博-->
         <scene sceneID="MbM-fu-vwo">
@@ -341,7 +333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GfB-mE-mts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1026" y="3779"/>
+            <point key="canvasLocation" x="-3314" y="3795"/>
         </scene>
         <!--Weibo Detail And Comment Table View Controller-->
         <scene sceneID="f6I-ux-O5H">
@@ -394,7 +386,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wzF-4g-6DS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-583" y="3809"/>
+            <point key="canvasLocation" x="-2871" y="3825"/>
         </scene>
         <!--Weibo Review View Controller-->
         <scene sceneID="jde-QQ-NxP">
@@ -425,7 +417,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HLJ-ue-Znf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-137" y="3809"/>
+            <point key="canvasLocation" x="-2425" y="3825"/>
         </scene>
         <!--Weibo Detail View Controller-->
         <scene sceneID="omG-zB-sdU">
@@ -495,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXE-Jw-GKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="390" y="3162"/>
+            <point key="canvasLocation" x="-2666" y="4898"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Zcl-FI-3AP">
@@ -514,13 +506,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pI7-5f-nsr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2777" y="4155"/>
+            <point key="canvasLocation" x="-5065" y="4171"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - 首页-->
         <scene sceneID="Kt2-dA-3wj">
             <objects>
                 <navigationController definesPresentationContext="YES" id="9Kj-rs-TGJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="ngj-ON-QMa"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="IconHome.png" id="ngj-ON-QMa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="e1H-yu-yvc">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -530,7 +522,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTU-G1-uJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1959" y="3779"/>
+            <point key="canvasLocation" x="-4247" y="3795"/>
         </scene>
         <!--Setting Table View Controller - 设置-->
         <scene sceneID="T46-s3-1dm">
@@ -728,6 +720,15 @@
                                 <color key="textColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="68l-gE-FmM">
+                                <rect key="frame" x="0.0" y="284" width="320" height="284"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ymf-Cd-xut" id="aMC-rg-oj9"/>
+                                    <outlet property="delegate" destination="Ymf-Cd-xut" id="eoH-Fu-cxX"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -742,7 +743,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQb-eb-nlP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1026" y="3100"/>
+            <point key="canvasLocation" x="-1115" y="3100"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G1B-bf-i4z">
@@ -963,8 +964,8 @@
                             </button>
                             <button opaque="NO" tag="105" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7J-S9-Q3D">
                                 <rect key="frame" x="20" y="364" width="239" height="30"/>
-                                <state key="normal" title="随便看看">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <state key="normal" title="微博主页(测试)">
+                                    <color key="titleColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -981,10 +982,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sM-1K-cVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3077" y="940"/>
+            <point key="canvasLocation" x="-2965" y="946"/>
         </scene>
     </scenes>
     <resources>
+        <image name="IconHome.png" width="32" height="32"/>
         <image name="gen_share_sine.png" width="60" height="60"/>
         <image name="nav_btn_menu.png" width="60" height="44"/>
     </resources>

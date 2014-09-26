@@ -7,12 +7,92 @@
 //
 
 #import "WeiboViewController.h"
-
+#import "OneViewController.h"
+#import "DoctorTableViewCell.h"
 @interface WeiboViewController ()
 
 @end
 
 @implementation WeiboViewController
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+        static NSString * cellID=@"cellID";
+        UITableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    
+    if(cell==nil){
+           cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+}
+     [storyUserName removeAllObjects];
+    for (NSString *name in storyUser) {
+       
+        [storyUserName addObject:name];
+    }
+    cell.textLabel.text = storyUserName[indexPath.row];
+    return cell;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    // Return the number of rows in the section.
+   
+    return storyUser.count;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SinaWeiboAuthData"];
+    NSString *key = storyUserName[indexPath.row];
+    NSDictionary *temp = [storyUser objectForKey:key];
+     [[NSUserDefaults standardUserDefaults]setObject:temp forKey:@"SinaWeiboAuthData"];
+    SinaWeibo *sinaWeibo =[self sinaweibo];
+    
+  //  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *sinaweiboInfo = temp;
+    if ([sinaweiboInfo objectForKey:@"AccessTokenKey"] && [sinaweiboInfo objectForKey:@"ExpirationDateKey"] && [sinaweiboInfo objectForKey:@"UserIDKey"])
+    {
+        sinaWeibo.accessToken = [sinaweiboInfo objectForKey:@"AccessTokenKey"];
+        sinaWeibo.expirationDate = [sinaweiboInfo objectForKey:@"ExpirationDateKey"];
+        sinaWeibo.userID = [sinaweiboInfo objectForKey:@"UserIDKey"];
+    }
+    
+ //   [self logoutButtonPressed];
+  //  [self sinaweiboDidLogOut:sinaWeibo];
+   // [sinaWeibo removeAuthData];
+    [sinaWeibo logIn];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"userName"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeName" object:nil];
+    
+    
+    UIAlertView *alert = [UIAlertView new];
+    
+    alert = [[UIAlertView alloc]initWithTitle:@"_(:з」∠)_" message:@"注销咯！！！！" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+   // [alert show];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"userName"];
+
+  
+   
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"getUserName" object:nil];
+    
+
+}
+
+
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +106,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   // storeUserSinaWeiboAuthData = [[NSMutableDictionary alloc]init];
+    storyUser = [NSMutableDictionary dictionaryWithObjectsAndKeys:nil];
+    storyUserName =[NSMutableArray new];
+    tableView =(UITableView *)[self.view viewWithTag:1];
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"storyUser"]!=nil) {
+        NSDictionary *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"storyUser"];
+       
+        storyUser =[NSMutableDictionary dictionaryWithDictionary:temp];
+        [tableView reloadData];
+    }
+    UINib *nib = [UINib nibWithNibName:@"DoctorTableViewCell" bundle:nil];
+    [(UITableView *)[self.view viewWithTag:1] registerNib:nib forCellReuseIdentifier:@"cell"];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserName:)
 												 name:@"getUserName" object:nil];
     SinaWeibo *sinaWeibo = [self sinaweibo];
@@ -37,14 +130,16 @@
     }
     else{
         
-       [self sinaweiboDidLogIn:sinaWeibo];
+        [self sinaweiboDidLogIn:sinaWeibo];
         [self userInfoButtonPressed];
+        self.userName.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
     }
     // Do any additional setup after loading the view.
 }
 -(void)getUserName:(NSNotification*)notify
 {
    // NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+    
     [self userInfoButtonPressed];
    // self.userName.text =temp;
     
@@ -217,10 +312,30 @@ didRecieveAuthorizationCode:(NSString *)code
         [[NSUserDefaults standardUserDefaults] setObject:[userInfo objectForKey:@"avatar_large"] forKey:[NSString stringWithFormat:@"profile_image_url"]];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"changeName" object:nil];
+        
+        
+         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *sinaweiboInfo = [defaults objectForKey:@"SinaWeiboAuthData"];
+        SinaWeibo *sinaweibo=[self sinaweibo];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-          
-              [self.navigationController popViewControllerAnimated:YES];///两秒后返回上一页 ~~~~~~~~~
-        });
+            if ([sinaweiboInfo objectForKey:@"AccessTokenKey"] && [sinaweiboInfo objectForKey:@"ExpirationDateKey"] && [sinaweiboInfo objectForKey:@"UserIDKey"])
+            {
+                // storeUserSinaWeiboAuthData = [NSMutableDictionary new];
+                
+                NSString *temp=[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+                
+                [storyUser setObject:sinaweiboInfo  forKey:temp];
+                
+                [[NSUserDefaults standardUserDefaults]setObject:storyUser forKey:@"storyUser"];  /////////存储 SinaWeiboAuthData 数据
+                
+                [tableView reloadData];
+            //   [self.navigationController popViewControllerAnimated:YES];///两秒后返回上一页 ~~~~~~~~~
+
+            }
+            else{
+           [self.navigationController popViewControllerAnimated:YES];///两秒后返回上一页 ~~~~~~~~~
+            }
+                    });
        // [self userInfoButtonPressed];
     }
     else if ([request.url hasSuffix:@"statuses/user_timeline.json"])

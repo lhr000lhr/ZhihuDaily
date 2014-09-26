@@ -38,7 +38,7 @@
         NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
         
         self.userName.text =temp;
-          [self.userImage sd_setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+          [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
         self.userImage.layer.masksToBounds =YES;
         self.userImage.layer.cornerRadius =50;
         self.userImage.layer.cornerRadius = self.userImage.frame.size.height/2;
@@ -135,7 +135,7 @@
 {
     NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
     if (temp) {
-        [self.userImage sd_setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
+        [self.userImage setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults]objectForKey:@"profile_image_url" ]]];
         self.userImage.layer.masksToBounds =YES;
         self.userImage.layer.cornerRadius =50;
         self.userImage.layer.cornerRadius = self.userImage.frame.size.height/2;

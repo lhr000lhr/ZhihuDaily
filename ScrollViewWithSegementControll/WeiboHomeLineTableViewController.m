@@ -159,10 +159,12 @@
             UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
             [weiboImages addGestureRecognizer:singleTap];
             
-            weiboImages.tag=indexPath.row*10000+i;
+            weiboImages.tag=100+indexPath.row*10000+i;
             
             
             weiboImages.frame=frame;
+            weiboImages.clipsToBounds = YES;
+            weiboImages.contentMode=UIViewContentModeScaleAspectFill;
             frame.origin.x = frame.origin.x +88;
             
             if (i==2) {
@@ -180,7 +182,7 @@
             
         NSArray * array = [[picsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
         NSString *transferUrl =[NSString stringWithFormat:@"%@bmiddle%@",array[0],array[1]];
-            transferUrl =[NSString stringWithFormat:@"%@thumbnail%@",array[0],array[1]];
+            transferUrl =[NSString stringWithFormat:@"%@bmiddle%@",array[0],array[1]];
 
             NSString *fileName = [transferUrl lastPathComponent];
             if ([fileName hasSuffix:@".gif"]) {
@@ -213,7 +215,7 @@
         frame = cell.retweetView.frame;
         frame.origin.y =cell.content.frame.size.height + cell.content.frame.origin.y+10.f;
         cell.retweetView.frame = frame;
-        
+ 
         cell.retweetName.text = [[retweetRowData objectForKey:@"user"] objectForKey:@"name"];
         cell.retweetTime.text =[self getTimeString:[retweetRowData objectForKey:@"created_at"]];
         cell.retweetContent.text=[retweetRowData objectForKey:@"text"];
@@ -258,12 +260,14 @@
                 UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
                 [weiboImages addGestureRecognizer:singleTap];
                 
-                weiboImages.tag=indexPath.row*10000+i;
+                weiboImages.tag=100+indexPath.row*10000+i;
                 
                 
                 
                 
                 weiboImages.frame=frame;
+                 weiboImages.clipsToBounds = YES;
+                weiboImages.contentMode=UIViewContentModeScaleAspectFill;
                 frame.origin.x = frame.origin.x +88;
                 
                 if (i==2) {
@@ -281,7 +285,7 @@
                 
                 NSArray * array = [[retweetPicsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
                 NSString *transferUrl =[NSString stringWithFormat:@"%@bmiddle%@",array[0],array[1]];
-                transferUrl =[NSString stringWithFormat:@"%@thumbnail%@",array[0],array[1]];
+                transferUrl =[NSString stringWithFormat:@"%@bmiddle%@",array[0],array[1]];
                 NSString *fileName = [transferUrl lastPathComponent];
                 if ([fileName hasSuffix:@".gif"]) {
                     transferUrl =[NSString stringWithFormat:@"%@thumbnail%@",array[0],array[1]];
@@ -1046,7 +1050,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     UIImageView *view = (UIImageView *)[gestureRecognizer view];
     int tagvalue = abs(view.tag);
     int row = tagvalue/10000;
-    int i = tagvalue - 10000*row;
+    int i = tagvalue - 10000*row-100;
     NSString *url=[NSString new];
     
     NSDictionary *rowData1 = tableviewlist[row];
@@ -1124,9 +1128,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     [inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [inputFormatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
-    NSDate* inputDate = [inputFormatter dateFromString:string];
+    //NSDate* inputDate = [inputFormatter dateFromString:string];
    
-     NSDate *creatDate = [inputFormatter dateFromString:string];
+    NSDate *creatDate = [inputFormatter dateFromString:string];
     NSDateFormatter *fmt=[[NSDateFormatter alloc]init];
     //时间格式
     fmt=inputFormatter;
@@ -1169,7 +1173,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     UIImageView *view = (UIImageView *)[tap view];
     int tagvalue = abs(view.tag);
     int row = tagvalue/10000;
-    int i = tagvalue - 10000*row;
+    int i = tagvalue - 10000*row-100;
     
    NSDictionary *rowData1 = tableviewlist[row];
     
@@ -1197,7 +1201,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             
             MJPhoto *photo = [[MJPhoto alloc] init];
             photo.url = [NSURL URLWithString:url]; // 图片路径
-            photo.srcImageView = view; // 来源于哪个UIImageView
+            photo.srcImageView = (UIImageView *)[self.view viewWithTag:row*10000+i+100];// 来源于哪个UIImageView
             [photos addObject:photo];
         }
         
@@ -1235,7 +1239,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             
             MJPhoto *photo = [[MJPhoto alloc] init];
             photo.url = [NSURL URLWithString:url]; // 图片路径
-            photo.srcImageView = view;  // 来源于哪个UIImageView
+            photo.srcImageView =  (UIImageView *)[self.view viewWithTag:row*10000+i+100];  // 来源于哪个UIImageView
             [photos addObject:photo];
         
     }

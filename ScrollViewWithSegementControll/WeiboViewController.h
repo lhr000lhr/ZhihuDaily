@@ -10,8 +10,10 @@
 #import "SinaWeibo.h"
 #import "AppDelegate.h"
 #import "SinaWeiboRequest.h"
-@interface WeiboViewController : UIViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,SinaWeiboAuthorizeViewDelegate>
+@interface WeiboViewController : UIViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,SinaWeiboAuthorizeViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
+    NSMutableDictionary *storyUser;
+    NSMutableArray *storyUserName;
     UIButton  *loginButton;
     UIButton *logoutButton;
     UIButton *userInfoButton;
@@ -38,6 +40,8 @@
     NSString * WeiboId;
     NSString * since_id;
     NSString * max_id;
+    UITableView *tableView;
+    
     int  Page;
     BOOL iMage;
     BOOL isflage;

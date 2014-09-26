@@ -156,7 +156,7 @@ static NSString *CellIdentifier = @"Cell";
     if (url) {
        // [cell creatThread:url];
      
-        [cell.DoctorImage setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Expression_1.png"]];
+        [cell.DoctorImage setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
         NSLog(@"%@",NSHomeDirectory());
     }
     

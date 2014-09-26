@@ -80,9 +80,9 @@
         
         UIImageView *weiboImage1 = [UIImageView new];
         weiboImage1.userInteractionEnabled = YES;
-         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
-         [weiboImage1 addGestureRecognizer:singleTap];
-        weiboImage1.tag=0+i;
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
+        [weiboImage1 addGestureRecognizer:singleTap];
+        weiboImage1.tag=0+i+100;
         
         
         
@@ -102,7 +102,7 @@
         [weiboImage setMasksToBounds:YES];
         [weiboImage setCornerRadius:6.0];
         
-       
+        weiboImage1.contentMode = UIViewContentModeScaleAspectFill;
         weiboImage1.frame=frame;
         
         frame.origin.x = frame.origin.x +88;
@@ -188,7 +188,7 @@
             UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
             [weiboImage1 addGestureRecognizer:singleTap];
             
-            weiboImage1.tag=10000+i;
+            weiboImage1.tag=0+i+100;
            
             
             
@@ -211,10 +211,10 @@
             
             
             weiboImage1.frame=frame;
-            
+             weiboImage1.contentMode = UIViewContentModeScaleAspectFill;
             
             if ([retweetPicsArray count]==1) {
-                weiboImage1.contentMode = UIViewContentModeScaleAspectFit;
+                weiboImage1.contentMode = UIViewContentModeScaleAspectFill;
             }
             
             frame.origin.x = frame.origin.x +88;
@@ -409,7 +409,7 @@
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     [inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [inputFormatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
-    NSDate* inputDate = [inputFormatter dateFromString:string];
+//    NSDate* inputDate = [inputFormatter dateFromString:string];
     
     NSDate *creatDate = [inputFormatter dateFromString:string];
     NSDateFormatter *fmt=[[NSDateFormatter alloc]init];
@@ -453,7 +453,7 @@
     UIImageView *view = (UIImageView *)[tap view];
     int tagvalue = abs(view.tag);
     int row = tagvalue/10000;
-    int i = tagvalue - 10000*row;
+    int i = tagvalue - 10000*row-100;
     
     NSDictionary *rowData1 = self.rowData;
     
@@ -481,7 +481,7 @@
             
             MJPhoto *photo = [[MJPhoto alloc] init];
             photo.url = [NSURL URLWithString:url]; // 图片路径
-            photo.srcImageView = view; // 来源于哪个UIImageView
+            photo.srcImageView =  (UIImageView *)[self.view viewWithTag:row+i+100];// 来源于哪个UIImageView
             [photos addObject:photo];
         }
         
@@ -519,7 +519,7 @@
             
             MJPhoto *photo = [[MJPhoto alloc] init];
             photo.url = [NSURL URLWithString:url]; // 图片路径
-            photo.srcImageView = view;  // 来源于哪个UIImageView
+            photo.srcImageView =  (UIImageView *)[self.view viewWithTag:row*0+i+100]; // 来源于哪个UIImageView
             [photos addObject:photo];
             
         }
