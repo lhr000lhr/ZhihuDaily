@@ -26,8 +26,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TOWebViewController : UIViewController <UIWebViewDelegate>
-
+@interface TOWebViewController : UIViewController <UIWebViewDelegate,UIDocumentInteractionControllerDelegate>
+{
+     UIDocumentInteractionController *_docInteractionController;
+}
 /**
  Initializes a new `TOWebViewController` object with the specified URL.
  

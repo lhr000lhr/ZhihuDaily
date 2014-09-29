@@ -28,9 +28,22 @@
     }
     [super dealloc];
 }
+-(void)autoShowNext
+{
+    if (currentPageIndex>=[imageArray count]) {
+        currentPageIndex=0;
+    }
+    else
+        currentPageIndex++;
+    
+    [scrollView setContentOffset:CGPointMake(self.bounds.size.width*2, 0) animated:YES];
+}
 -(id)initWithFrameRect:(CGRect)rect ImageArray:(NSArray *)imgArr TitleArray:(NSArray *)titArr
 {
     
+    
+    
+ 
 	if ((self=[super initWithFrame:rect])) {
         self.userInteractionEnabled=YES;
         titleArray=[titArr retain];
@@ -95,7 +108,9 @@
         
         [self addSubview:noteView];
         [noteView release];
+        
 	}
+    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(autoShowNext) userInfo:nil repeats:YES];
 	return self;
 }
 

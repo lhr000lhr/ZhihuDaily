@@ -96,6 +96,7 @@
 		8C722F0B19CC060700C6362D /* WeiboAllInOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C722F0919CC060600C6362D /* WeiboAllInOneTableViewCell.xib */; };
 		8C722F0E19CC2B7F00C6362D /* WeiboReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C722F0D19CC2B7F00C6362D /* WeiboReviewViewController.m */; };
 		8C733C2C19C91E06005A60BF /* WeiboHomeLineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C733C2B19C91E06005A60BF /* WeiboHomeLineTableViewController.m */; };
+		8C7DB79819D93AF100A8D305 /* UIWebView+ToFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7DB79719D93AF100A8D305 /* UIWebView+ToFile.m */; };
 		8CAD97A119C2AE0A00B5878D /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD97A019C2AE0A00B5878D /* bg.png */; };
 		8CAD97AA19C2CF0400B5878D /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97A519C2CF0400B5878D /* RECommonFunctions.m */; };
 		8CAD97AB19C2CF0400B5878D /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97A719C2CF0400B5878D /* RESideMenu.m */; };
@@ -129,6 +130,7 @@
 		8CDD193819B9B160003690EA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD193719B9B160003690EA /* MapKit.framework */; };
 		8CDD193A19B9B16A003690EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD193919B9B16A003690EA /* CoreGraphics.framework */; };
 		8CDD193C19B9B173003690EA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD193B19B9B173003690EA /* ImageIO.framework */; };
+		8CE0FE4019D5697A0009CB9B /* JScrollView+PageControl+AutoScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE0FE3F19D5697A0009CB9B /* JScrollView+PageControl+AutoScroll.m */; };
 		AD250EBA19B5CA4B007AA65D /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD250EB919B5CA4B007AA65D /* OneViewController.m */; };
 		AD250EBD19B5CE2D007AA65D /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD250EBC19B5CE2D007AA65D /* TwoViewController.m */; };
 		AD3BECE419B56EE7006B465C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3BECE319B56EE7006B465C /* main.m */; };
@@ -354,6 +356,8 @@
 		8C722F0D19CC2B7F00C6362D /* WeiboReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboReviewViewController.m; sourceTree = "<group>"; };
 		8C733C2A19C91E06005A60BF /* WeiboHomeLineTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboHomeLineTableViewController.h; sourceTree = "<group>"; };
 		8C733C2B19C91E06005A60BF /* WeiboHomeLineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboHomeLineTableViewController.m; sourceTree = "<group>"; };
+		8C7DB79619D93AF100A8D305 /* UIWebView+ToFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+ToFile.h"; sourceTree = "<group>"; };
+		8C7DB79719D93AF100A8D305 /* UIWebView+ToFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+ToFile.m"; sourceTree = "<group>"; };
 		8CAD97A019C2AE0A00B5878D /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		8CAD97A419C2CF0400B5878D /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		8CAD97A519C2CF0400B5878D /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
@@ -395,6 +399,8 @@
 		8CDD193719B9B160003690EA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8CDD193919B9B16A003690EA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8CDD193B19B9B173003690EA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		8CE0FE3E19D5697A0009CB9B /* JScrollView+PageControl+AutoScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JScrollView+PageControl+AutoScroll.h"; sourceTree = "<group>"; };
+		8CE0FE3F19D5697A0009CB9B /* JScrollView+PageControl+AutoScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JScrollView+PageControl+AutoScroll.m"; sourceTree = "<group>"; };
 		AD250EB819B5CA4B007AA65D /* OneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
 		AD250EB919B5CA4B007AA65D /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		AD250EBB19B5CE2D007AA65D /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
@@ -469,6 +475,8 @@
 				8C15A9F819C6C77E00EB3DE2 /* TOActivitySafari.m */,
 				8C15A9F919C6C77E00EB3DE2 /* TOWebViewController.h */,
 				8C15A9FA19C6C77E00EB3DE2 /* TOWebViewController.m */,
+				8C7DB79619D93AF100A8D305 /* UIWebView+ToFile.h */,
+				8C7DB79719D93AF100A8D305 /* UIWebView+ToFile.m */,
 				8C15A9FB19C6C77E00EB3DE2 /* UIImage+TOWebViewControllerIcons.h */,
 				8C15A9FC19C6C77E00EB3DE2 /* UIImage+TOWebViewControllerIcons.m */,
 			);
@@ -895,6 +903,8 @@
 		AD3BED1D19B5A25E006B465C /* EScrollerView */ = {
 			isa = PBXGroup;
 			children = (
+				8CE0FE3E19D5697A0009CB9B /* JScrollView+PageControl+AutoScroll.h */,
+				8CE0FE3F19D5697A0009CB9B /* JScrollView+PageControl+AutoScroll.m */,
 				AD3BED1E19B5A25E006B465C /* EScrollerView.h */,
 				AD3BED1F19B5A25E006B465C /* EScrollerView.m */,
 			);
@@ -1080,6 +1090,7 @@
 			files = (
 				8C6DEE7619C986B70095AD0C /* WeiboWithoutImageTableViewCell.m in Sources */,
 				8C6DEE8D19CAB1F40095AD0C /* WeiboCommentTableViewCell.m in Sources */,
+				8C7DB79819D93AF100A8D305 /* UIWebView+ToFile.m in Sources */,
 				8C64F63519D501FD00C2010C /* SDWebImageManager+MJ.m in Sources */,
 				8C56ABDF19BEC54E003A6D5A /* UIImageView+AFNetworking.m in Sources */,
 				8C64F62F19D501FD00C2010C /* NSData+GIF.m in Sources */,
@@ -1102,6 +1113,7 @@
 				8CC9212A19B6BCAC008609C1 /* DoctorTableViewCell.m in Sources */,
 				8C56ABDE19BEC54E003A6D5A /* AFXMLRequestOperation.m in Sources */,
 				8CAD97AA19C2CF0400B5878D /* RECommonFunctions.m in Sources */,
+				8CE0FE4019D5697A0009CB9B /* JScrollView+PageControl+AutoScroll.m in Sources */,
 				8C64F63A19D501FD00C2010C /* UIImage+MultiFormat.m in Sources */,
 				8C733C2C19C91E06005A60BF /* WeiboHomeLineTableViewController.m in Sources */,
 				AD3BECEA19B56EE7006B465C /* ViewController.m in Sources */,
@@ -1315,6 +1327,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1337,6 +1350,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
 
 - (IBAction)switchViewController:(UIButton *)sender;
+@property (strong, nonatomic) IBOutlet UIButton *weiboButton;
 
 @end

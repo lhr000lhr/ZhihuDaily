@@ -8,18 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "MJRefresh.h"
+#import "UIImageView+MJWebCache.h"
 #import "UIImageView+WebCache.h"
 #import "EScrollerView.h"
 #import "CCAVSegmentController.h"
 #import "NewsDateViewController.h"
 #import "XBNavCustomButton.h"
-@interface OneViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CCAVSegmentControllerDelegate,EScrollerViewDelegate>
+#import "SinaWeibo.h"
+#import "AppDelegate.h"
+#import "SinaWeiboRequest.h"
+#import "JScrollView+PageControl+AutoScroll.h"
+@interface OneViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CCAVSegmentControllerDelegate,EScrollerViewDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,JScrollViewViewDelegate>
 {
     CCAVSegmentController *segmentView;
     NewsDateViewController *newsDate;
     NSDate *date;
    // NSDictionary *storeNewsArray;
     int loadDayFlag;
+    BOOL picState;
+    BOOL downLoadState;
     NSMutableDictionary *favorites;
      NSMutableArray *storeFavorites;
     NSMutableDictionary *history;

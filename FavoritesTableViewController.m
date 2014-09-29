@@ -38,6 +38,11 @@ static NSString *CellIdentifier = @"Cell";
         NSLog(@"%@ - %@", key, favorites[key]);
         [storeFavorites addObject:favorites[key]];
     }
+  //  storeFavorites = [NSMutableArray new];
+    for (NSString *key in favorites) {
+        NSLog(@"%@ - %@", key, favorites[key]);
+        [storeFavorites addObject:favorites[key]];
+    }
     
     NSLog(@"%@",storeFavorites);
     UINib *nib = [UINib nibWithNibName:@"DoctorTableViewCell" bundle:nil];
@@ -82,12 +87,12 @@ static NSString *CellIdentifier = @"Cell";
     DoctorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                                 forIndexPath:indexPath];
     // Configure the cell...
-    storeFavorites = [NSMutableArray new];
-    for (NSString *key in favorites) {
-        NSLog(@"%@ - %@", key, favorites[key]);
-        [storeFavorites addObject:favorites[key]];
-    }
-    
+//    storeFavorites = [NSMutableArray new];
+//    for (NSString *key in favorites) {
+//        NSLog(@"%@ - %@", key, favorites[key]);
+//        [storeFavorites addObject:favorites[key]];
+//    }
+//    
     NSDictionary *rowData =storeFavorites[indexPath.row];
     //self.news[indexPath.row];
     cell.Name.text=[rowData objectForKey:@"title"] ;
@@ -178,11 +183,9 @@ static NSString *CellIdentifier = @"Cell";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:
 (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        storeFavorites = [NSMutableArray new];
-        for (NSString *key in favorites) {
-            NSLog(@"%@ - %@", key, favorites[key]);
-            [storeFavorites addObject:favorites[key]];
-        }
+        
+        
+        
         
         NSUInteger row = [indexPath row];
         
@@ -192,6 +195,12 @@ static NSString *CellIdentifier = @"Cell";
         
         [favorites removeObjectForKey:url];
        
+        storeFavorites = [NSMutableArray new];
+        for (NSString *key in favorites) {
+            NSLog(@"%@ - %@", key, favorites[key]);
+            [storeFavorites addObject:favorites[key]];
+        }
+        
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];
         // 数据源也要相应删除一项

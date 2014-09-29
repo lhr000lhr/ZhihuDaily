@@ -586,7 +586,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-F3-Zl1">
+                                                <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gIA-F3-Zl1">
                                                     <rect key="frame" x="251" y="20" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="settingSwitch:" destination="mDc-db-sT6" eventType="valueChanged" id="BXW-Ww-l2Z"/>
@@ -608,10 +608,32 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sLg-hO-QXx">
+                                                <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sLg-hO-QXx">
                                                     <rect key="frame" x="251" y="20" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="settingSwitch:" destination="mDc-db-sT6" eventType="valueChanged" id="OHo-uW-hUw"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="gUn-Iq-UBE">
+                                        <rect key="frame" x="0.0" y="357" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gUn-Iq-UBE" id="pE9-Rf-KuE">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="开启微博功能" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1t-Mw-knk">
+                                                    <rect key="frame" x="20" y="25" width="280" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hfm-qX-tO5">
+                                                    <rect key="frame" x="251" y="20" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="settingSwitch:" destination="mDc-db-sT6" eventType="valueChanged" id="Fh6-po-sAh"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -622,7 +644,7 @@
                             <tableViewSection id="Sqg-RV-dFp">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="GyY-c9-WPk">
-                                        <rect key="frame" x="0.0" y="377" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="457" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GyY-c9-WPk" id="qYs-go-jAl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -638,7 +660,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gLN-cq-2Hp">
-                                        <rect key="frame" x="0.0" y="421" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="501" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gLN-cq-2Hp" id="oTO-Hq-4xR">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -658,7 +680,7 @@
                             <tableViewSection id="o7J-VL-psT">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9JP-n9-kw5">
-                                        <rect key="frame" x="0.0" y="485" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="565" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9JP-n9-kw5" id="f77-lJ-LBl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -696,6 +718,7 @@
                         <outlet property="picState" destination="gIA-F3-Zl1" id="OXT-zd-rei"/>
                         <outlet property="userImage" destination="fpJ-eR-zw4" id="4aa-hc-a4o"/>
                         <outlet property="userName" destination="CgX-bc-wv8" id="Kzg-Ec-qJ4"/>
+                        <outlet property="weiboState" destination="hfm-qX-tO5" id="9H6-8H-yy1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73N-P8-JvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -978,6 +1001,7 @@
                     <connections>
                         <outlet property="userImage" destination="RF5-PO-JR6" id="1tr-l4-ej4"/>
                         <outlet property="userName" destination="5an-PQ-lVL" id="Szb-fO-zyk"/>
+                        <outlet property="weiboButton" destination="f7J-S9-Q3D" id="Xhb-Fz-Kv4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sM-1K-cVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -986,7 +1010,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IconHome.png" width="32" height="32"/>
+        <image name="IconHome.png" width="24" height="24"/>
         <image name="gen_share_sine.png" width="60" height="60"/>
         <image name="nav_btn_menu.png" width="60" height="44"/>
     </resources>

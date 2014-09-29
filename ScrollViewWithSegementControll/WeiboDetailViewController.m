@@ -160,12 +160,15 @@
         
         
         NSString *retweetFrom =[retweetRowData objectForKey:@"source"];///////来源处理////////
+        if (retweetFrom.length>5) {
+            
+        
         NSArray * retweetArray = [retweetFrom componentsSeparatedByString:@"\">"];
         NSString *retweetTemp = retweetArray[1];
         retweetArray = [retweetTemp componentsSeparatedByString:@"<"];
         retweetFrom = retweetArray[0];
         self.retweetFrom.text =[NSString stringWithFormat:@"来自%@",retweetArray[0]];///////来源处理////////
-        
+        }
         
         if ([self.from.text isEqualToString:@"来自知乎Plus"]||[self.from.text isEqualToString:@"来自浩然的小尾巴"]){
             self.retweetFrom.textColor=[UIColor orangeColor];

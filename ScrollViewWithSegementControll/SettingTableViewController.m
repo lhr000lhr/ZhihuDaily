@@ -8,6 +8,7 @@
 
 #import "SettingTableViewController.h"
 #import "AppDelegate.h"
+#import "OneViewController.h"
 @interface SettingTableViewController ()
 
 @end
@@ -28,8 +29,21 @@
     [super viewDidLoad];
     SinaWeibo *sinaWeibo =[self sinaweibo];
     
+    //////////////按钮状态
+    [self.picState setOn:[[NSUserDefaults standardUserDefaults]boolForKey:@"picState"]];
+    
+    [self.downLoadState setOn:[[NSUserDefaults standardUserDefaults]boolForKey:@"downLoadState"]];
+
+    [self.weiboState setOn:[[NSUserDefaults standardUserDefaults]boolForKey:@"weiboState"]];
     
     //////////////按钮状态
+    
+    
+    
+    
+    
+    ////////////
+    
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(test:)
@@ -78,17 +92,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (section==0) {
         return 1;
+    }
+    if (section==1) {
+        return 3;
     }
     if (section==3) {
         return 1;
@@ -109,7 +124,10 @@
          
             alert = [[UIAlertView alloc]initWithTitle:@"_(:з」∠)_" message:@"缓存已经清理~~~" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
              [alert show];
+            [[SDImageCache sharedImageCache] clearDisk];
             
+            [[SDImageCache sharedImageCache] clearMemory];
+             [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"storeNewsByDate"];
         }
         
         
@@ -223,15 +241,20 @@
 
 - (IBAction)settingSwitch:(UISwitch *)sender {
     
-    if (sender.tag==0) { /////无图模式
+    if (sender.tag==1) { /////无图模式
         
         BOOL storeState = sender.isOn;
         [[NSUserDefaults standardUserDefaults]setBool:storeState forKey:@"picState"];
     }
-    else if(sender.tag ==1){ ///离线下载
+    else if(sender.tag ==2){ ///离线下载
         
         BOOL storeState = sender.isOn;
         [[NSUserDefaults standardUserDefaults]setBool:storeState forKey:@"downLoadState"];
+    }else if(sender.tag == 3){///微博开关
+        
+        BOOL storeState = sender.isOn;
+        [[NSUserDefaults standardUserDefaults]setBool:storeState forKey:@"weiboState"];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"changeName" object:nil];
     }
     
     

@@ -28,8 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(test:)
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(test:)
 												 name:@"changeName" object:nil];
+    self.weiboButton.hidden = ![[NSUserDefaults standardUserDefaults]boolForKey:@"weiboState"];
     SinaWeibo *sinaWeibo =[self sinaweibo];
     if ([sinaWeibo isAuthValid]) {
         NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
@@ -78,6 +80,9 @@
         [self.userName setTitle:@"使用新浪微博登陆" forState:UIControlStateNormal];
         [self.userImage setImage:[UIImage imageNamed:@"gen_share_sine"]];
     }
+    
+    self.weiboButton.hidden= ![[NSUserDefaults standardUserDefaults]boolForKey:@"weiboState"];
+    
     
 }
 

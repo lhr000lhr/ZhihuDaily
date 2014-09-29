@@ -28,6 +28,9 @@
 #import "TOActivitySafari.h"
 #import "TOActivityChrome.h"
 #import "UIImage+TOWebViewControllerIcons.h"
+#import "UIWebView+ToFile.h"
+#import "MJPhoto.h"
+#import "MJPhotoBrowser.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import <MessageUI/MessageUI.h>
@@ -409,6 +412,46 @@ static const float kAfterInteractiveMaxProgressValue    = 0.9f;
 
     return iconsContainerView;
 }
+- (void)convertToImage:(UIBarButtonItem *)item{
+    UIImage *image = [_webView imageRepresentation];
+   NSData *imageData = UIImageJPEGRepresentation(image,0.8);
+    // imageData = UIImageJPEGRepresentation(image,1);
+   // imageData = UIImageJPEGRepresentation(image,0.5);
+    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *imagePath = [documentPath stringByAppendingPathComponent:@"长微博分享.jpg"];
+    BOOL result = [imageData writeToFile:imagePath atomically:YES];
+    if (result) {
+        _docInteractionController.URL = [NSURL fileURLWithPath:imagePath];
+     //   [_docInteractionController presentPreviewAnimated:YES];
+        NSMutableArray *photos = [NSMutableArray new];
+        for (int i = 0; i<1; i++) {
+            // 替换为中等尺寸图片
+            
+            
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.url = [NSURL fileURLWithPath:imagePath]; // 图片路径
+            UIImageView *imageView = [UIImageView new];
+            [imageView setImage:[UIImage imageWithData:imageData]];
+            imageView.frame=self.webView.bounds;
+            photo.srcImageView =  imageView;// 来源于哪个UIImageView
+            [photos addObject:photo];
+        }
+        
+        // 2.显示相册
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.currentPhotoIndex = 0; // 弹出相册时显示的第一张图片是？
+        
+        browser.photos = photos; // 设置所有的图片
+        [browser show];
+        
+        
+    }
+}
+
+#pragma mark - UIDocumentInteractionControllerDelegate Methods
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller{
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -418,6 +461,14 @@ static const float kAfterInteractiveMaxProgressValue    = 0.9f;
         self.hideToolbarOnClose = self.navigationController.toolbarHidden;
         self.hideNavBarOnClose  = self.navigationBar.hidden;
     }
+    self.navigationItem.rightBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"长微博分享"
+                                     style:UIBarButtonItemStyleBordered
+                                    target:self
+                                    action:@selector(convertToImage:)];
+    _docInteractionController = [[UIDocumentInteractionController alloc] init];
+    _docInteractionController.delegate = self;
+    
     
     //remove the shadow that lines the bottom of the webview
     if (MINIMAL_UI == NO) {

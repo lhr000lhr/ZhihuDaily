@@ -11,18 +11,19 @@
 #import "SinaWeiboRequest.h"
 #import "WeiboViewController.h"
 #import "OneViewController.h"
-@interface SettingTableViewController : UITableViewController
+@interface SettingTableViewController : UITableViewController<SinaWeiboRequestDelegate>
 - (IBAction)settingSwitch:(UISwitch *)sender;
 - (void) sendEmail:(NSString *)phoneNumber;
 - (void) sendEmail:(NSString *)to cc:(NSString*)cc subject:(NSString*)subject body:(NSString*)body;
 
 
 
-
+@property (strong, nonatomic) IBOutlet UISwitch *weiboState;
 @property (strong, nonatomic) IBOutlet UISwitch *picState;
 @property (strong, nonatomic) IBOutlet UISwitch *downLoadState;
 
 @property (strong, nonatomic) IBOutlet UILabel *userName;
+
 
 @property(strong,nonatomic) WeiboViewController *weibo;
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
