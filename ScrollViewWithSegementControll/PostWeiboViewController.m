@@ -26,6 +26,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
+    SinaWeibo *sinaWeibo = [self sinaweibo];
+    if (![sinaWeibo isAuthValid]) { ////// 检查是否登录
+        
+        self.doneButton.enabled = NO;
+    
+    }
     self.imageView.image = [UIImage imageWithData:self.imageData];
     self.textField.text = self.textFieldContent;
     // Do any additional setup after loading the view.

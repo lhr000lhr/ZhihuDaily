@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "SinaWeiboRequest.h"
 #import "MBProgressHUD.h"
-@interface PostWeiboViewController : UIViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,SinaWeiboAuthorizeViewDelegate,MBProgressHUDDelegate,NSURLConnectionDelegate>
+@interface PostWeiboViewController : UIViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,MBProgressHUDDelegate,NSURLConnectionDelegate>
 
 {
     UIButton  *loginButton;
@@ -53,6 +53,7 @@
 - (IBAction)post:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UITextView *textField;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (strong, nonatomic) NSData *imageData;
 @property (strong, nonatomic) NSString *textFieldContent;
 @end

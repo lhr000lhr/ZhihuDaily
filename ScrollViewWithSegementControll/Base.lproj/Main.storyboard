@@ -327,6 +327,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="Xa8-ya-ZjC" id="0ao-No-5Gh"/>
                         <outlet property="imageView" destination="UKZ-7H-GxL" id="vl3-aR-gkZ"/>
                         <outlet property="textField" destination="P41-aj-gTd" id="ZDZ-54-FXj"/>
                     </connections>
