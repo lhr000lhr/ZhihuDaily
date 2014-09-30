@@ -122,12 +122,15 @@
     cell.time.text =[self getTimeString:[rowData objectForKey:@"created_at"]];
     cell.content.text = [rowData objectForKey:@"text"];
     NSString *from =[rowData objectForKey:@"source"];
+    if (from.length>5) {
     NSArray * array = [from componentsSeparatedByString:@"\">"];
-    
     NSString *temp = array[1];
-    array = [temp componentsSeparatedByString:@"<"];
-    from = array[0];
-    cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+    
+        array = [temp componentsSeparatedByString:@"<"];
+        from = array[0];
+        cell.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+    }
+   
     if ([from isEqualToString:@"知乎Plus"]|| [from isEqualToString:@"浩然的小尾巴"]) {
         cell.from.textColor=[UIColor orangeColor];
     }else{

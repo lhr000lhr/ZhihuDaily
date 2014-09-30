@@ -9,7 +9,8 @@
 #import "SinaWeibo.h"
 #import "AppDelegate.h"
 #import "SinaWeiboRequest.h"
-@interface PostWeiboViewController : UIViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,SinaWeiboAuthorizeViewDelegate>
+#import "MBProgressHUD.h"
+@interface PostWeiboViewController : UIViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,SinaWeiboAuthorizeViewDelegate,MBProgressHUDDelegate,NSURLConnectionDelegate>
 
 {
     UIButton  *loginButton;
@@ -43,10 +44,15 @@
     BOOL isflage;
     BOOL _reloading;
     BOOL isPic;
+    MBProgressHUD *HUD;
+	long long expectedLength;
+	long long currentLength;
 
 }
 - (IBAction)chooseImage:(id)sender;
 - (IBAction)post:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UITextView *textField;
+@property (strong, nonatomic) NSData *imageData;
+@property (strong, nonatomic) NSString *textFieldContent;
 @end

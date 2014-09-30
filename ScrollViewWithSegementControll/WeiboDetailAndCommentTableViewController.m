@@ -10,6 +10,8 @@
 #import "WeiboCommentTableViewCell.h"
 #import "ScrollViewDetailViewController.h"
 #import "WeiboReviewViewController.h"
+#import "OneViewController.h"
+
 @interface WeiboDetailAndCommentTableViewController ()
 
 @end
@@ -24,6 +26,28 @@
 //    }
 //    return self;
 //}
+
+- (void)richTextView:(TQRichTextView *)view touchBeginRun:(TQRichTextRun *)run
+{
+    
+}
+
+- (void)richTextView:(TQRichTextView *)view touchEndRun:(TQRichTextRun *)run
+{
+    if ([run isKindOfClass:[TQRichTextRunURL class]])
+    {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:run.text]];
+        
+        TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURLString:[NSString stringWithFormat:@"%@",run.text]];
+        webViewController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:webViewController animated:YES];
+        
+        
+    }
+    
+    
+    NSLog(@"%@",run.text);
+}
 
 - (void)viewDidLoad
 {
@@ -52,6 +76,22 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     [self addChildViewController:weiboDetailViewController];
+    
+   
+    
+    NSString *desContent =[self.rowData objectForKey:@"text"];
+    CGRect rect = [TQRichTextView boundingRectWithSize:CGSizeMake(320, 500) font:[UIFont systemFontOfSize:13] string:desContent lineSpace:1.0f];
+    
+    NSLog(@"%@",NSStringFromCGRect(rect));
+    
+    TQRichTextView *textView = [[TQRichTextView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
+    textView.text = desContent;
+    textView.lineSpace = 1.0f;
+    textView.font = [UIFont systemFontOfSize:13.0f];
+    textView.backgroundColor = [UIColor clearColor];
+    textView.delegage = self;
+    self.tableView.tableFooterView = textView;
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }

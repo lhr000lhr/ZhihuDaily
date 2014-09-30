@@ -54,12 +54,15 @@
     
     
     NSString *from =[self.rowData objectForKey:@"source"];
-    NSArray * array = [from componentsSeparatedByString:@"\">"];
-    NSString *temp = array[1];
-    array = [temp componentsSeparatedByString:@"<"];
-    from = array[0];
-    self.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
-    
+    if (from.length>5) {
+        NSArray * array = [from componentsSeparatedByString:@"\">"];
+        NSString *temp = array[1];
+        array = [temp componentsSeparatedByString:@"<"];
+        from = array[0];
+        self.from.text =[NSString stringWithFormat:@"来自%@",from];///////来源处理////////
+        
+    }
+   
     if ([self.from.text isEqualToString:@"来自知乎Plus"]||[self.from.text isEqualToString:@"来自浩然的小尾巴"]) {
         self.from.textColor=[UIColor orangeColor];
     }else{
@@ -383,7 +386,8 @@
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     WeiboDetailAndCommentTableViewController *content1=[WeiboDetailAndCommentTableViewController new];
-    content1=[self.storyboard instantiateViewControllerWithIdentifier:@"WeiboDetailAndCommentTableViewController"];
+    UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    content1=[storyboard instantiateViewControllerWithIdentifier:@"WeiboDetailAndCommentTableViewController"];
     
     NSLog(@"weiboid!!!!!%@",WeiboId);
     content1.navigationItem.title = weiboUserName;

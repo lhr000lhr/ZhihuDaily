@@ -10,7 +10,9 @@
 #import "OneViewController.h"
 #import "CCAVSegmentController.h"
 #import "WeiboHomeLineTableViewController.h"
-@interface WeiboDetailAndCommentTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,CCAVSegmentControllerDelegate>
+#import "TQRichTextView.h"
+
+@interface WeiboDetailAndCommentTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,CCAVSegmentControllerDelegate,TQRichTextViewDelegate>
 {
     BOOL _reloading;
     NSString * since_id;

@@ -31,6 +31,9 @@
 #import "UIWebView+ToFile.h"
 #import "MJPhoto.h"
 #import "MJPhotoBrowser.h"
+#import "SinaWeibo.h"
+#import "AppDelegate.h"
+#import "PostWeiboViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import <MessageUI/MessageUI.h>
@@ -412,40 +415,69 @@ static const float kAfterInteractiveMaxProgressValue    = 0.9f;
 
     return iconsContainerView;
 }
+-(NSString *)randomString
+{
+    char data[20];
+    for (int x=0;x<20;data[x++] = (char)('A' + (arc4random_uniform(26))));
+    return [[NSString alloc] initWithBytes:data length:20 encoding:NSUTF8StringEncoding];
+}
 - (void)convertToImage:(UIBarButtonItem *)item{
+    
+ 
+    dispatch_queue_t downloadQueue = dispatch_queue_create("download data", NULL);
+    //
+        dispatch_async(downloadQueue, ^{
     UIImage *image = [_webView imageRepresentation];
    NSData *imageData = UIImageJPEGRepresentation(image,0.8);
     // imageData = UIImageJPEGRepresentation(image,1);
    // imageData = UIImageJPEGRepresentation(image,0.5);
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *imagePath = [documentPath stringByAppendingPathComponent:@"长微博分享.jpg"];
+   
+    
+    NSString *dataPoint = [self randomString];
+    NSString *imagePath = [documentPath stringByAppendingPathComponent:dataPoint];
     BOOL result = [imageData writeToFile:imagePath atomically:YES];
     if (result) {
-        _docInteractionController.URL = [NSURL fileURLWithPath:imagePath];
-     //   [_docInteractionController presentPreviewAnimated:YES];
-        NSMutableArray *photos = [NSMutableArray new];
-        for (int i = 0; i<1; i++) {
-            // 替换为中等尺寸图片
+        dispatch_async(dispatch_get_main_queue(), ^{
+//        _docInteractionController.URL = [NSURL fileURLWithPath:imagePath];
+//     //   [_docInteractionController presentPreviewAnimated:YES];
+//        NSMutableArray *photos = [NSMutableArray new];
+//        for (int i = 0; i<1; i++) {
+//            // 替换为中等尺寸图片
+//            
+//            
+//            MJPhoto *photo = [[MJPhoto alloc] init];
+//            photo.url = [NSURL fileURLWithPath:imagePath]; // 图片路径
+//            UIImageView *imageView = [UIImageView new];
+//            [imageView setImage:[UIImage imageWithData:imageData]];
+//            imageView.frame=self.webView.bounds;
+//            photo.srcImageView =  imageView;// 来源于哪个UIImageView
+//            [photos addObject:photo];
+//        }
+//        
+//        // 2.显示相册
+//        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+//        browser.currentPhotoIndex = 0; // 弹出相册时显示的第一张图片是？
+//        
+//        browser.photos = photos; // 设置所有的图片
+//        [browser show];
+        
+            PostWeiboViewController *view=[PostWeiboViewController new];
+         
+            UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+               view=[storyBoard instantiateViewControllerWithIdentifier:@"PostWeiboViewController"];
+          
+            view.imageData = imageData;
+            NSString *transUrl = [self.url absoluteString];
+            view.textFieldContent = [NSString stringWithFormat:@"我发现了一个好文章:%@   %@",self.title,transUrl];
+            [self.navigationController pushViewController:view animated:YES];
+           
+           
             
-            
-            MJPhoto *photo = [[MJPhoto alloc] init];
-            photo.url = [NSURL fileURLWithPath:imagePath]; // 图片路径
-            UIImageView *imageView = [UIImageView new];
-            [imageView setImage:[UIImage imageWithData:imageData]];
-            imageView.frame=self.webView.bounds;
-            photo.srcImageView =  imageView;// 来源于哪个UIImageView
-            [photos addObject:photo];
+        });
         }
-        
-        // 2.显示相册
-        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
-        browser.currentPhotoIndex = 0; // 弹出相册时显示的第一张图片是？
-        
-        browser.photos = photos; // 设置所有的图片
-        [browser show];
-        
-        
-    }
+    
+        });
 }
 
 #pragma mark - UIDocumentInteractionControllerDelegate Methods

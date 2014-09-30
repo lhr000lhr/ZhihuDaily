@@ -408,5 +408,22 @@
     
     [sinaweibo requestDidFinish:self];
 }
-
+- (void)connection:(NSURLConnection *)connection   didSendBodyData:(NSInteger)bytesWritten
+ totalBytesWritten:(NSInteger)totalBytesWritten
+totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+    
+    
+    if ([delegate respondsToSelector:@selector(request:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:)])
+    {
+                [delegate request:self
+                  didSendBodyData:bytesWritten
+                totalBytesWritten:totalBytesWritten
+        totalBytesExpectedToWrite:totalBytesExpectedToWrite
+                 ];
+	}
+    
+    
+    
+}
 @end

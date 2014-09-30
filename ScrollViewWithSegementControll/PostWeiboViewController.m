@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageView.image = [UIImage imageWithData:self.imageData];
+    self.textField.text = self.textFieldContent;
     // Do any additional setup after loading the view.
 }
 
@@ -42,9 +44,42 @@
 }
 
 #pragma mark - SinaWeiboRequest Delegate
+-(void)request:(SinaWeiboRequest *)request didReceiveResponse:(NSURLResponse *)response
+{
+    
+    expectedLength = MAX([response expectedContentLength], 1);
+	currentLength = 0;
+	HUD.mode = MBProgressHUDModeDeterminate;
+    
+    
+}
+
+- (void)request:(SinaWeiboRequest *)request   didSendBodyData:(NSInteger)bytesWritten
+totalBytesWritten:(NSInteger)totalBytesWritten
+totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
+{
+   
+	HUD.mode = MBProgressHUDModeDeterminate;
+    currentLength += bytesWritten;
+    HUD.progress = totalBytesWritten / (float)totalBytesExpectedToWrite;
+}
+- (void)request:(SinaWeiboRequest *)request didReceiveRawData:(NSData *)data
+{
+    currentLength += [data length];
+	HUD.progress = currentLength / (float)expectedLength;
+}
+
+
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    
+    	[HUD removeFromSuperview];
+}
 
 - (void)request:(SinaWeiboRequest *)request didFailWithError:(NSError *)error
 {
+    
+    [HUD hide:YES];
     if ([request.url hasSuffix:@"users/show.json"])
     {
         userInfo = nil;
@@ -65,7 +100,7 @@
     else if ([request.url hasSuffix:@"statuses/upload.json"])
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
-                                                            message:[NSString stringWithFormat:@"Post image status \"%@\" failed!", postImageStatusText]
+                                                            message:[NSString stringWithFormat:@"Post image status \"%@\" failed!", self.textField.text]
                                                            delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
         
@@ -73,12 +108,15 @@
     }
     
     
+	
     //    [self resetButtons];
 }
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
 {
-    
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+	HUD.mode = MBProgressHUDModeCustomView;
+	[HUD hide:YES afterDelay:2];
     //    PullTableView *tableView =(id)[self.view viewWithTag:1];
     if ([request.url hasSuffix:@"users/show.json"])
     {
@@ -173,7 +211,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
                                                             message:[NSString stringWithFormat:@"Post status \"%@\" succeed!", [result objectForKey:@"text"]]
                                                            delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        [alertView show];
+        //[alertView show];
         
         postStatusText = nil;
         [self.navigationController popViewControllerAnimated:YES];
@@ -183,7 +221,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
                                                             message:[NSString stringWithFormat:@"Post image status \"%@\" succeed!", [result objectForKey:@"text"]]
                                                            delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        [alertView show];
+      //  [alertView show];
         
         postImageStatusText = nil;isPic = NO;
         [self.navigationController popViewControllerAnimated:YES];
@@ -229,7 +267,7 @@ static int post_image_status_times = 0;
     }
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert"
-                                                        message:[NSString stringWithFormat:@"Will post image status with text \"%@\"", postImageStatusText]
+                                                        message:[NSString stringWithFormat:@"Will post image status with text \"%@\"", self.textField.text]
                                                        delegate:self cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"OK", nil];
     alertView.tag = 1;
@@ -248,6 +286,8 @@ static int post_image_status_times = 0;
                                params:[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSString alloc] initWithFormat:@"%@",self.textField.text], @"status", nil]
                            httpMethod:@"POST"
                              delegate:self];
+            HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+            HUD.delegate = self;
             
         }
         else if (alertView.tag == 1)
@@ -257,10 +297,12 @@ static int post_image_status_times = 0;
             
             [sinaweibo requestWithURL:@"statuses/upload.json"
                                params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       postImageStatusText, @"status",
+                                       self.textField.text, @"status",
                                        self.imageView.image, @"pic", nil]
                            httpMethod:@"POST"
                              delegate:self];
+            HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+            HUD.delegate = self;
             
         }
     }
@@ -270,7 +312,7 @@ static int post_image_status_times = 0;
 - (IBAction)post:(id)sender {
     
     
-    if (isPic) {
+    if (isPic||self.imageData) {
         if (self.textField.text.length ==0 ) {
             self.textField.text = @"分享图片";
         }

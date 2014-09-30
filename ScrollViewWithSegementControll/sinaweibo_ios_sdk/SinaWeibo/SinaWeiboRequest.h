@@ -30,6 +30,11 @@
 - (void)request:(SinaWeiboRequest *)request didReceiveRawData:(NSData *)data;
 - (void)request:(SinaWeiboRequest *)request didFailWithError:(NSError *)error;
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result;
+
+- (void)request:(SinaWeiboRequest *)request   didSendBodyData:(NSInteger)bytesWritten
+                                            totalBytesWritten:(NSInteger)totalBytesWritten
+                                    totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite;
+
 @end
 
 @interface SinaWeiboRequest : NSObject
@@ -43,6 +48,9 @@
     NSURLConnection                 *connection;
     NSMutableData                   *responseData;
     
+    NSInteger                        responseTotalBytesWritten;
+    NSInteger                        responseTotalBytesExpectedToWrite;
+    NSInteger                        responseBytesWritten;
     id<SinaWeiboRequestDelegate>    delegate;
 }
 

@@ -117,7 +117,8 @@
 
     if (indexPath.section==2) {
         if (indexPath.row==0) {
-            [self sendEmail:@"lee_peter@foxmail.com" cc:@"" subject:@"报告问题" body:@"( ⊙ o ⊙ )啊！_(:з」∠)_啊！"];
+        
+            [self sendEmail:@"lee_peter@foxmail.com" cc:@"" subject:@"报告问题" body:@"( ⊙ o ⊙ )啊！_(:з」∠)_啊！Access Token:   2.00YMY5RBZMvvlC9d8253bd9bg7QYRD       "];
         }
         else if (indexPath.row==1){
             UIAlertView *alert = [UIAlertView new];
