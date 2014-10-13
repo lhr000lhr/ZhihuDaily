@@ -265,6 +265,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="Zxw-fr-ZOy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="e4n-gW-Jot"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wPN-Ha-d9s">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -423,6 +424,7 @@
         <!--Weibo Detail View Controller-->
         <scene sceneID="omG-zB-sdU">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qXE-Jw-GKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="WeiboDetailViewController" id="u5O-G9-Gsv" customClass="WeiboDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QDp-Vh-Y90"/>
@@ -432,63 +434,138 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYq-KU-XNY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYq-KU-XNY">
                                 <rect key="frame" x="20" y="20" width="66" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOg-FE-m3a">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOg-FE-m3a">
                                 <rect key="frame" x="94" y="20" width="206" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="时间" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="GTX-7P-xBz">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="时间" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="GTX-7P-xBz">
                                 <rect key="frame" x="94" y="49" width="206" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="123" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N12-ha-OFB">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="123" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N12-ha-OFB">
                                 <rect key="frame" x="20" y="98" width="280" height="111"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-8B-7aU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YK3-8B-7aU">
                                 <rect key="frame" x="20" y="217" width="66" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="cOg-FE-m3a" firstAttribute="leading" secondItem="wYq-KU-XNY" secondAttribute="trailing" constant="8" id="64A-7a-bP0"/>
-                            <constraint firstAttribute="trailing" secondItem="YK3-8B-7aU" secondAttribute="trailing" constant="234" id="9YM-66-rNM"/>
-                            <constraint firstItem="wYq-KU-XNY" firstAttribute="leading" secondItem="UNh-GS-FmG" secondAttribute="leading" constant="20" id="Bi0-iL-bUF"/>
-                            <constraint firstAttribute="trailing" secondItem="cOg-FE-m3a" secondAttribute="trailing" constant="20" id="GeK-fd-lsr"/>
-                            <constraint firstItem="N12-ha-OFB" firstAttribute="leading" secondItem="UNh-GS-FmG" secondAttribute="leading" constant="20" id="KkK-yr-bcl"/>
-                            <constraint firstItem="cOg-FE-m3a" firstAttribute="top" secondItem="QDp-Vh-Y90" secondAttribute="bottom" id="O1E-rS-1RG"/>
-                            <constraint firstAttribute="trailing" secondItem="N12-ha-OFB" secondAttribute="trailing" constant="20" id="S1O-DS-gYf"/>
-                            <constraint firstItem="KBx-La-KAB" firstAttribute="top" secondItem="YK3-8B-7aU" secondAttribute="bottom" constant="213" id="WZo-Bt-lOu"/>
-                            <constraint firstItem="GTX-7P-xBz" firstAttribute="leading" secondItem="wYq-KU-XNY" secondAttribute="trailing" constant="8" id="WbJ-wx-MDc"/>
-                            <constraint firstItem="wYq-KU-XNY" firstAttribute="top" secondItem="QDp-Vh-Y90" secondAttribute="bottom" id="XiC-WS-YbM"/>
-                            <constraint firstItem="GTX-7P-xBz" firstAttribute="top" secondItem="cOg-FE-m3a" secondAttribute="bottom" constant="8" id="Y3e-YG-9Oe"/>
-                            <constraint firstItem="YK3-8B-7aU" firstAttribute="leading" secondItem="UNh-GS-FmG" secondAttribute="leading" constant="20" id="hEV-Dd-j9n"/>
-                            <constraint firstAttribute="trailing" secondItem="GTX-7P-xBz" secondAttribute="trailing" constant="20" id="iG3-3U-dnq"/>
-                            <constraint firstItem="N12-ha-OFB" firstAttribute="top" secondItem="wYq-KU-XNY" secondAttribute="bottom" constant="8" id="mJN-Wh-Rw4"/>
-                            <constraint firstItem="N12-ha-OFB" firstAttribute="top" secondItem="GTX-7P-xBz" secondAttribute="bottom" constant="18" id="nyl-RX-bPb"/>
-                            <constraint firstItem="YK3-8B-7aU" firstAttribute="top" secondItem="N12-ha-OFB" secondAttribute="bottom" constant="8" id="sJp-vj-C3g"/>
-                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="500"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qXE-Jw-GKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2666" y="4898"/>
+            <point key="canvasLocation" x="-3656" y="5238"/>
+        </scene>
+        <!--Weibo Personal Detail Table View Controller-->
+        <scene sceneID="X4f-DT-KXw">
+            <objects>
+                <tableViewController storyboardIdentifier="WeiboPersonalDetailTableViewController" id="2kC-E3-5s2" customClass="WeiboPersonalDetailTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="meP-Ky-1HQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3P1-Jt-K8B">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3P1-Jt-K8B" id="8hs-i6-EPn">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2kC-E3-5s2" id="Ee9-vJ-GUL"/>
+                            <outlet property="delegate" destination="2kC-E3-5s2" id="nWt-pZ-KAr"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5NO-a0-dnT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4637" y="5204"/>
+        </scene>
+        <!--Weibo Personal Detail View Controller-->
+        <scene sceneID="1Jx-k9-RkJ">
+            <objects>
+                <viewController storyboardIdentifier="WeiboPersonalDetailViewController" id="aa0-7h-D0q" customClass="WeiboPersonalDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yxG-U5-iyz"/>
+                        <viewControllerLayoutGuide type="bottom" id="EQE-6y-Vs9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="568" id="ubt-fU-OXA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VYf-RJ-vsL">
+                                <rect key="frame" x="120" y="20" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="DvP-F1-657"/>
+                                    <constraint firstAttribute="width" constant="80" id="oD4-XV-DKj"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="名字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d5-gV-gSy">
+                                <rect key="frame" x="42" y="108" width="236" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="关注：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzs-j7-8Jd">
+                                <rect key="frame" x="20" y="137" width="108" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="粉丝：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfg-Ye-bS3">
+                                <rect key="frame" x="120" y="137" width="120" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微博：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9C-In-8gc">
+                                <rect key="frame" x="227" y="137" width="93" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="180"/>
+                    <connections>
+                        <outlet property="followers" destination="gfg-Ye-bS3" id="cPf-EX-iUq"/>
+                        <outlet property="friends" destination="Fzs-j7-8Jd" id="db2-K1-Kd4"/>
+                        <outlet property="statuses" destination="e9C-In-8gc" id="Vzx-xC-07C"/>
+                        <outlet property="userImage" destination="VYf-RJ-vsL" id="L4B-pV-ZA2"/>
+                        <outlet property="userName" destination="5d5-gV-gSy" id="xzO-Nw-4ZY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f0m-zo-fS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4247" y="5209"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Zcl-FI-3AP">

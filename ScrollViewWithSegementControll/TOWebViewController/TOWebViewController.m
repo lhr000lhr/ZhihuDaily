@@ -434,7 +434,7 @@ static const float kAfterInteractiveMaxProgressValue    = 0.9f;
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
    
     
-    NSString *dataPoint = [self randomString];
+    NSString *dataPoint = @"长微博图片.jpg";
     NSString *imagePath = [documentPath stringByAppendingPathComponent:dataPoint];
     BOOL result = [imageData writeToFile:imagePath atomically:YES];
     if (result) {

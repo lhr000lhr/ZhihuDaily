@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -51,7 +51,7 @@
                                 <color key="textColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NeY-T4-a4R">
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NeY-T4-a4R">
                                 <rect key="frame" x="20" y="20" width="212" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -143,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iUG-LD-t8F">
+                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iUG-LD-t8F">
                         <rect key="frame" x="88" y="20" width="212" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -169,19 +169,48 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gxs-eS-TXg">
+                        <rect key="frame" x="88" y="867" width="133" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <state key="normal" title="评论">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yXt-TC-Jc1">
+                        <rect key="frame" x="221" y="867" width="99" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <state key="normal" title="👍">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AqA-jE-PGE">
+                        <rect key="frame" x="0.0" y="867" width="92" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <state key="normal" title="转发">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="content" destination="H0f-2I-eAA" id="6xq-Hi-9pq"/>
                 <outlet property="from" destination="PTC-KF-cBE" id="3fJ-ED-raU"/>
                 <outlet property="name" destination="iUG-LD-t8F" id="Sfj-6N-Ne2"/>
+                <outlet property="retweetButton" destination="AqA-jE-PGE" id="e2T-gL-Q3M"/>
                 <outlet property="retweetContent" destination="2F1-Q7-zcN" id="ceh-Ml-42f"/>
                 <outlet property="retweetFrom" destination="fcW-Ly-z6g" id="Vrj-I6-25h"/>
                 <outlet property="retweetName" destination="NeY-T4-a4R" id="wyC-Kp-LgN"/>
                 <outlet property="retweetTime" destination="hm8-Na-plg" id="Vbi-Lx-3kl"/>
                 <outlet property="retweetView" destination="dIU-qJ-a48" id="bvG-zL-ZCx"/>
+                <outlet property="reviewButton" destination="gxs-eS-TXg" id="bJN-bE-EBy"/>
                 <outlet property="time" destination="0Du-4i-rrU" id="cEY-hP-kHP"/>
                 <outlet property="userImage" destination="C1K-lB-s1Q" id="aya-Na-Yru"/>
+                <outlet property="zhanButton" destination="yXt-TC-Jc1" id="CEV-Z0-mLF"/>
                 <outletCollection property="weiboImages" destination="IMh-Ur-tau" id="7WV-Z8-QEK"/>
                 <outletCollection property="weiboImages" destination="5ms-Ma-l8k" id="bIx-8f-aZP"/>
                 <outletCollection property="weiboImages" destination="ISY-EG-gq5" id="Im7-bG-6Sy"/>

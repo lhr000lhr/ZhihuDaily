@@ -14,8 +14,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *time;
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
 @property (strong, nonatomic) IBOutlet UILabel *content;
-
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *weiboImages;
+
+@property (strong, nonatomic) IBOutlet UIButton *retweetButton;
+@property (strong, nonatomic) IBOutlet UIButton *reviewButton;
+@property (strong, nonatomic) IBOutlet UIButton *zhanButton;
+
 
 
 @property (strong, nonatomic) IBOutlet UIView *retweetView;

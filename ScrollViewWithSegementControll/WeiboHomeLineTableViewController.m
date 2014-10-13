@@ -10,6 +10,7 @@
 #import "WeiboDetailAndCommentTableViewController.h"
 #import "ScrollViewDetailViewController.h"
 #import "UIButton+WebCache.h"
+#import "WeiboPersonalDetailTableViewController.h"
 @interface WeiboHomeLineTableViewController ()
 
 @end
@@ -65,7 +66,7 @@
     
     [self setupRefresh];
     
-  
+     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
    
     
     
@@ -115,7 +116,8 @@
     
     
     
-    
+    UITapGestureRecognizer *nameSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapName:)];
+    [cell.name addGestureRecognizer:nameSingleTap];
     
     [cell.userImage setImageWithURL:[NSURL URLWithString:new]];
     cell.name.text = [[rowData objectForKey:@"user"] objectForKey:@"name"];
@@ -211,8 +213,8 @@
         cell.retweetView.tag = indexPath.row;
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(retweetViewDetail:)];
         [cell.retweetView addGestureRecognizer:singleTap];
-        
-        
+        UITapGestureRecognizer *nameSingleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapName:)];
+        [cell.retweetName addGestureRecognizer:nameSingleTap];
         
         
         frame = cell.retweetView.frame;
@@ -352,12 +354,37 @@
     frame = cell.content.frame;
     if ([NSURL URLWithString: [rowData objectForKey:@"bmiddle_pic"]]==nil) {
         
-        frame.size.height = cell.content.frame.size.height + cell.content.frame.origin.y+20.f;
+        frame.size.height = cell.content.frame.size.height + cell.content.frame.origin.y+20.f+30;
         cell.contentView.frame= frame;
         
+        frame = cell.retweetButton.frame;
+        frame.origin.y = cell.content.frame.size.height + cell.content.frame.origin.y+20.f;
+        cell.retweetButton.frame = frame;
+        
+        frame = cell.reviewButton.frame;
+        frame.origin.y = cell.content.frame.size.height + cell.content.frame.origin.y+20.f;
+        cell.reviewButton.frame = frame;
+        
+        frame = cell.zhanButton.frame;
+        frame.origin.y =  cell.content.frame.size.height + cell.content.frame.origin.y+20.f;
+        cell.zhanButton.frame = frame;
+        
         if ([rowData objectForKey:@"retweeted_status"]!=nil) {
-            frame.size.height =cell.retweetView.frame.size.height + cell.retweetView.frame.origin.y+0.f;
+            frame.size.height =cell.retweetView.frame.size.height + cell.retweetView.frame.origin.y+0.f+30;
             cell.contentView.frame= frame;
+            
+            frame = cell.retweetButton.frame;
+            frame.origin.y = cell.retweetView.frame.size.height + cell.retweetView.frame.origin.y;
+            cell.retweetButton.frame = frame;
+            
+            frame = cell.reviewButton.frame;
+            frame.origin.y = cell.retweetView.frame.size.height + cell.retweetView.frame.origin.y;
+            cell.reviewButton.frame = frame;
+            
+            frame = cell.zhanButton.frame;
+            frame.origin.y =  cell.retweetView.frame.size.height + cell.retweetView.frame.origin.y;
+            cell.zhanButton.frame = frame;
+            
             cell.retweetView.hidden=NO;
         }else{
             cell.retweetView.hidden=YES;
@@ -379,17 +406,25 @@
         }
         
         
-          CGRect temp = [cell.weiboImages[0] frame];
-        frame.size.height = temp.size.height + temp.origin.y+20.f+height;
+        CGRect temp = [cell.weiboImages[0] frame];
+        frame.size.height = temp.size.height + temp.origin.y+20.f+height+30;
         
+        frame = cell.retweetButton.frame;
+        frame.origin.y =  temp.size.height + temp.origin.y+20.f+height;
+        cell.retweetButton.frame = frame;
         
+        frame = cell.reviewButton.frame;
+        frame.origin.y = temp.size.height + temp.origin.y+20.f+height;
+        cell.reviewButton.frame = frame;
+        
+        frame = cell.zhanButton.frame;
+        frame.origin.y =  temp.size.height + temp.origin.y+20.f+height;
+        cell.zhanButton.frame = frame;
         cell.contentView.frame= frame;
         
         
     }
 
-    
-    
     
     return  cell;
     
@@ -561,7 +596,7 @@
     WeiboDetailViewController *view=[WeiboDetailViewController new];
     view.rowData =rowData1;
     
-    return view.view.frame.size.height;
+    return view.view.frame.size.height+30;
    }
 
 
@@ -1260,6 +1295,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     
   }
+}
+
+- (void)tapName:(UITapGestureRecognizer *)tap
+{
+    UILabel *label = (UILabel *)[tap view];
+    NSString *screenName = label.text;
+    
+    NSLog(@"点击的名字为：%@",screenName);
+    
+    WeiboPersonalDetailTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WeiboPersonalDetailTableViewController"];
+    viewController.screenName = screenName;
+    [self.navigationController pushViewController:viewController animated:YES];
+    
 }
 
 @end

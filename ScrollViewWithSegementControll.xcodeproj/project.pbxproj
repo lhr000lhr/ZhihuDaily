@@ -138,6 +138,8 @@
 		8CC9214619B6C390008609C1 /* sub-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC9213919B6C390008609C1 /* sub-selected@2x.png */; };
 		8CC9215619B715DE008609C1 /* DoctorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC9215419B715DE008609C1 /* DoctorDetailViewController.m */; };
 		8CC9215719B715DE008609C1 /* DoctorDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CC9215519B715DE008609C1 /* DoctorDetailViewController.xib */; };
+		8CD586DB19EB6C5B00DE2114 /* WeiboPersonalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD586DA19EB6C5B00DE2114 /* WeiboPersonalDetailViewController.m */; };
+		8CD586DE19EBBBD000DE2114 /* WeiboPersonalDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD586DD19EBBBD000DE2114 /* WeiboPersonalDetailTableViewController.m */; };
 		8CDD193619B9B156003690EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C514AE019B9AAF000022658 /* Foundation.framework */; };
 		8CDD193819B9B160003690EA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD193719B9B160003690EA /* MapKit.framework */; };
 		8CDD193A19B9B16A003690EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDD193919B9B16A003690EA /* CoreGraphics.framework */; };
@@ -426,6 +428,10 @@
 		8CC9215319B715DE008609C1 /* DoctorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoctorDetailViewController.h; path = ../DoctorDetailViewController.h; sourceTree = "<group>"; };
 		8CC9215419B715DE008609C1 /* DoctorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoctorDetailViewController.m; path = ../DoctorDetailViewController.m; sourceTree = "<group>"; };
 		8CC9215519B715DE008609C1 /* DoctorDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DoctorDetailViewController.xib; path = ../DoctorDetailViewController.xib; sourceTree = "<group>"; };
+		8CD586D919EB6C5B00DE2114 /* WeiboPersonalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboPersonalDetailViewController.h; sourceTree = "<group>"; };
+		8CD586DA19EB6C5B00DE2114 /* WeiboPersonalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboPersonalDetailViewController.m; sourceTree = "<group>"; };
+		8CD586DC19EBBBD000DE2114 /* WeiboPersonalDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboPersonalDetailTableViewController.h; sourceTree = "<group>"; };
+		8CD586DD19EBBBD000DE2114 /* WeiboPersonalDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboPersonalDetailTableViewController.m; sourceTree = "<group>"; };
 		8CDD193719B9B160003690EA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8CDD193919B9B16A003690EA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8CDD193B19B9B173003690EA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -765,6 +771,10 @@
 				8C6DEE8C19CAB1F40095AD0C /* WeiboCommentTableViewCell.xib */,
 				8C722F0C19CC2B7F00C6362D /* WeiboReviewViewController.h */,
 				8C722F0D19CC2B7F00C6362D /* WeiboReviewViewController.m */,
+				8CD586D919EB6C5B00DE2114 /* WeiboPersonalDetailViewController.h */,
+				8CD586DA19EB6C5B00DE2114 /* WeiboPersonalDetailViewController.m */,
+				8CD586DC19EBBBD000DE2114 /* WeiboPersonalDetailTableViewController.h */,
+				8CD586DD19EBBBD000DE2114 /* WeiboPersonalDetailTableViewController.m */,
 			);
 			name = "微博详情";
 			sourceTree = "<group>";
@@ -1190,12 +1200,14 @@
 				8C733C2C19C91E06005A60BF /* WeiboHomeLineTableViewController.m in Sources */,
 				AD3BECEA19B56EE7006B465C /* ViewController.m in Sources */,
 				8C6DEE7D19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.m in Sources */,
+				8CD586DB19EB6C5B00DE2114 /* WeiboPersonalDetailViewController.m in Sources */,
 				8C6225B019D2958A00749D66 /* MBProgressHUD+Add.m in Sources */,
 				8C15AA0319C6C77E00EB3DE2 /* UIImage+TOWebViewControllerIcons.m in Sources */,
 				AD250EBD19B5CE2D007AA65D /* TwoViewController.m in Sources */,
 				8C64F63919D501FD00C2010C /* UIImage+GIF.m in Sources */,
 				8C6B145219DA4E99007A37B7 /* TQRichTextRunAt.m in Sources */,
 				8C722F0A19CC060600C6362D /* WeiboAllInOneTableViewCell.m in Sources */,
+				8CD586DE19EBBBD000DE2114 /* WeiboPersonalDetailTableViewController.m in Sources */,
 				8C6DEE9219CAD6BE0095AD0C /* PostWeiboViewController.m in Sources */,
 				8C15AA2A19C7CFA500EB3DE2 /* JSONKit.m in Sources */,
 				8C6DEE7119C93F650095AD0C /* WeiboTableViewCell.m in Sources */,

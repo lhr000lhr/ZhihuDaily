@@ -53,7 +53,8 @@
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headerRereshing)
-												 name:@"headerRereshing" object:nil];
+												 name:@"headerRereshing"
+                                               object:nil];
     self.tableView = (id)[self.view viewWithTag:1];
     self.tableView.contentInset =UIEdgeInsetsMake(0, 0, 44, 0);
     UINib *nib = [UINib nibWithNibName:@"WeiboCommentTableViewCell" bundle:nil];
@@ -122,7 +123,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WeiboCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WeiboCommentCell" forIndexPath:indexPath];
-     NSDictionary *rowData = Commentslist[indexPath.row];
+    NSDictionary *rowData = Commentslist[indexPath.row];
     
     NSString *desContent =[rowData objectForKey:@"text"];
     CGRect orgRect=cell.comment.frame;
@@ -351,7 +352,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     UITableView *tableView2=(id)[self.view viewWithTag:2];
     //NSLog(@"显示%@",[NSMutableDictionary dictionaryWithObject:sinaweibo.userID forKey:@"uid"]);
     
-}- (void)getWeiboContentMore
+}
+- (void)getWeiboContentMore
 {
     SinaWeibo *sinaweibo = [self sinaweibo];
     SinaWeiboRequest *Requst;
