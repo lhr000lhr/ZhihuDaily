@@ -20,6 +20,8 @@
     NSMutableArray *storeFavorites;
     NSMutableDictionary *history;
     NSMutableArray *storeHistory;
+    NSMutableArray *historyArray;
+    NSMutableArray *favoritesArray;
 
 }
 @property(strong,nonatomic)NSMutableDictionary *storeNewsArray;

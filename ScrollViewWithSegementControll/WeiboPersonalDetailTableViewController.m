@@ -834,4 +834,93 @@
     //    return str;
 }
 
+- (void)tapImage:(UITapGestureRecognizer *)tap
+{
+    UIImageView *view = (UIImageView *)[tap view];
+    int tagvalue = abs(view.tag);
+    int row = tagvalue/10000;
+    int i = tagvalue - 10000*row-100;
+    
+    NSDictionary *rowData1 = rowData;
+    
+    NSString *url=[NSString new];
+    
+    
+    if ([[rowData1 objectForKey:@"pic_urls"] count]!=0) {
+        NSArray *picsArray =[rowData1 objectForKey:@"pic_urls"];
+        NSArray * array = [[picsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+        NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+        //url = [self.rowData objectForKey:@"original_pic"];
+        url=transferUrl;
+        
+        
+        int count = picsArray.count;
+        // 1.封装图片数据
+        NSMutableArray *photos = [NSMutableArray new];
+        for (int i = 0; i<count; i++) {
+            // 替换为中等尺寸图片
+            
+            NSArray * array = [[picsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+            NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+            //url = [self.rowData objectForKey:@"original_pic"];
+            url=transferUrl;
+            
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.url = [NSURL URLWithString:url]; // 图片路径
+            photo.srcImageView = (UIImageView *)[self.view viewWithTag:row*10000+i+100];// 来源于哪个UIImageView
+            [photos addObject:photo];
+        }
+        
+        // 2.显示相册
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.currentPhotoIndex = i; // 弹出相册时显示的第一张图片是？
+        
+        browser.photos = photos; // 设置所有的图片
+        [browser show];
+        
+        
+        
+        
+    }else{
+        NSDictionary *retweetRowData = [rowData1 objectForKey:@"retweeted_status"];
+        
+        NSArray *retweetPicsArray =[retweetRowData objectForKey:@"pic_urls"];
+        
+        
+        NSArray * array = [[retweetPicsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+        NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+        
+        url=transferUrl;
+        
+        int count = retweetPicsArray.count;
+        // 1.封装图片数据
+        NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+        for (int i = 0; i<count; i++) {
+            // 替换为中等尺寸图片
+            NSArray * array = [[retweetPicsArray[i] valueForKey:@"thumbnail_pic"] componentsSeparatedByString:@"thumbnail"];
+            NSString *transferUrl =[NSString stringWithFormat:@"%@large%@",array[0],array[1]];
+            //url = [self.rowData objectForKey:@"original_pic"];
+            url=transferUrl;
+            
+            
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.url = [NSURL URLWithString:url]; // 图片路径
+            photo.srcImageView =  (UIImageView *)[self.view viewWithTag:row*10000+i+100];  // 来源于哪个UIImageView
+            [photos addObject:photo];
+            
+        }
+        // 2.显示相册
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        
+        browser.currentPhotoIndex = i; // 弹出相册时显示的第一张图片是？
+        browser.photos = photos; // 设置所有的图片
+        [browser show];
+        
+        
+        
+        
+    }
+}
+
+
 @end

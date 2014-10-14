@@ -32,6 +32,7 @@ static NSString *CellIdentifier = @"Cell";
 -(void)reloadData{
     NSDictionary *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"favorites"];
     favorites =[NSMutableDictionary dictionaryWithDictionary:temp];
+    
     storeFavorites = [NSMutableArray new];
     for (NSString *key in favorites) {
         NSLog(@"%@ - %@", key, favorites[key]);
@@ -40,9 +41,15 @@ static NSString *CellIdentifier = @"Cell";
     temp = [NSDictionary new];
     temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"history"];
     history =[NSMutableDictionary dictionaryWithDictionary:temp];
+    
+    NSArray *tempArray = [[NSUserDefaults standardUserDefaults]objectForKey:@"historyArray"];
+    historyArray = [NSMutableArray arrayWithArray:tempArray];
+    tempArray = [[NSUserDefaults standardUserDefaults]objectForKey:@"favoritesArray"];
+    favoritesArray = [NSMutableArray arrayWithArray:tempArray];
+    
     storeHistory = [NSMutableArray new];
     for (NSString *key in storeHistory) {
-        NSLog(@"%@ - %@", key, history[key]);
+         NSLog(@"%@ - %@", key, history[key]);
         [storeHistory addObject:history[key]];
     }
     
@@ -75,6 +82,13 @@ static NSString *CellIdentifier = @"Cell";
     
     temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"storeNewsByDate"];
     storeNewsByDate =[NSMutableDictionary dictionaryWithDictionary:temp];
+    
+    NSArray *tempArray = [[NSUserDefaults standardUserDefaults]objectForKey:@"historyArray"];
+    historyArray = [NSMutableArray arrayWithArray:tempArray];
+    
+    tempArray = [[NSUserDefaults standardUserDefaults]objectForKey:@"favoritesArray"];
+    favoritesArray = [NSMutableArray arrayWithArray:tempArray];
+    
     ///////////////
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData)
 												 name:@"reloadData" object:nil];
@@ -171,7 +185,7 @@ static NSString *CellIdentifier = @"Cell";
     if (url) {
        // [cell creatThread:url];
         
-        if (!picState) {
+        if (!picState) { ////////无图模式是否开启
             [cell.DoctorImage setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
         }else
         {
@@ -202,7 +216,15 @@ static NSString *CellIdentifier = @"Cell";
     {
          [cell.stars setImage:[UIImage imageNamed:@"star-s"]forState:UIControlStateNormal];
        
-        [cell.major setTextColor:[UIColor darkGrayColor]];
+       // [cell.major setTextColor:[UIColor blackColor]];
+        
+        if ([history objectForKey:url]) {//////////已浏览的灰色显示
+            [cell.major setTextColor:[UIColor lightGrayColor]];
+        }else
+        {
+            [cell.major setTextColor:[UIColor blackColor]];
+        }
+        
 
     }
     
@@ -227,7 +249,7 @@ static NSString *CellIdentifier = @"Cell";
     {
         
        [sender setImage:[UIImage imageNamed:@"star-s"]forState:UIControlStateNormal];
-        
+        [favoritesArray removeObject:url];
         [favorites removeObjectForKey:url];
         NSLog(@"index row%d   移除收藏 tag:%d", [path row],sender.tag);
     }
@@ -239,13 +261,14 @@ static NSString *CellIdentifier = @"Cell";
         NSLog(@"index row%d   加入收藏 tag:%d", [path row],sender.tag);
     //NSLog(@"view:%@", [[[sender superview] superview] description]);
     
-    
+        [favoritesArray insertObject:url atIndex:0];
         [favorites setObject :rowData forKey:url];
     }
     [self.tableView reloadData];
 
     [[NSUserDefaults standardUserDefaults] setValue:favorites forKey:@"favorites"];
-    
+    [[NSUserDefaults standardUserDefaults] setValue:favoritesArray forKey:@"favoritesArray"];
+
      [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -378,6 +401,22 @@ static NSString *CellIdentifier = @"Cell";
     NSString *url =[NSString stringWithFormat:@"%@",imageurl[0]];
     
     [history setObject :rowData1 forKey:url];
+    if ([historyArray count]>0) {
+        if (![historyArray[0] isEqualToString:url]) {
+            [historyArray insertObject:url atIndex:0];  ///////储存历史记录的顺序 mutabledic不能记录顺序
+            //////////保存多次浏览的记录 允许重复
+            
+        }
+    }else
+    {
+        [historyArray insertObject:url atIndex:0];  ///////储存历史记录的顺序 mutabledic不能记录顺序
+
+    }
+    
+    
+    
+    
+    [[NSUserDefaults standardUserDefaults] setValue:historyArray forKey:@"historyArray"];
     [[NSUserDefaults standardUserDefaults] setValue:history forKey:@"history"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
 
@@ -842,6 +881,24 @@ static NSString *CellIdentifier = @"Cell";
     NSString *url =[NSString stringWithFormat:@"%@",imageurl[0]];
     
     [history setObject :rowData1 forKey:url];
+    
+    [history setObject :rowData1 forKey:url];
+    if ([historyArray count]>0) {
+        if (![historyArray[0] isEqualToString:url]) {
+            [historyArray insertObject:url atIndex:0];  ///////储存历史记录的顺序 mutabledic不能记录顺序
+            //////////保存多次浏览的记录 允许重复
+            
+        }
+    }else
+    {
+        [historyArray insertObject:url atIndex:0];  ///////储存历史记录的顺序 mutabledic不能记录顺序
+        
+    }
+    
+    
+    
+    
+    [[NSUserDefaults standardUserDefaults] setValue:historyArray forKey:@"historyArray"];
     [[NSUserDefaults standardUserDefaults] setValue:history forKey:@"history"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
     

@@ -34,12 +34,18 @@ static NSString *CellIdentifier = @"Cell";
     NSDictionary *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"favorites"];
     favorites =[NSMutableDictionary dictionaryWithDictionary:temp];
     storeFavorites = [NSMutableArray new];
-    for (NSString *key in favorites) {
-        NSLog(@"%@ - %@", key, favorites[key]);
-        [storeFavorites addObject:favorites[key]];
-    }
+    
+    
+    
+    NSArray *tempArray = [[NSUserDefaults standardUserDefaults]objectForKey:@"favoritesArray"];
+    favoritesArray = [NSMutableArray arrayWithArray:tempArray];
+    
+//    for (NSString *key in favorites) {
+//        NSLog(@"%@ - %@", key, favorites[key]);
+//        [storeFavorites addObject:favorites[key]];
+//    }
   //  storeFavorites = [NSMutableArray new];
-    for (NSString *key in favorites) {
+    for (NSString *key in favoritesArray) {
         NSLog(@"%@ - %@", key, favorites[key]);
         [storeFavorites addObject:favorites[key]];
     }
@@ -73,7 +79,7 @@ static NSString *CellIdentifier = @"Cell";
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [favorites count];
+    return [favoritesArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -194,9 +200,9 @@ static NSString *CellIdentifier = @"Cell";
         NSString *url =[NSString stringWithFormat:@"%@",imageurl[0]];
         
         [favorites removeObjectForKey:url];
-       
+        [favoritesArray removeObject:url];
         storeFavorites = [NSMutableArray new];
-        for (NSString *key in favorites) {
+        for (NSString *key in favoritesArray) {
             NSLog(@"%@ - %@", key, favorites[key]);
             [storeFavorites addObject:favorites[key]];
         }
@@ -204,7 +210,7 @@ static NSString *CellIdentifier = @"Cell";
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];
         // 数据源也要相应删除一项
-        
+        [[NSUserDefaults standardUserDefaults] setValue:favoritesArray forKey:@"favoritesArray"];
         [[NSUserDefaults standardUserDefaults] setValue:favorites forKey:@"favorites"];
     }
 }

@@ -17,6 +17,8 @@
 #import "SinaWeibo.h"
 #import "AppDelegate.h"
 #import "SinaWeiboRequest.h"
+#import "DoctorTableViewCell.h"
+
 #import "JScrollView+PageControl+AutoScroll.h"
 @interface OneViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CCAVSegmentControllerDelegate,EScrollerViewDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,JScrollViewViewDelegate>
 {
@@ -28,10 +30,13 @@
     BOOL picState;
     BOOL downLoadState;
     NSMutableDictionary *favorites;
-     NSMutableArray *storeFavorites;
+    NSMutableArray *storeFavorites;
     NSMutableDictionary *history;
     NSMutableArray *storeHistory;
     NSMutableDictionary *storeNewsByDate;
+    NSMutableArray *historyArray;
+    NSMutableArray *favoritesArray;
+    
 
 }
 @property(strong,nonatomic)NSMutableArray *news;

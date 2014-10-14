@@ -13,7 +13,9 @@
 #import "AppDelegate.h"
 #import "SinaWeiboRequest.h"
 #import "MBProgressHUD.h"
-@interface WeiboPersonalDetailTableViewController : UITableViewController<SinaWeiboRequestDelegate,SinaWeiboDelegate,MBProgressHUDDelegate>
+#import "TQRichTextView.h"
+
+@interface WeiboPersonalDetailTableViewController : UITableViewController<SinaWeiboRequestDelegate,SinaWeiboDelegate,MBProgressHUDDelegate,TQRichTextViewDelegate>
 {
    
     BOOL _reloading;

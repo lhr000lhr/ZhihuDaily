@@ -182,7 +182,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hlR-Sg-1V7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3795" y="3795"/>
+            <point key="canvasLocation" x="-4987" y="946"/>
         </scene>
         <!--Table View Controller - 消息-->
         <scene sceneID="qgO-nx-K9L">
@@ -258,7 +258,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQs-KR-lsE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3795" y="4511"/>
+            <point key="canvasLocation" x="-4987" y="1662"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mdY-7e-ybr">
@@ -275,7 +275,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ey5-fi-JHo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4247" y="4511"/>
+            <point key="canvasLocation" x="-5439" y="1662"/>
         </scene>
         <!--Post Weibo View Controller - 编写微博-->
         <scene sceneID="MbM-fu-vwo">
@@ -335,7 +335,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GfB-mE-mts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3314" y="3795"/>
+            <point key="canvasLocation" x="-4506" y="946"/>
         </scene>
         <!--Weibo Detail And Comment Table View Controller-->
         <scene sceneID="f6I-ux-O5H">
@@ -388,7 +388,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wzF-4g-6DS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2871" y="3825"/>
+            <point key="canvasLocation" x="-4063" y="946"/>
         </scene>
         <!--Weibo Review View Controller-->
         <scene sceneID="jde-QQ-NxP">
@@ -419,12 +419,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HLJ-ue-Znf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2425" y="3825"/>
+            <point key="canvasLocation" x="-3609" y="946"/>
         </scene>
         <!--Weibo Detail View Controller-->
         <scene sceneID="omG-zB-sdU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qXE-Jw-GKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="WeiboDetailViewController" id="u5O-G9-Gsv" customClass="WeiboDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QDp-Vh-Y90"/>
@@ -470,8 +469,65 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="500"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qXE-Jw-GKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3656" y="5238"/>
+            <point key="canvasLocation" x="-4848" y="2389"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="s6s-rS-PA5">
+            <objects>
+                <navigationController storyboardIdentifier="TextAndPicturesViewController" definesPresentationContext="YES" id="Yot-Mw-RqY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6rH-Qa-OCi">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vr5-Wd-p2v" kind="relationship" relationship="rootViewController" id="J9n-Z9-4o2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lX6-dN-zoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5803" y="3474"/>
+        </scene>
+        <!--Text And Pictures View Controller-->
+        <scene sceneID="yvu-7U-gKk">
+            <objects>
+                <viewController id="vr5-Wd-p2v" customClass="TextAndPicturesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qsQ-Qd-aix"/>
+                        <viewControllerLayoutGuide type="bottom" id="tTJ-bm-6ko"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6MB-YE-ySm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ezZ-EV-3OF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vr5-Wd-p2v" id="Ckz-Sv-oyL"/>
+                                    <outlet property="delegate" destination="vr5-Wd-p2v" id="o5L-CT-GLC"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ahd-pI-iaV">
+                        <barButtonItem key="leftBarButtonItem" image="nav_btn_menu.png" id="F2u-VE-350">
+                            <inset key="imageInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="presentLeftMenuViewController:" destination="vr5-Wd-p2v" id="O4h-DP-b9T"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="postList" destination="ezZ-EV-3OF" id="CGd-jq-sDp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nTe-vY-bxI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5231" y="3474"/>
         </scene>
         <!--Weibo Personal Detail Table View Controller-->
         <scene sceneID="X4f-DT-KXw">
@@ -499,7 +555,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5NO-a0-dnT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4637" y="5204"/>
+            <point key="canvasLocation" x="-5829" y="2355"/>
         </scene>
         <!--Weibo Personal Detail View Controller-->
         <scene sceneID="1Jx-k9-RkJ">
@@ -513,7 +569,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VYf-RJ-vsL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VYf-RJ-vsL">
                                 <rect key="frame" x="120" y="20" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
@@ -565,7 +621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f0m-zo-fS1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4247" y="5209"/>
+            <point key="canvasLocation" x="-5439" y="2360"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Zcl-FI-3AP">
@@ -584,7 +640,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pI7-5f-nsr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5065" y="4171"/>
+            <point key="canvasLocation" x="-6257" y="1322"/>
         </scene>
         <!--Navigation Controller - 首页-->
         <scene sceneID="Kt2-dA-3wj">
@@ -600,7 +656,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTU-G1-uJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4247" y="3795"/>
+            <point key="canvasLocation" x="-5439" y="946"/>
         </scene>
         <!--Setting Table View Controller - 设置-->
         <scene sceneID="T46-s3-1dm">
@@ -1071,6 +1127,16 @@
                                 </state>
                                 <connections>
                                     <action selector="switchViewController:" destination="XTL-vt-hdX" eventType="touchUpInside" id="ncz-oV-sVz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="106" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2KJ-6S-I4l">
+                                <rect key="frame" x="20" y="402" width="239" height="30"/>
+                                <state key="normal" title="CCTV(测试)">
+                                    <color key="titleColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchViewController:" destination="XTL-vt-hdX" eventType="touchUpInside" id="8Iv-gd-6nb"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -12,6 +12,7 @@
 {
     NSMutableDictionary *favorites;
     NSMutableArray *storeFavorites;
+    NSMutableArray *favoritesArray;
     NSString *tempUrl;
 }
 @end

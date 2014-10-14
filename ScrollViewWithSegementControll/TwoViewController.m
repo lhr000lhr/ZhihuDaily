@@ -25,6 +25,8 @@ static NSString *CellIdentifier = @"Cell";
 -(void)reloadData{
     NSDictionary *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"favorites"];
     favorites =[NSMutableDictionary dictionaryWithDictionary:temp];
+    NSArray *tempArray = [[NSUserDefaults standardUserDefaults]objectForKey:@"historyArray"];
+    historyArray = [NSMutableArray arrayWithArray:tempArray];
     storeFavorites = [NSMutableArray new];
     for (NSString *key in favorites) {
         NSLog(@"%@ - %@", key, favorites[key]);
@@ -33,8 +35,11 @@ static NSString *CellIdentifier = @"Cell";
     temp = [NSDictionary new];
     temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"history"];
     history =[NSMutableDictionary dictionaryWithDictionary:temp];
+    tempArray = [[NSUserDefaults standardUserDefaults]objectForKey:@"favoritesArray"];
+    favoritesArray = [NSMutableArray arrayWithArray:tempArray];
+    
     storeHistory = [NSMutableArray new];
-    for (NSString *key in history) {
+    for (NSString *key in historyArray) {
         NSLog(@"%@ - %@", key, history[key]);
         [storeHistory addObject:history[key]];
     }
@@ -46,8 +51,10 @@ static NSString *CellIdentifier = @"Cell";
     [super viewDidLoad];
     UINib *nib = [UINib nibWithNibName:@"DoctorTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:CellIdentifier];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData)
-												 name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadData)
+												 name:@"reloadData"
+                                               object:nil];
     [self reloadData];
 //    NSDictionary *temp = [[NSUserDefaults standardUserDefaults]objectForKey:@"favorites"];
 //    favorites =[NSMutableDictionary dictionaryWithDictionary:temp];
@@ -92,7 +99,7 @@ static NSString *CellIdentifier = @"Cell";
 {
     
     // Return the number of rows in the section.
-    return [history count];
+    return [historyArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,7 +128,6 @@ static NSString *CellIdentifier = @"Cell";
         // [cell creatThread:url];
         
         [cell.DoctorImage setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"Expression_1.png"]];
-        NSLog(@"%@",NSHomeDirectory());
     }
     [cell.stars setImage:[UIImage imageNamed:@"star-rate-s"]forState:UIControlStateNormal];
     
@@ -206,7 +212,9 @@ static NSString *CellIdentifier = @"Cell";
              case 0:
                  history = [NSMutableDictionary new];
                  [[NSUserDefaults standardUserDefaults]setObject:history forKey:@"history"];
-            
+                 historyArray = [NSMutableArray new];
+                 [[NSUserDefaults standardUserDefaults]setObject:historyArray forKey:@"historyArray"];
+
                  [self.tableView reloadData];
                  [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];            
                  break;

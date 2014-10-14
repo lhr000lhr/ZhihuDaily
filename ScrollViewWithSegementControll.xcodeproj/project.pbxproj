@@ -82,6 +82,7 @@
 		8C66E3B719C0056100411132 /* CCAVSegmentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66E3B519C0056100411132 /* CCAVSegmentController.xib */; };
 		8C66E3BB19C03C8900411132 /* NewsDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66E3B919C03C8900411132 /* NewsDateViewController.m */; };
 		8C66E3BC19C03C8900411132 /* NewsDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66E3BA19C03C8900411132 /* NewsDateViewController.xib */; };
+		8C6ABF5C19ED0CD600355AD2 /* TextAndPicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6ABF5B19ED0CD600355AD2 /* TextAndPicturesViewController.m */; };
 		8C6B144E19DA4E99007A37B7 /* [泪].png in Resources */ = {isa = PBXBuildFile; fileRef = 8C6B143F19DA4E99007A37B7 /* [泪].png */; };
 		8C6B144F19DA4E99007A37B7 /* [hei].png in Resources */ = {isa = PBXBuildFile; fileRef = 8C6B144019DA4E99007A37B7 /* [hei].png */; };
 		8C6B145019DA4E99007A37B7 /* [嘻嘻].png in Resources */ = {isa = PBXBuildFile; fileRef = 8C6B144119DA4E99007A37B7 /* [嘻嘻].png */; };
@@ -347,6 +348,8 @@
 		8C66E3B819C03C8900411132 /* NewsDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDateViewController.h; sourceTree = "<group>"; };
 		8C66E3B919C03C8900411132 /* NewsDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDateViewController.m; sourceTree = "<group>"; };
 		8C66E3BA19C03C8900411132 /* NewsDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDateViewController.xib; sourceTree = "<group>"; };
+		8C6ABF5A19ED0CD600355AD2 /* TextAndPicturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAndPicturesViewController.h; sourceTree = "<group>"; };
+		8C6ABF5B19ED0CD600355AD2 /* TextAndPicturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAndPicturesViewController.m; sourceTree = "<group>"; };
 		8C6B143F19DA4E99007A37B7 /* [泪].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[泪].png"; sourceTree = "<group>"; };
 		8C6B144019DA4E99007A37B7 /* [hei].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[hei].png"; sourceTree = "<group>"; };
 		8C6B144119DA4E99007A37B7 /* [嘻嘻].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[嘻嘻].png"; sourceTree = "<group>"; };
@@ -728,6 +731,15 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		8C6ABF5D19ED0D0200355AD2 /* CCTV  api测试 */ = {
+			isa = PBXGroup;
+			children = (
+				8C6ABF5A19ED0CD600355AD2 /* TextAndPicturesViewController.h */,
+				8C6ABF5B19ED0CD600355AD2 /* TextAndPicturesViewController.m */,
+			);
+			name = "CCTV  api测试";
+			sourceTree = "<group>";
+		};
 		8C6B143D19DA4E99007A37B7 /* TQRichTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -839,6 +851,7 @@
 				8C15AA0819C6DBBA00EB3DE2 /* 设置和收藏 */,
 				8C733C2919C91DB3005A60BF /* 微博浏览 */,
 				8C64A1CB19D0318E00CC850B /* 知乎日报 */,
+				8C6ABF5D19ED0D0200355AD2 /* CCTV  api测试 */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1182,6 +1195,7 @@
 				8C64F63C19D501FD00C2010C /* UIImageView+MJWebCache.m in Sources */,
 				8C64F63719D501FD00C2010C /* SDWebImagePrefetcher.m in Sources */,
 				8C15AA2C19C7CFA500EB3DE2 /* SinaWeibo.m in Sources */,
+				8C6ABF5C19ED0CD600355AD2 /* TextAndPicturesViewController.m in Sources */,
 				8C56ABDC19BEC54E003A6D5A /* AFPropertyListRequestOperation.m in Sources */,
 				8C56ABD919BEC54E003A6D5A /* AFImageRequestOperation.m in Sources */,
 				8C64F63D19D501FD00C2010C /* UIImageView+WebCache.m in Sources */,
