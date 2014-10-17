@@ -50,6 +50,10 @@
 		8C56ABDD19BEC54E003A6D5A /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56ABD219BEC54E003A6D5A /* AFURLConnectionOperation.m */; };
 		8C56ABDE19BEC54E003A6D5A /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56ABD419BEC54E003A6D5A /* AFXMLRequestOperation.m */; };
 		8C56ABDF19BEC54E003A6D5A /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56ABD619BEC54E003A6D5A /* UIImageView+AFNetworking.m */; };
+		8C5BC70A19EE0C4F002D570F /* TextAndPicturesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BC70919EE0C4F002D570F /* TextAndPicturesTableViewController.m */; };
+		8C5BC71019EE1390002D570F /* CCTVDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BC70F19EE1390002D570F /* CCTVDetailTableViewController.m */; };
+		8C5BC71319EE1C7F002D570F /* CCTVHotTVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BC71219EE1C7F002D570F /* CCTVHotTVTableViewCell.m */; };
+		8C5BC71619EE48D4002D570F /* CCTVGeneralThreadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5BC71519EE48D4002D570F /* CCTVGeneralThreadTableViewController.m */; };
 		8C6225B019D2958A00749D66 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C62259E19D2958A00749D66 /* MBProgressHUD+Add.m */; };
 		8C6225B119D2958A00749D66 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C62259F19D2958A00749D66 /* MBProgressHUD.bundle */; };
 		8C6225B219D2958A00749D66 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6225A119D2958A00749D66 /* MBProgressHUD.m */; };
@@ -62,6 +66,8 @@
 		8C6225B919D2958A00749D66 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6225AF19D2958A00749D66 /* MJPhotoView.m */; };
 		8C6225F719D297B000749D66 /* timeline_image_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C6225F519D297B000749D66 /* timeline_image_loading.png */; };
 		8C6225F819D297B000749D66 /* timeline_image_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C6225F619D297B000749D66 /* timeline_image_loading@2x.png */; };
+		8C622F7719F0B448009FB35F /* generalThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C622F7619F0B448009FB35F /* generalThreadTableViewCell.xib */; };
+		8C622F8819F101A3009FB35F /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C622F8719F101A3009FB35F /* TTTAttributedLabel.m */; };
 		8C64F62E19D501FD00C2010C /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C64F60E19D501FD00C2010C /* MKAnnotationView+WebCache.m */; };
 		8C64F62F19D501FD00C2010C /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C64F61019D501FD00C2010C /* NSData+GIF.m */; };
 		8C64F63019D501FD00C2010C /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C64F61219D501FD00C2010C /* SDImageCache.m */; };
@@ -82,7 +88,6 @@
 		8C66E3B719C0056100411132 /* CCAVSegmentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66E3B519C0056100411132 /* CCAVSegmentController.xib */; };
 		8C66E3BB19C03C8900411132 /* NewsDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C66E3B919C03C8900411132 /* NewsDateViewController.m */; };
 		8C66E3BC19C03C8900411132 /* NewsDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C66E3BA19C03C8900411132 /* NewsDateViewController.xib */; };
-		8C6ABF5C19ED0CD600355AD2 /* TextAndPicturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6ABF5B19ED0CD600355AD2 /* TextAndPicturesViewController.m */; };
 		8C6B144E19DA4E99007A37B7 /* [泪].png in Resources */ = {isa = PBXBuildFile; fileRef = 8C6B143F19DA4E99007A37B7 /* [泪].png */; };
 		8C6B144F19DA4E99007A37B7 /* [hei].png in Resources */ = {isa = PBXBuildFile; fileRef = 8C6B144019DA4E99007A37B7 /* [hei].png */; };
 		8C6B145019DA4E99007A37B7 /* [嘻嘻].png in Resources */ = {isa = PBXBuildFile; fileRef = 8C6B144119DA4E99007A37B7 /* [嘻嘻].png */; };
@@ -110,6 +115,8 @@
 		8C722F0E19CC2B7F00C6362D /* WeiboReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C722F0D19CC2B7F00C6362D /* WeiboReviewViewController.m */; };
 		8C733C2C19C91E06005A60BF /* WeiboHomeLineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C733C2B19C91E06005A60BF /* WeiboHomeLineTableViewController.m */; };
 		8C7DB79819D93AF100A8D305 /* UIWebView+ToFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7DB79719D93AF100A8D305 /* UIWebView+ToFile.m */; };
+		8C97474719EF623D00174EA8 /* CCTVfirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C97474619EF623D00174EA8 /* CCTVfirstTableViewCell.m */; };
+		8C97474E19EFCD3F00174EA8 /* generalThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C97474D19EFCD3F00174EA8 /* generalThreadTableViewCell.m */; };
 		8CAD97A119C2AE0A00B5878D /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD97A019C2AE0A00B5878D /* bg.png */; };
 		8CAD97AA19C2CF0400B5878D /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97A519C2CF0400B5878D /* RECommonFunctions.m */; };
 		8CAD97AB19C2CF0400B5878D /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD97A719C2CF0400B5878D /* RESideMenu.m */; };
@@ -289,6 +296,14 @@
 		8C56ABD419BEC54E003A6D5A /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		8C56ABD519BEC54E003A6D5A /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		8C56ABD619BEC54E003A6D5A /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		8C5BC70819EE0C4F002D570F /* TextAndPicturesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAndPicturesTableViewController.h; sourceTree = "<group>"; };
+		8C5BC70919EE0C4F002D570F /* TextAndPicturesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAndPicturesTableViewController.m; sourceTree = "<group>"; };
+		8C5BC70E19EE1390002D570F /* CCTVDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTVDetailTableViewController.h; sourceTree = "<group>"; };
+		8C5BC70F19EE1390002D570F /* CCTVDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTVDetailTableViewController.m; sourceTree = "<group>"; };
+		8C5BC71119EE1C7F002D570F /* CCTVHotTVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTVHotTVTableViewCell.h; sourceTree = "<group>"; };
+		8C5BC71219EE1C7F002D570F /* CCTVHotTVTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTVHotTVTableViewCell.m; sourceTree = "<group>"; };
+		8C5BC71419EE48D4002D570F /* CCTVGeneralThreadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTVGeneralThreadTableViewController.h; sourceTree = "<group>"; };
+		8C5BC71519EE48D4002D570F /* CCTVGeneralThreadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTVGeneralThreadTableViewController.m; sourceTree = "<group>"; };
 		8C62259D19D2958A00749D66 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		8C62259E19D2958A00749D66 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		8C62259F19D2958A00749D66 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
@@ -309,6 +324,10 @@
 		8C6225AF19D2958A00749D66 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
 		8C6225F519D297B000749D66 /* timeline_image_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline_image_loading.png; sourceTree = "<group>"; };
 		8C6225F619D297B000749D66 /* timeline_image_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline_image_loading@2x.png"; sourceTree = "<group>"; };
+		8C622F7619F0B448009FB35F /* generalThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = generalThreadTableViewCell.xib; sourceTree = "<group>"; };
+		8C622F8619F101A3009FB35F /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
+		8C622F8719F101A3009FB35F /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
+		8C622F8919F1022D009FB35F /* 浩然的机机.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "浩然的机机.entitlements"; sourceTree = "<group>"; };
 		8C64F60D19D501FD00C2010C /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		8C64F60E19D501FD00C2010C /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		8C64F60F19D501FD00C2010C /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GIF.h"; sourceTree = "<group>"; };
@@ -348,8 +367,6 @@
 		8C66E3B819C03C8900411132 /* NewsDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDateViewController.h; sourceTree = "<group>"; };
 		8C66E3B919C03C8900411132 /* NewsDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDateViewController.m; sourceTree = "<group>"; };
 		8C66E3BA19C03C8900411132 /* NewsDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDateViewController.xib; sourceTree = "<group>"; };
-		8C6ABF5A19ED0CD600355AD2 /* TextAndPicturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAndPicturesViewController.h; sourceTree = "<group>"; };
-		8C6ABF5B19ED0CD600355AD2 /* TextAndPicturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAndPicturesViewController.m; sourceTree = "<group>"; };
 		8C6B143F19DA4E99007A37B7 /* [泪].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[泪].png"; sourceTree = "<group>"; };
 		8C6B144019DA4E99007A37B7 /* [hei].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[hei].png"; sourceTree = "<group>"; };
 		8C6B144119DA4E99007A37B7 /* [嘻嘻].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[嘻嘻].png"; sourceTree = "<group>"; };
@@ -393,6 +410,10 @@
 		8C733C2B19C91E06005A60BF /* WeiboHomeLineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboHomeLineTableViewController.m; sourceTree = "<group>"; };
 		8C7DB79619D93AF100A8D305 /* UIWebView+ToFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+ToFile.h"; sourceTree = "<group>"; };
 		8C7DB79719D93AF100A8D305 /* UIWebView+ToFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+ToFile.m"; sourceTree = "<group>"; };
+		8C97474519EF623D00174EA8 /* CCTVfirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTVfirstTableViewCell.h; sourceTree = "<group>"; };
+		8C97474619EF623D00174EA8 /* CCTVfirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTVfirstTableViewCell.m; sourceTree = "<group>"; };
+		8C97474C19EFCD3F00174EA8 /* generalThreadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generalThreadTableViewCell.h; sourceTree = "<group>"; };
+		8C97474D19EFCD3F00174EA8 /* generalThreadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = generalThreadTableViewCell.m; sourceTree = "<group>"; };
 		8CAD97A019C2AE0A00B5878D /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		8CAD97A419C2CF0400B5878D /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		8CAD97A519C2CF0400B5878D /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
@@ -491,6 +512,7 @@
 		8C056B1319B9B6790005C51B /* public */ = {
 			isa = PBXGroup;
 			children = (
+				8C97474819EFBCC800174EA8 /* TTTAttributedLabel */,
 				8C64F60C19D501FD00C2010C /* SDWebImage */,
 				8C62259C19D2958A00749D66 /* MBProgressHUD */,
 				8C6225A219D2958A00749D66 /* MJPhotoBrowser */,
@@ -734,8 +756,19 @@
 		8C6ABF5D19ED0D0200355AD2 /* CCTV  api测试 */ = {
 			isa = PBXGroup;
 			children = (
-				8C6ABF5A19ED0CD600355AD2 /* TextAndPicturesViewController.h */,
-				8C6ABF5B19ED0CD600355AD2 /* TextAndPicturesViewController.m */,
+				8C5BC70819EE0C4F002D570F /* TextAndPicturesTableViewController.h */,
+				8C5BC70919EE0C4F002D570F /* TextAndPicturesTableViewController.m */,
+				8C5BC71119EE1C7F002D570F /* CCTVHotTVTableViewCell.h */,
+				8C5BC71219EE1C7F002D570F /* CCTVHotTVTableViewCell.m */,
+				8C5BC70E19EE1390002D570F /* CCTVDetailTableViewController.h */,
+				8C5BC70F19EE1390002D570F /* CCTVDetailTableViewController.m */,
+				8C5BC71419EE48D4002D570F /* CCTVGeneralThreadTableViewController.h */,
+				8C5BC71519EE48D4002D570F /* CCTVGeneralThreadTableViewController.m */,
+				8C97474C19EFCD3F00174EA8 /* generalThreadTableViewCell.h */,
+				8C97474D19EFCD3F00174EA8 /* generalThreadTableViewCell.m */,
+				8C622F7619F0B448009FB35F /* generalThreadTableViewCell.xib */,
+				8C97474519EF623D00174EA8 /* CCTVfirstTableViewCell.h */,
+				8C97474619EF623D00174EA8 /* CCTVfirstTableViewCell.m */,
 			);
 			name = "CCTV  api测试";
 			sourceTree = "<group>";
@@ -830,6 +863,15 @@
 			name = "微博浏览";
 			sourceTree = "<group>";
 		};
+		8C97474819EFBCC800174EA8 /* TTTAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				8C622F8619F101A3009FB35F /* TTTAttributedLabel.h */,
+				8C622F8719F101A3009FB35F /* TTTAttributedLabel.m */,
+			);
+			path = TTTAttributedLabel;
+			sourceTree = "<group>";
+		};
 		8CAD97A319C2CF0400B5878D /* RESideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -922,6 +964,7 @@
 		AD3BECE019B56EE7006B465C /* ScrollViewWithSegementControll */ = {
 			isa = PBXGroup;
 			children = (
+				8C622F8919F1022D009FB35F /* 浩然的机机.entitlements */,
 				8C056B1319B9B6790005C51B /* public */,
 				8CAD97B419C2D73300B5878D /* ViewControllers */,
 				AD3BECEE19B56EE7006B465C /* Images.xcassets */,
@@ -1055,6 +1098,11 @@
 					AD3BECDD19B56EE7006B465C = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = HXHB284JU3;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					AD3BECF319B56EE8006B465C = {
 						CreatedOnToolsVersion = 6.0;
@@ -1133,6 +1181,7 @@
 				8CC9213D19B6C390008609C1 /* nav-bg.png in Resources */,
 				AD3BED1919B57607006B465C /* Expression_4@2x.png in Resources */,
 				8C66E3B719C0056100411132 /* CCAVSegmentController.xib in Resources */,
+				8C622F7719F0B448009FB35F /* generalThreadTableViewCell.xib in Resources */,
 				8CAD97B919C2D9D700B5878D /* nav_btn_menu@2x.png in Resources */,
 				8C6B144E19DA4E99007A37B7 /* [泪].png in Resources */,
 				8C15AA3819C7CFCD00EB3DE2 /* button_background@2x.png in Resources */,
@@ -1195,7 +1244,6 @@
 				8C64F63C19D501FD00C2010C /* UIImageView+MJWebCache.m in Sources */,
 				8C64F63719D501FD00C2010C /* SDWebImagePrefetcher.m in Sources */,
 				8C15AA2C19C7CFA500EB3DE2 /* SinaWeibo.m in Sources */,
-				8C6ABF5C19ED0CD600355AD2 /* TextAndPicturesViewController.m in Sources */,
 				8C56ABDC19BEC54E003A6D5A /* AFPropertyListRequestOperation.m in Sources */,
 				8C56ABD919BEC54E003A6D5A /* AFImageRequestOperation.m in Sources */,
 				8C64F63D19D501FD00C2010C /* UIImageView+WebCache.m in Sources */,
@@ -1208,12 +1256,16 @@
 				AD250EBA19B5CA4B007AA65D /* OneViewController.m in Sources */,
 				8CC9212A19B6BCAC008609C1 /* DoctorTableViewCell.m in Sources */,
 				8C56ABDE19BEC54E003A6D5A /* AFXMLRequestOperation.m in Sources */,
+				8C5BC71619EE48D4002D570F /* CCTVGeneralThreadTableViewController.m in Sources */,
 				8CAD97AA19C2CF0400B5878D /* RECommonFunctions.m in Sources */,
 				8CE0FE4019D5697A0009CB9B /* JScrollView+PageControl+AutoScroll.m in Sources */,
+				8C5BC71019EE1390002D570F /* CCTVDetailTableViewController.m in Sources */,
+				8C97474719EF623D00174EA8 /* CCTVfirstTableViewCell.m in Sources */,
 				8C64F63A19D501FD00C2010C /* UIImage+MultiFormat.m in Sources */,
 				8C733C2C19C91E06005A60BF /* WeiboHomeLineTableViewController.m in Sources */,
 				AD3BECEA19B56EE7006B465C /* ViewController.m in Sources */,
 				8C6DEE7D19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.m in Sources */,
+				8C97474E19EFCD3F00174EA8 /* generalThreadTableViewCell.m in Sources */,
 				8CD586DB19EB6C5B00DE2114 /* WeiboPersonalDetailViewController.m in Sources */,
 				8C6225B019D2958A00749D66 /* MBProgressHUD+Add.m in Sources */,
 				8C15AA0319C6C77E00EB3DE2 /* UIImage+TOWebViewControllerIcons.m in Sources */,
@@ -1234,6 +1286,7 @@
 				8C6225B919D2958A00749D66 /* MJPhotoView.m in Sources */,
 				8C15AA2E19C7CFA500EB3DE2 /* SinaWeiboRequest.m in Sources */,
 				8C6225B319D2958A00749D66 /* MJPhoto.m in Sources */,
+				8C5BC70A19EE0C4F002D570F /* TextAndPicturesTableViewController.m in Sources */,
 				8C21749919B9930C00E25097 /* UIScrollView+MJRefresh.m in Sources */,
 				8CC9215619B715DE008609C1 /* DoctorDetailViewController.m in Sources */,
 				8C15AA0219C6C77E00EB3DE2 /* TOWebViewController.m in Sources */,
@@ -1261,6 +1314,7 @@
 				8C64F63619D501FD00C2010C /* SDWebImageManager.m in Sources */,
 				8C56ABD719BEC54E003A6D5A /* AFHTTPClient.m in Sources */,
 				8C21749719B9930C00E25097 /* MJRefreshHeaderView.m in Sources */,
+				8C622F8819F101A3009FB35F /* TTTAttributedLabel.m in Sources */,
 				8C64F63B19D501FD00C2010C /* UIImage+WebP.m in Sources */,
 				8C64F63819D501FD00C2010C /* UIButton+WebCache.m in Sources */,
 				8C64F63219D501FD00C2010C /* SDWebImageDecoder.m in Sources */,
@@ -1269,6 +1323,7 @@
 				AD3BECE419B56EE7006B465C /* main.m in Sources */,
 				8C6DEE8819CA78E30095AD0C /* WeiboDetailViewController.m in Sources */,
 				8C6225B219D2958A00749D66 /* MBProgressHUD.m in Sources */,
+				8C5BC71319EE1C7F002D570F /* CCTVHotTVTableViewCell.m in Sources */,
 				8C15AA0719C6D4B600EB3DE2 /* SettingTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

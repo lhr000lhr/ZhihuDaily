@@ -24,5 +24,13 @@
 
     // Configure the view for the selected state
 }
-
+- (void)prepareForReuse{
+    for (UIImageView *view in self.weiboImages) {
+        [view cancelCurrentImageLoad];
+    }
+    for (UIImageView *view in self.retweetWeiboImages) {
+        [view cancelCurrentImageLoad];
+    }
+    
+}
 @end

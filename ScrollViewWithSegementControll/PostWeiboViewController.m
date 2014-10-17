@@ -36,6 +36,7 @@
     self.imageView.image = [UIImage imageWithData:self.imageData];
     self.textField.text = self.textFieldContent;
     // Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,6 +124,8 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
 	HUD.mode = MBProgressHUDModeCustomView;
+    HUD.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
+
 	[HUD hide:YES afterDelay:2];
     //    PullTableView *tableView =(id)[self.view viewWithTag:1];
     if ([request.url hasSuffix:@"users/show.json"])
@@ -294,6 +297,8 @@ static int post_image_status_times = 0;
                            httpMethod:@"POST"
                              delegate:self];
             HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+            HUD.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
+
             HUD.delegate = self;
             
         }
@@ -309,6 +314,8 @@ static int post_image_status_times = 0;
                            httpMethod:@"POST"
                              delegate:self];
             HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+            HUD.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
+
             HUD.delegate = self;
             
         }

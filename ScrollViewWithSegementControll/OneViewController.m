@@ -7,13 +7,7 @@
 //
 
 #import "OneViewController.h"
-#import "DoctorTableViewCell.h"
-#import "DoctorDetailViewController.h"
-#import "ScrollViewDetailViewController.h"
-#import "ScrollViewDetailViewController.h"
-#import "CCAVSegmentController.h"
-#import "NewsDateViewController.h"
-#import "MJPhoto.h"
+
 @interface OneViewController ()
 
 @end

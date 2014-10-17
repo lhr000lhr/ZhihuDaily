@@ -28,12 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    CALayer *userImage = [self.userImage layer];   //获取ImageView的层
-    [userImage setMasksToBounds:YES];
-    [userImage setCornerRadius:6.0];
-    CALayer *weiboImage = [self.weiboImage layer];   //获取ImageView的层
-    [weiboImage setMasksToBounds:YES];
-    [weiboImage setCornerRadius:6.0];
+//    CALayer *userImage = [self.userImage layer];   //获取ImageView的层
+//    [userImage setMasksToBounds:YES];
+//    [userImage setCornerRadius:6.0];
+//    CALayer *weiboImage = [self.weiboImage layer];   //获取ImageView的层
+//    [weiboImage setMasksToBounds:YES];
+//    [weiboImage setCornerRadius:6.0];
     
 //    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
   //  [self.weiboImage addGestureRecognizer:singleTap];
@@ -103,7 +103,7 @@
         
         CALayer *weiboImage = [weiboImage1 layer];   //获取ImageView的层
         [weiboImage setMasksToBounds:YES];
-        [weiboImage setCornerRadius:6.0];
+        [weiboImage setCornerRadius:0.0];
         
         weiboImage1.contentMode = UIViewContentModeScaleAspectFill;
         weiboImage1.frame=frame;
@@ -213,7 +213,7 @@
             
             CALayer *weiboImage = [weiboImage1 layer];   //获取ImageView的层
             [weiboImage setMasksToBounds:YES];
-            [weiboImage setCornerRadius:6.0];
+            [weiboImage setCornerRadius:0.0];
             
             
             weiboImage1.frame=frame;

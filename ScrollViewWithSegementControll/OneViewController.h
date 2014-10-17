@@ -18,7 +18,11 @@
 #import "AppDelegate.h"
 #import "SinaWeiboRequest.h"
 #import "DoctorTableViewCell.h"
-
+#import "DoctorDetailViewController.h"
+#import "ScrollViewDetailViewController.h"
+#import "CCAVSegmentController.h"
+#import "NewsDateViewController.h"
+#import "MJPhoto.h"
 #import "JScrollView+PageControl+AutoScroll.h"
 @interface OneViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CCAVSegmentControllerDelegate,EScrollerViewDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,JScrollViewViewDelegate>
 {

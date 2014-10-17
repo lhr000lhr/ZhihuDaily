@@ -32,6 +32,9 @@
                                              selector:@selector(test:)
 												 name:@"changeName" object:nil];
     self.weiboButton.hidden = ![[NSUserDefaults standardUserDefaults]boolForKey:@"weiboState"];
+    UIButton *cctvButton = (UIButton *)[self.view viewWithTag:106];
+    cctvButton.hidden = ![[NSUserDefaults standardUserDefaults]boolForKey:@"weiboState"];
+
     SinaWeibo *sinaWeibo =[self sinaweibo];
     if ([sinaWeibo isAuthValid]) {
         NSString *temp =[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
@@ -82,7 +85,9 @@
     }
     
     self.weiboButton.hidden= ![[NSUserDefaults standardUserDefaults]boolForKey:@"weiboState"];
-    
+    UIButton *cctvButton = (UIButton *)[self.view viewWithTag:106];
+    cctvButton.hidden = ![[NSUserDefaults standardUserDefaults]boolForKey:@"weiboState"];
+
     
 }
 
@@ -149,7 +154,7 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 106 :
-            [self.sideMenuViewController setContentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"TextAndPicturesViewController"]
+            [self.sideMenuViewController setContentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"TextAndPicturesTableViewController"]
                                                          animated:YES];
             [self.sideMenuViewController hideMenuViewController];
             break;
