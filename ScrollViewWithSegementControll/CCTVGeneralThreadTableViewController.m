@@ -15,6 +15,7 @@
 @end
 
 @implementation CCTVGeneralThreadTableViewController
+@synthesize recorderVC,player,originWav,convertAmr,convertWav;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,9 +26,35 @@
     return self;
 }
 
+#pragma mark - VoiceRecorderBaseVC Delegate Methods
+//录音完成回调，返回文件路径和文件名
+- (void)VoiceRecorderBaseVCRecordFinish:(NSString *)_filePath fileName:(NSString*)_fileName{
+    NSLog(@"录音完成，文件路径:%@",_filePath);
+//   [self setLabelByFilePath:_filePath fileName:_fileName convertTime:0 label:_originWavLabel];
+}
+//播放进度条
+- (void)playProgress
+{
+    //通过音频播放时长的百分比,给progressview进行赋值;
+    progressV.progress = player.currentTime/player.duration;
+}
+//播放完成时调用的方法  (代理里的方法),需要设置代理才可以调用
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    [timer invalidate]; //NSTimer暂停   invalidate  使...无效;
+    [progressV removeFromSuperview];
+}
+
+
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //初始化播放器
+    player = [[AVAudioPlayer alloc]init];
+    progressV = [[UIProgressView alloc] init];
     self.title = [self.rowData objectForKey:@"name"];
     UINib *nib = [UINib nibWithNibName:@"generalThreadTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"generalThreadTableViewCell"];
@@ -273,6 +300,39 @@
         NSArray *pic = [content objectForKey:@"pic"];
         
         CGRect frame = cell.content.frame;
+        NSString *audio_len =[NSString stringWithFormat:@"%@",[content objectForKey:@"audio_len"]];
+        
+        if([audio_len isEqualToString:@"0"])
+        {
+            frame.origin.y = cell.name.frame.size.height+cell.name.frame.origin.y+8;
+            cell.voiceButton.hidden = YES;
+        }
+        
+        else
+        {
+            cell.voiceButton.hidden = NO;
+            [cell.voiceButton setTitle:[NSString stringWithFormat:@"%@秒",audio_len] forState:UIControlStateNormal];
+            if ([audio_len doubleValue]>5) {
+                CGRect tempRect= CGRectMake(frame.origin.x, cell.voiceButton.frame.origin.y, 247, 28);
+                cell.voiceButton.frame = tempRect;
+                
+            }
+            else
+            {
+                CGRect tempRect= CGRectMake(frame.origin.x,cell.voiceButton.frame.origin.y, 247/2, 28);
+                cell.voiceButton.frame = tempRect;
+
+                
+            }
+            [cell.voiceButton addTarget:self action:@selector(playAudio:) forControlEvents:UIControlEventTouchUpInside];
+            cell.voiceButton.tag =indexPath.row*10000+200;
+            frame.origin.y= cell.voiceButton.frame.origin.y + cell.voiceButton.frame.size.height + 8;
+        }
+        
+        
+        
+        
+        
         CGSize  size = [[content objectForKey:@"text"] sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(247, 2000) lineBreakMode:UILineBreakModeWordWrap];
         frame.size=size;
         cell.content.frame=frame;
@@ -293,7 +353,7 @@
                          NSString *url =[pic[i] objectForKey:@"pic"];
 
                      
-                     temp.tag = indexPath.row*10000+ i + 100;
+                     temp.tag = indexPath.row*10000+ i + 300;
 
                      i++;
                          if ([url hasPrefix:@"http"])
@@ -409,9 +469,21 @@
                     }
                 }
             }
-
+        int voiceButton = 0;
+        NSString *audio_len =[NSString stringWithFormat:@"%@",[content objectForKey:@"audio_len"]];
         
-        return frame.size.height + frame.origin.y +10;
+        if([audio_len isEqualToString:@"0"])
+        {
+             voiceButton = 0;
+        }else
+        {
+             voiceButton = 28;
+        }
+        
+        
+        
+        
+        return frame.size.height + frame.origin.y +10+voiceButton;
     }
     
     
@@ -425,7 +497,7 @@
     
     int tagvalue = abs(view.tag);
     int row = tagvalue/10000;
-    int i = tagvalue - 10000*row -100;
+   
     
     NSDictionary *subject = [receivedData objectForKey:@"subject"];
     NSArray *content = [subject objectForKey:@"content"];
@@ -438,6 +510,7 @@
     int tag = 0;
     if (row == 0)
     {
+         int i = tagvalue - 10000*row -100;
         for (NSDictionary *eachContent in content)
         {
           
@@ -458,10 +531,18 @@
             }
             
         }
+        
+        // 2.显示相册
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.currentPhotoIndex = i; // 弹出相册时显示的第一张图片是？
+        
+        browser.photos = photos; // 设置所有的图片
+        [browser show];
+        
     }
    else
    {
-       
+        int i = tagvalue - 10000*row -300;
        NSArray *countRows = [receivedData objectForKey:@"items"];
        NSDictionary *rowData = countRows[row-1];
        NSDictionary *content = [rowData objectForKey:@"content"];
@@ -472,12 +553,19 @@
            
            MJPhoto *photo = [[MJPhoto alloc] init];
            // photo.url = [NSURL URLWithString:[eachContent objectForKey:@"text"]]; // 图片路径
-           photo.image = [(UIImageView*)[self.view viewWithTag:row*10000+tag+100] image];
-           photo.srcImageView = (UIImageView*)[self.view viewWithTag:row*10000+tag+100];// 来源于哪个UIImageView
+           photo.image = [(UIImageView*)[self.view viewWithTag:row*10000+tag+300] image];
+           photo.srcImageView = (UIImageView*)[self.view viewWithTag:row*10000+tag+300];// 来源于哪个UIImageView
            [photos addObject:photo];
        }
        
        
+       
+       // 2.显示相册
+       MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+       browser.currentPhotoIndex = i; // 弹出相册时显示的第一张图片是？
+       
+       browser.photos = photos; // 设置所有的图片
+       [browser show];
        
        
    }
@@ -485,13 +573,6 @@
     
     
     
-    
-        // 2.显示相册
-        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
-        browser.currentPhotoIndex = i; // 弹出相册时显示的第一张图片是？
-        
-        browser.photos = photos; // 设置所有的图片
-        [browser show];
     
         
 }
@@ -546,6 +627,92 @@
         
     }
     return  frame.origin.y+10;
+}
+
+
+#pragma mark - 播放语音
+-(void)playAudio:(UIButton*)sender
+{
+    int tag = sender.tag;
+    int row = tag/10000;
+    int i = tag - 10000*row -200;
+    
+    NSArray *countRows = [receivedData objectForKey:@"items"];
+    NSDictionary *rowData = countRows[row-1];
+    NSDictionary *content = [rowData objectForKey:@"content"];
+    NSString *url = [content objectForKey:@"audio"];
+    NSString *fileName = [url lastPathComponent];
+    NSData *audioData = [NSData new];
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName];
+    
+    CGRect frame = sender.bounds;
+    frame.origin.y = frame.origin.y +frame.size.height;
+    progressV.frame = frame;
+    [sender addSubview:progressV];
+    
+    
+    
+    
+    
+//    NSLog(@"%d",tag);
+
+    self.convertWav = [originWav stringByAppendingString:@"amrToWav"];
+    
+    NSData *tempData = [NSData dataWithContentsOfFile: [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName]];
+    
+    if (tempData ==nil) {
+         dispatch_queue_t downloadQueue = dispatch_queue_create("download data", NULL);
+        
+        
+        dispatch_async(downloadQueue, ^{
+            
+      
+        NSData *audioData =[NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+        NSLog(@"%d,audioData下载！！！！！！",tag);
+        // 将音频写入文件
+        [audioData writeToFile:fullPath atomically:YES];
+        //转格式
+        
+        [VoiceConverter amrToWav:fullPath wavSavePath:[VoiceRecorderBaseVC getPathByFileName:fileName ofType:@"wav"]];
+            
+            
+          dispatch_async(dispatch_get_main_queue(), ^{
+        player = [[AVAudioPlayer alloc]  initWithContentsOfURL:[NSURL URLWithString:[VoiceRecorderBaseVC getPathByFileName:fileName ofType:@"wav"]] error:nil];
+              
+              player.delegate = self;
+            
+              player.currentTime = 0;//当前播放时间设置为0
+              [player prepareToPlay];
+              [player stop];
+              [player play];
+              timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self
+                                                     selector:@selector(playProgress)
+                                                     userInfo:nil repeats:YES];
+              
+                                                    });
+          });
+
+
+    }else
+    {
+        audioData = tempData;
+        NSLog(@"%d,audioData使用缓存",tag);
+       
+    
+
+        player = [[AVAudioPlayer alloc]     initWithContentsOfURL:[NSURL URLWithString:[VoiceRecorderBaseVC getPathByFileName:fileName ofType:@"wav"]] error:nil];
+        player.delegate = self;
+        
+        player.currentTime = 0;//当前播放时间设置为0
+        [player prepareToPlay];
+        [player stop];
+        [player play];
+            
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self
+                                               selector:@selector(playProgress)
+                                               userInfo:nil repeats:YES];
+    }
+
 }
 /*
 // Override to support conditional editing of the table view.
