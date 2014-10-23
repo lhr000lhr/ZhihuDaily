@@ -143,6 +143,9 @@
 		8CAD97C619C2FA4200B5878D /* touxiang.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD97C519C2FA4200B5878D /* touxiang.jpeg */; };
 		8CAD97CA19C2FC8700B5878D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD97C919C2FC8700B5878D /* icon.png */; };
 		8CB4C51919B8544D00641191 /* ScrollViewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB4C51819B8544D00641191 /* ScrollViewDetailViewController.m */; };
+		8CB9A60B19F655AA004839DE /* NYSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9A60619F655AA004839DE /* NYSegment.m */; };
+		8CB9A60C19F655AA004839DE /* NYSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9A60819F655AA004839DE /* NYSegmentedControl.m */; };
+		8CB9A60D19F655AA004839DE /* NYSegmentIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9A60A19F655AA004839DE /* NYSegmentIndicator.m */; };
 		8CC9212A19B6BCAC008609C1 /* DoctorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC9212819B6BCAC008609C1 /* DoctorTableViewCell.m */; };
 		8CC9212B19B6BCAC008609C1 /* DoctorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CC9212919B6BCAC008609C1 /* DoctorTableViewCell.xib */; };
 		8CC9213A19B6C390008609C1 /* 1.5 随便看看+断网提示.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CC9212D19B6C390008609C1 /* 1.5 随便看看+断网提示.png */; };
@@ -472,6 +475,12 @@
 		8CAD97C919C2FC8700B5878D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		8CB4C51719B8544D00641191 /* ScrollViewDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewDetailViewController.h; sourceTree = "<group>"; };
 		8CB4C51819B8544D00641191 /* ScrollViewDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDetailViewController.m; sourceTree = "<group>"; };
+		8CB9A60519F655AA004839DE /* NYSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYSegment.h; sourceTree = "<group>"; };
+		8CB9A60619F655AA004839DE /* NYSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYSegment.m; sourceTree = "<group>"; };
+		8CB9A60719F655AA004839DE /* NYSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYSegmentedControl.h; sourceTree = "<group>"; };
+		8CB9A60819F655AA004839DE /* NYSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYSegmentedControl.m; sourceTree = "<group>"; };
+		8CB9A60919F655AA004839DE /* NYSegmentIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYSegmentIndicator.h; sourceTree = "<group>"; };
+		8CB9A60A19F655AA004839DE /* NYSegmentIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYSegmentIndicator.m; sourceTree = "<group>"; };
 		8CC9212719B6BCAC008609C1 /* DoctorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorTableViewCell.h; sourceTree = "<group>"; };
 		8CC9212819B6BCAC008609C1 /* DoctorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorTableViewCell.m; sourceTree = "<group>"; };
 		8CC9212919B6BCAC008609C1 /* DoctorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DoctorTableViewCell.xib; sourceTree = "<group>"; };
@@ -556,6 +565,7 @@
 		8C056B1319B9B6790005C51B /* public */ = {
 			isa = PBXGroup;
 			children = (
+				8CB9A60419F655AA004839DE /* NYSegmentedControl */,
 				8C65F14319F4C1C4002EB438 /* amr音频转换 */,
 				8C97474819EFBCC800174EA8 /* TTTAttributedLabel */,
 				8C64F60C19D501FD00C2010C /* SDWebImage */,
@@ -1053,6 +1063,19 @@
 			path = VIews;
 			sourceTree = "<group>";
 		};
+		8CB9A60419F655AA004839DE /* NYSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				8CB9A60519F655AA004839DE /* NYSegment.h */,
+				8CB9A60619F655AA004839DE /* NYSegment.m */,
+				8CB9A60719F655AA004839DE /* NYSegmentedControl.h */,
+				8CB9A60819F655AA004839DE /* NYSegmentedControl.m */,
+				8CB9A60919F655AA004839DE /* NYSegmentIndicator.h */,
+				8CB9A60A19F655AA004839DE /* NYSegmentIndicator.m */,
+			);
+			path = NYSegmentedControl;
+			sourceTree = "<group>";
+		};
 		8CC9212C19B6C390008609C1 /* design */ = {
 			isa = PBXGroup;
 			children = (
@@ -1393,6 +1416,7 @@
 				8C65F14D19F4C674002EB438 /* UIView+Animation.m in Sources */,
 				8C15A9EC19C6AE7A00EB3DE2 /* FavoritesTableViewController.m in Sources */,
 				8C6225B519D2958A00749D66 /* MJPhotoBrowser.m in Sources */,
+				8CB9A60B19F655AA004839DE /* NYSegment.m in Sources */,
 				8C64F63C19D501FD00C2010C /* UIImageView+MJWebCache.m in Sources */,
 				8C64F63719D501FD00C2010C /* SDWebImagePrefetcher.m in Sources */,
 				8C65F13D19F4C1C0002EB438 /* VoiceConverter.mm in Sources */,
@@ -1421,6 +1445,7 @@
 				AD3BECEA19B56EE7006B465C /* ViewController.m in Sources */,
 				8C6DEE7D19CA6C7F0095AD0C /* WeiboDetailAndCommentTableViewController.m in Sources */,
 				8C97474E19EFCD3F00174EA8 /* generalThreadTableViewCell.m in Sources */,
+				8CB9A60D19F655AA004839DE /* NYSegmentIndicator.m in Sources */,
 				8CD586DB19EB6C5B00DE2114 /* WeiboPersonalDetailViewController.m in Sources */,
 				8C65F13E19F4C1C0002EB438 /* ChatRecorderView.m in Sources */,
 				8C6225B019D2958A00749D66 /* MBProgressHUD+Add.m in Sources */,
@@ -1439,6 +1464,7 @@
 				8C722F0E19CC2B7F00C6362D /* WeiboReviewViewController.m in Sources */,
 				8C56ABDA19BEC54E003A6D5A /* AFJSONRequestOperation.m in Sources */,
 				8C15AA0019C6C77E00EB3DE2 /* TOActivityChrome.m in Sources */,
+				8CB9A60C19F655AA004839DE /* NYSegmentedControl.m in Sources */,
 				8CAD97AC19C2CF0400B5878D /* UIViewController+RESideMenu.m in Sources */,
 				8C6225B919D2958A00749D66 /* MJPhotoView.m in Sources */,
 				8C15AA2E19C7CFA500EB3DE2 /* SinaWeiboRequest.m in Sources */,

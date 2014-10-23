@@ -42,7 +42,17 @@
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     [timer invalidate]; //NSTimer暂停   invalidate  使...无效;
-    [progressV removeFromSuperview];
+    [UIView animateWithDuration:0.4f
+						  delay:0
+						options:UIViewAnimationOptionCurveEaseOut
+					 animations:^{
+						 progressV.alpha = 0;
+					 }
+					 completion:^(BOOL finished) {
+						 [progressV removeFromSuperview];
+					 }];
+//    [progressV removeFromSuperview];
+    AudioSessionSetActiveWithFlags(FALSE, kAudioSessionSetActiveFlag_NotifyOthersOnDeactivation);
 }
 
 
@@ -75,7 +85,7 @@
     NSString *forum_id = [self.rowData objectForKey:@"forum_id"];
     
     
-    SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:@"http://192.168.1.35/cctvapi/thread/general"
+    SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:@"http://58.68.243.109/cctvapi/thread/general"
                                                        httpMethod:@"POST"
                                                            params:[NSMutableDictionary dictionaryWithObjectsAndKeys:thread_id,@"thread_id",forum_id,@"forum_id",@"1",@"sort",@"0",@"offset",@"1",@"type",nil]
                                                          delegate:self];
@@ -203,6 +213,7 @@
         frame.origin.y = 20;
         frame.origin.x = 20;
         int i =0;
+        int videoFlag = 0;
         for (NSDictionary *eachContent in content) {
             
             
@@ -225,7 +236,7 @@
 //                                                        lineSpace:1.0f];
 //                frame.size =rect.size;
 //              //  NSLog(@"%@",NSStringFromCGRect(rect));
-//                
+//
 //                TQRichTextView *textView = [TQRichTextView new];
 //                textView.text = [NSString stringWithFormat:@"%@",[eachContent objectForKey:@"text"]];
 //                textView.lineSpace = 1.0f;
@@ -237,9 +248,19 @@
 //                textView.textColor = [UIColor darkTextColor];
 //                textView.backgroundColor = [UIColor yellowColor];
 //                [cell.contentView addSubview:textView];
+                text.alpha = 0;
                 [cell.contentView addSubview:text];
                 
-            }else
+                [UIView animateWithDuration:0.2f
+                                      delay:0
+                                    options:UIViewAnimationOptionCurveEaseIn
+                                 animations:^{
+                                     text.alpha = 1;
+                                 }
+                                 completion:^(BOOL finished) {
+                                 }];
+                
+            }else  if ([type isEqualToString:@"2"])
             {
                 UIImageView *imageView = [UIImageView new];
                 [imageView setImageURLStr:[eachContent objectForKey:@"text"] placeholder:[UIImage imageNamed:@"timeline_image_loading.png"]];
@@ -271,9 +292,47 @@
                 imageView.tag = indexPath.row*10000+ i + 100;
                 i++;
                 
+                imageView.alpha = 0;
                 
                [cell.contentView addSubview:imageView];
+                [UIView animateWithDuration:0.5f
+                                      delay:0
+                                    options:UIViewAnimationOptionCurveEaseIn
+                                 animations:^{
+                                     imageView.alpha = 1;
+                                 }
+                                 completion:^(BOOL finished) {
+                                 }];
+            }else
+            {
+                UIImageView *imageView = [UIImageView new];
+                [imageView setImageURLStr:[eachContent objectForKey:@"thumbpic"] placeholder:[UIImage imageNamed:@"timeline_image_loading.png"]];
+                NSArray * array = [[eachContent objectForKey:@"thumbpic"] componentsSeparatedByString:@"?"];
                 
+                
+                if (array.count>1) {
+                    NSString *size = array[1];
+                    NSArray * array = [size componentsSeparatedByString:@"="];
+                    array = [array[1] componentsSeparatedByString:@"x"];
+                    NSString *height =array[1];
+                    NSString *width = array[0];
+                    
+                    
+                    
+                    frame.size.height = [height doubleValue]*280/[width doubleValue];
+                    frame.size.width = 280;
+                }
+                else{
+                    frame.size.height = 50;
+                    frame.size.width = 50;
+                }
+                imageView.frame = frame;
+                
+                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapVideo:)];
+                imageView.userInteractionEnabled = YES;
+                [imageView addGestureRecognizer:singleTap];
+                imageView.tag = indexPath.row*10000+ videoFlag + 400;
+                videoFlag++;
             }
             
             frame.origin.y = frame.origin.y + frame.size.height+5;
@@ -297,7 +356,16 @@
         cell.content.text = [content objectForKey:@"text"];
         cell.time.text = [rowData objectForKey:@"time"];
         cell.floor.text = [NSString stringWithFormat:@"%@楼",[rowData objectForKey:@"floor"]];
+//        [cell.userImage setImageURLStr:[rowData objectForKey:@"avatar"] placeholder:[UIImage imageNamed:@"timeline_image_loading.png"]];
+        [cell.userImage setImageWithURL:[NSURL URLWithString:[rowData objectForKey:@"avatar"]] placeholderImage:[UIImage imageNamed:@"timeline_image_loading.png"]];
         NSArray *pic = [content objectForKey:@"pic"];
+        
+        if (![pic isKindOfClass:[NSArray class]])
+        {
+            pic = nil;
+        }
+        
+        
         
         CGRect frame = cell.content.frame;
         NSString *audio_len =[NSString stringWithFormat:@"%@",[content objectForKey:@"audio_len"]];
@@ -345,6 +413,7 @@
         
             int i = 0;
             for (UIImageView *temp in cell.images) {
+                temp.hidden = YES;
                 
                  if (i<[pic count])
                  {
@@ -488,7 +557,40 @@
     
     
 }
+- (void)tapVideo:(UITapGestureRecognizer *)tap
+{
+    UIImageView *view = (UIImageView *)[tap view];
+    int tagvalue = abs(view.tag);
+    int row = tagvalue/10000;
+    int videoFlag = tagvalue - 10000*row -400;
 
+    NSDictionary *subject = [receivedData objectForKey:@"subject"];
+    NSArray *content = [subject objectForKey:@"content"];
+    NSMutableArray *videos = [NSMutableArray new];
+
+    for (NSDictionary *eachContent in content)
+    {
+        
+        NSString *type = [NSString stringWithFormat:@"%@",[eachContent objectForKey:@"type"]];
+        
+        if ([type isEqualToString:@"3"])
+        {
+            //url = [self.rowData objectForKey:@"original_pic"];
+            NSString *url = [eachContent objectForKey:@"text"];
+            
+          
+            [videos addObject:url];
+            
+            
+        }
+        
+    }
+    
+    TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURLString:[NSString stringWithFormat:@"%@",videos[videoFlag]]];
+    webViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:webViewController animated:YES];
+    
+}
 - (void)tapImage:(UITapGestureRecognizer *)tap
 {
     UIImageView *view = (UIImageView *)[tap view];
@@ -593,6 +695,8 @@
         if ([type isEqualToString:@"1"])
         {
             
+            
+            
         CGSize  size = [[eachContent objectForKey:@"text"]sizeWithFont:[UIFont systemFontOfSize:15]
                                                      constrainedToSize:CGSizeMake(280, 2000)
                                                          lineBreakMode:UILineBreakModeWordWrap];
@@ -648,9 +752,17 @@
     CGRect frame = sender.bounds;
     frame.origin.y = frame.origin.y +frame.size.height;
     progressV.frame = frame;
+    progressV.alpha = 0;
     [sender addSubview:progressV];
     
-    
+    [UIView animateWithDuration:0.2f
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         progressV.alpha = 1;
+                     }
+                     completion:^(BOOL finished) { 
+                     }];
     
     
     
@@ -680,14 +792,16 @@
         player = [[AVAudioPlayer alloc]  initWithContentsOfURL:[NSURL URLWithString:[VoiceRecorderBaseVC getPathByFileName:fileName ofType:@"wav"]] error:nil];
               
               player.delegate = self;
-            
+              player.volume = 1;
               player.currentTime = 0;//当前播放时间设置为0
               [player prepareToPlay];
               [player stop];
               [player play];
-              timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self
+              timer = [NSTimer scheduledTimerWithTimeInterval:0.01
+                                                       target:self
                                                      selector:@selector(playProgress)
-                                                     userInfo:nil repeats:YES];
+                                                     userInfo:nil
+                                                      repeats:YES];
               
                                                     });
           });
@@ -708,7 +822,7 @@
         [player stop];
         [player play];
             
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self
                                                selector:@selector(playProgress)
                                                userInfo:nil repeats:YES];
     }

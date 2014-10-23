@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     [self downLoadData];
+    hot_thread = [NSArray new];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -40,7 +41,7 @@
     
     
     NSString *tv_id = [self.rowData objectForKey:@"tv_id"];
-    SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:@"http://192.168.1.35/cctvapi/tv/det"
+    SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:@"http://58.68.243.109/cctvapi/tv/det"
                                                        httpMethod:@"POST"
                                                            params:[NSMutableDictionary dictionaryWithObjectsAndKeys:tv_id,@"tv_id", nil]
                                                          delegate:self];
@@ -57,9 +58,21 @@
     
     receivedData = result;
     
-    hot_thread = [receivedData objectForKey:@"hot_thread"];
+    NSMutableArray * hot_threadTemp = [receivedData objectForKey:@"hot_thread"];
+    hot_thread = hot_threadTemp;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     
-    [self.tableView reloadData];
+  //  NSArray *insertIndexPath = [NSArray arrayWithObjects:indexPath, nil];
+    NSMutableArray *insertIndexPaths = [NSMutableArray arrayWithCapacity:[hot_threadTemp count]];
+    for (int ind = 0; ind < [[receivedData objectForKey:@"hot_thread"] count]; ind++) {
+        NSInteger indexPathRow  = [hot_thread indexOfObject:[hot_threadTemp objectAtIndex:ind]];
+        NSLog(@"indexPath Row:%d",indexPathRow);
+        NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPathRow inSection:0];
+        [insertIndexPaths addObject:newPath];
+    }
+    
+    [self.tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+//   [self.tableView reloadData];
     
 }
 

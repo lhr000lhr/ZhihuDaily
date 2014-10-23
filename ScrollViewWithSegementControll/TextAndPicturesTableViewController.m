@@ -11,6 +11,8 @@
 #import "generalThreadTableViewCell.h"
 #import "CCTVDetailTableViewController.h"
 #import "CCTVGeneralThreadTableViewController.h"
+#import "NYSegmentedControl.h"
+
 @interface TextAndPicturesTableViewController ()
 
 @end
@@ -63,13 +65,19 @@
 
 -(void)downLoadTvCircleData
 {
-    SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:@"http://192.168.1.35/cctvapi/tv/home"
+    SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:@"http://58.68.243.109/cctvapi/tv/home"
                                                        httpMethod:@"POST"
                                                            params:[NSMutableDictionary dictionaryWithObjectsAndKeys:nil]
                                                          delegate:self];
     NSMutableSet *requests;
     [requests addObject:_request];
     [_request connect];
+    
+//    api 服务器
+//    192.168.1.35
+//    58.68.243.109
+//    58.68.243.110
+
     
 }
 -(void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
@@ -194,6 +202,83 @@
 
 
 #pragma mark - Table view data source
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    
+    if (section==0) {
+        //NewsDateViewController *newView= [NewsDateViewController new];
+        //    segmentView.date=[NSDate date];
+        
+        
+        
+        //return segmentView.view;
+//        NewsDateViewController *newView= [NewsDateViewController new];
+//        newView.date=[NSDate date];
+        
+        return [UIView new];
+        
+    }else{
+        //  return segmentView.view;
+     
+        self.segmentedControl = [[NYSegmentedControl alloc] initWithItems:@[@"Light", @"Dark"]];
+        [self.segmentedControl addTarget:self action:@selector(segmentSelected) forControlEvents:UIControlEventValueChanged];
+        self.segmentedControl.titleFont = [UIFont fontWithName:@"AvenirNext-Medium" size:14.0f];
+        self.segmentedControl.titleTextColor = [UIColor colorWithWhite:0.5f alpha:1.0f];
+        self.segmentedControl.selectedTitleFont = [UIFont fontWithName:@"AvenirNext-DemiBold" size:14.0f];
+        self.segmentedControl.selectedTitleTextColor = [UIColor whiteColor];
+        self.segmentedControl.borderWidth = 1.0f;
+        self.segmentedControl.borderColor = [UIColor colorWithWhite:0.15f alpha:1.0f];
+        self.segmentedControl.drawsGradientBackground = YES;
+        self.segmentedControl.segmentIndicatorInset = 2.0f;
+        self.segmentedControl.segmentIndicatorGradientTopColor = [UIColor colorWithRed:0.30 green:0.50 blue:0.88f alpha:1.0f];
+        self.segmentedControl.segmentIndicatorGradientBottomColor = [UIColor colorWithRed:0.20 green:0.35 blue:0.75f alpha:1.0f];
+        self.segmentedControl.drawsSegmentIndicatorGradientBackground = YES;
+        self.segmentedControl.segmentIndicatorBorderWidth = 0.0f;
+        self.segmentedControl.selectedSegmentIndex = 0;
+        [self.segmentedControl sizeToFit];
+        
+        
+        UIView *lightControlExampleView = [[UIView alloc] initWithFrame:self.view.bounds];
+        UIView *foursquareSegmentedControlBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                                                    0.0f,
+                                                                                                    CGRectGetWidth([UIScreen mainScreen].bounds),
+                                                                                                    44.0f)];
+        foursquareSegmentedControlBackgroundView.backgroundColor = [UIColor colorWithRed:0.36f green:0.64f blue:0.88f alpha:1.0f];
+        NYSegmentedControl *foursquareSegmentedControl = [[NYSegmentedControl alloc] initWithItems:@[@"Nearby", @"Worldwide"]];
+        foursquareSegmentedControl.titleTextColor = [UIColor colorWithRed:0.38f green:0.68f blue:0.93f alpha:1.0f];
+        foursquareSegmentedControl.selectedTitleTextColor = [UIColor whiteColor];
+        foursquareSegmentedControl.selectedTitleFont = [UIFont systemFontOfSize:13.0f];
+        foursquareSegmentedControl.segmentIndicatorBackgroundColor = [UIColor colorWithRed:0.38f green:0.68f blue:0.93f alpha:1.0f];
+        foursquareSegmentedControl.backgroundColor = [UIColor colorWithRed:0.31f green:0.53f blue:0.72f alpha:1.0f];
+        foursquareSegmentedControl.borderWidth = 0.0f;
+        foursquareSegmentedControl.segmentIndicatorBorderWidth = 0.0f;
+        foursquareSegmentedControl.segmentIndicatorInset = 1.0f;
+        foursquareSegmentedControl.segmentIndicatorBorderColor = self.view.backgroundColor;
+        [foursquareSegmentedControl sizeToFit];
+        foursquareSegmentedControl.cornerRadius = CGRectGetHeight(foursquareSegmentedControl.frame) / 2.0f;
+        foursquareSegmentedControl.center = CGPointMake(lightControlExampleView.center.x, lightControlExampleView.center.y + 30.0f);
+        foursquareSegmentedControlBackgroundView.center = foursquareSegmentedControl.center;
+        
+        return foursquareSegmentedControl;
+        
+    }
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section==0)
+    {
+            return 0;
+    }else
+    {
+    return  0;
+    //segmentView.view.frame.size.height;
+       }
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //some functions

@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "SinaWeiboRequest.h"
 #import "OneViewController.h"
-
+#import "NYSegmentedControl.h"
 @interface TextAndPicturesTableViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,JScrollViewViewDelegate>
 {
     NSArray *listItems;
@@ -21,5 +21,6 @@
     NSMutableArray *hot_activity;
     NSMutableArray *hot_thread;
 }
+@property NYSegmentedControl *segmentedControl;
 
 @end

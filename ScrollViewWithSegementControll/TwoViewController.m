@@ -134,8 +134,8 @@ static NSString *CellIdentifier = @"Cell";
     
     if ([favorites objectForKey:url]) {//////////设置收藏星星显示
         [cell.stars setImage:[UIImage imageNamed:@"star-rate-s"]forState:UIControlStateNormal];
-        [cell.major setTextColor: [UIColor blueColor]];
-        
+//        [cell.major setTextColor: [UIColor blueColor]];
+        [cell.major setTextColor:[UIColor colorWithRed:0.55 green:0.76 blue:0.98 alpha:1]];
     }else
     {
         [cell.stars setImage:[UIImage imageNamed:@"star-s"]forState:UIControlStateNormal];

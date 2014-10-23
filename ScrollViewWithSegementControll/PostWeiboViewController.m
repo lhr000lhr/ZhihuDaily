@@ -88,6 +88,8 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
     
     [HUD hide:YES];
+    //恢复程序运行时自动锁屏
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     if ([request.url hasSuffix:@"users/show.json"])
     {
         userInfo = nil;
@@ -127,6 +129,8 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     HUD.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
 
 	[HUD hide:YES afterDelay:2];
+    //恢复程序运行时自动锁屏
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     //    PullTableView *tableView =(id)[self.view viewWithTag:1];
     if ([request.url hasSuffix:@"users/show.json"])
     {
@@ -288,6 +292,10 @@ static int post_image_status_times = 0;
 {
     if (buttonIndex == 1)
     {
+        //禁止程序运行时自动锁屏
+        [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+        
+        
         if (alertView.tag == 0)
         {
             // post status
@@ -338,6 +346,7 @@ static int post_image_status_times = 0;
         
         [self postStatusButtonPressed];
     }
+    
 }
 
 
