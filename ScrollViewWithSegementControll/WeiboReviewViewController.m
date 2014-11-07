@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.textField becomeFirstResponder];
     if (self.weibousername==nil) {
         NSString *title = [NSString stringWithFormat:@"回复："];
         self.navigationItem.title =title;
@@ -141,6 +142,7 @@ static int post_status_times = 0;
                        params:[NSMutableDictionary dictionaryWithObjectsAndKeys:postStatusText, @"comment",self.weiboid,@"id", nil]
                    httpMethod:@"POST"
                      delegate:self];
-    
+    [self.textField resignFirstResponder];
+
 }
 @end

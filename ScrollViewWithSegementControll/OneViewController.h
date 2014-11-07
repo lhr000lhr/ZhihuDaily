@@ -24,6 +24,7 @@
 #import "NewsDateViewController.h"
 #import "MJPhoto.h"
 #import "JScrollView+PageControl+AutoScroll.h"
+#import <POP/POP.h>
 @interface OneViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CCAVSegmentControllerDelegate,EScrollerViewDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,JScrollViewViewDelegate>
 {
     CCAVSegmentController *segmentView;

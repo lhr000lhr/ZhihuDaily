@@ -7,6 +7,8 @@
 //
 
 #import "PostWeiboViewController.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 
 @interface PostWeiboViewController ()
 
@@ -22,18 +24,76 @@
     }
     return self;
 }
+//- (void)viewWillAppear: (BOOL)animated
+//{
+//    self.tabBarController.tabBar.hidden = YES;
+//
+//}
+//- (void)viewWillDisappear: (BOOL)animated
+//{
+//    self.tabBarController.tabBar.hidden = NO;
+//
+//}
 
+- (void)tapImage:(UITapGestureRecognizer *)tap
+{
+
+    [self.textField resignFirstResponder];
+    UIImageView *view = (UIImageView *)[tap view];
+    NSMutableArray *photos = [NSMutableArray new];
+
+    MJPhoto *photo = [[MJPhoto alloc] init];
+    // photo.url = [NSURL URLWithString:[eachContent objectForKey:@"text"]]; // 图片路径
+    photo.image = view.image;
+    photo.srcImageView = view;// 来源于哪个UIImageView
+    [photos addObject:photo];
+
+    // 2.显示相册
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    browser.currentPhotoIndex = 0; // 弹出相册时显示的第一张图片是？
+    
+    browser.photos = photos; // 设置所有的图片
+    [browser show];
+
+
+
+
+
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"imageData"];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"textFieldContent"];
+
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
+    [self.textField becomeFirstResponder];
+
+
     SinaWeibo *sinaWeibo = [self sinaweibo];
     if (![sinaWeibo isAuthValid]) { ////// 检查是否登录
         
         self.doneButton.enabled = NO;
     
     }
+    self.imageData = [[NSUserDefaults standardUserDefaults]objectForKey:@"imageData"];
+    self.textFieldContent = [[NSUserDefaults standardUserDefaults]objectForKey:@"textFieldContent"];
+    
+    
     self.imageView.image = [UIImage imageWithData:self.imageData];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
+    [self.imageView addGestureRecognizer:singleTap];
+    
+    
+    
+    if (self.imageData != nil) {
+        self.picSize.hidden = NO;
+        self.picSize.text = [NSString stringWithFormat:@"%.2fMB",(double)[self.imageData length]/1024/1024];
+    }
     self.textField.text = self.textFieldContent;
     // Do any additional setup after loading the view.
 
@@ -126,7 +186,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 {
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
 	HUD.mode = MBProgressHUDModeCustomView;
-    HUD.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
+    HUD.color = [UIColor colorWithRed:31.0/255.0 green:187.0/255.0 blue:166.0/255.0 alpha:1.0];
 
 	[HUD hide:YES afterDelay:2];
     //恢复程序运行时自动锁屏
@@ -228,7 +288,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
         //[alertView show];
         
         postStatusText = nil;
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissModalViewControllerAnimated:YES];
     }
     else if ([request.url hasSuffix:@"statuses/upload.json"])
     {
@@ -238,7 +298,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
       //  [alertView show];
         
         postImageStatusText = nil;isPic = NO;
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissModalViewControllerAnimated:YES];
     }
     else
     {
@@ -305,7 +365,7 @@ static int post_image_status_times = 0;
                            httpMethod:@"POST"
                              delegate:self];
             HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-            HUD.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
+            HUD.color = [UIColor colorWithRed:31.0/255.0 green:187.0/255.0 blue:166.0/255.0 alpha:1.0];
 
             HUD.delegate = self;
             
@@ -322,7 +382,7 @@ static int post_image_status_times = 0;
                            httpMethod:@"POST"
                              delegate:self];
             HUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-            HUD.color = [UIColor colorWithRed:0.23 green:0.50 blue:0.82 alpha:0.90];
+            HUD.color = [UIColor colorWithRed:31.0/255.0 green:187.0/255.0 blue:166.0/255.0 alpha:1.0];
 
             HUD.delegate = self;
             
@@ -333,7 +393,8 @@ static int post_image_status_times = 0;
 
 - (IBAction)post:(id)sender {
     
-    
+    [self.textField resignFirstResponder];
+
     if (isPic||self.imageData) {
         if (self.textField.text.length ==0 ) {
             self.textField.text = @"分享图片";
@@ -346,6 +407,11 @@ static int post_image_status_times = 0;
         
         [self postStatusButtonPressed];
     }
+    
+}
+
+- (IBAction)close:(UIBarButtonItem *)sender {
+    [self dismissModalViewControllerAnimated:YES];
     
 }
 
@@ -396,19 +462,24 @@ static int post_image_status_times = 0;
     imageData2 = [NSData dataWithContentsOfFile:fullPath];
     float kCompressionQuality = 1;
     NSData *photo = UIImageJPEGRepresentation(savedImage, kCompressionQuality);
-    if ([photo length ]> 1024*1024)
+    if ([photo length]> 1024*1024*2)
     {
         CGSize i = savedImage.size;
-        i.height = i.height/4;
-        i.width = i.width/4;
+        i.height = i.height/2.5;
+        i.width = i.width/2.5;
         [self.imageView setImage:[UIImage  imageWithData:photo]];
-        self.imageView.image = [self scaleToSize:savedImage size:i ];
+        self.imageView.image = [self scaleToSize:savedImage size:i];
+        self.picSize.hidden = NO;
+        
+        self.picSize.text = [NSString stringWithFormat:@"已压缩到%.2fMB",(double)[UIImageJPEGRepresentation(self.imageView.image, 1.0) length]/1024/1024];
     }
     else
     {
         
         [self.imageView setImage:[UIImage  imageWithData:photo]];
+        self.picSize.hidden = NO;
         
+        self.picSize.text = [NSString stringWithFormat:@"%.2fMB",(double)[photo length]/1024/1024];
         self.imageView.tag = 100;
     }
     
@@ -481,7 +552,7 @@ static int post_image_status_times = 0;
 - (IBAction)chooseImage:(id)sender {
     
     UIActionSheet *sheet;
-    
+    [self.textField resignFirstResponder];
     // 判断是否支持相机
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {

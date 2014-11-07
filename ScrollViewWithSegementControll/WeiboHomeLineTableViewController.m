@@ -5,7 +5,7 @@
 //  Created by zagger on 14-9-17.
 //  Copyright (c) 2014年 浩然. All rights reserved.
 //
-
+#import "PostWeiboViewController.h"
 #import "WeiboHomeLineTableViewController.h"
 #import "WeiboDetailAndCommentTableViewController.h"
 #import "ScrollViewDetailViewController.h"
@@ -41,6 +41,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+     self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:31.0/255.0 green:187.0/255.0 blue:166.0/255.0 alpha:1.0];
+    
+    
      [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(getUnreadCountButtonPressed) userInfo:nil repeats:YES];
  
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUserName:)
@@ -638,7 +643,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -646,8 +651,20 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"postWeibo"])
+    {
+//        PostWeiboViewController *view = [segue destinationViewController];
+//    
+//    
+//        view.hidesBottomBarWhenPushed = YES;
+//    
+    }
+
+    
+    
+    
 }
-*/
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /**

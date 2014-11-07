@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "SinaWeiboRequest.h"
 #import "MBProgressHUD.h"
+
 @interface PostWeiboViewController : UIViewController<SinaWeiboDelegate,SinaWeiboRequestDelegate,MBProgressHUDDelegate,NSURLConnectionDelegate>
 
 {
@@ -49,8 +50,10 @@
 	long long currentLength;
 
 }
+@property (strong, nonatomic) IBOutlet UILabel *picSize;
 - (IBAction)chooseImage:(id)sender;
 - (IBAction)post:(id)sender;
+- (IBAction)close:(UIBarButtonItem *)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UITextView *textField;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;

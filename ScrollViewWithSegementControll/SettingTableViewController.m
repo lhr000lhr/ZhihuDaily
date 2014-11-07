@@ -121,14 +121,34 @@
             [self sendEmail:@"lee_peter@foxmail.com" cc:@"" subject:@"报告问题" body:@"( ⊙ o ⊙ )啊！_(:з」∠)_啊！Access Token:   2.00YMY5RBZMvvlC9d8253bd9bg7QYRD       "];
         }
         else if (indexPath.row==1){
-            UIAlertView *alert = [UIAlertView new];
-         
-            alert = [[UIAlertView alloc]initWithTitle:@"_(:з」∠)_" message:@"缓存已经清理~~~" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
-             [alert show];
+//            UIAlertView *alert = [UIAlertView new];
+//         
+//            alert = [[UIAlertView alloc]initWithTitle:@"_(:з」∠)_" message:@"缓存已经清理~~~" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+//             [alert show];
+            
+            
+            
+            
             [[SDImageCache sharedImageCache] clearDisk];
             
             [[SDImageCache sharedImageCache] clearMemory];
              [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"storeNewsByDate"];
+            AMSmoothAlertView * alert = [AMSmoothAlertView new];
+
+            alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"成功!" andText:@"- ( ゜- ゜)つロ 乾杯~" andCancelButton:NO forAlertType:AlertSuccess];
+            [alert.defaultButton setTitle:@"朕知道了" forState:UIControlStateNormal];
+            alert.completionBlock = ^void (AMSmoothAlertView *alertObj, UIButton *button) {
+                if(button == alertObj.defaultButton) {
+                    NSLog(@"Default");
+                } else {
+                    NSLog(@"Others");
+                }
+            };
+            
+            alert.cornerRadius = 3.0f;
+            //        [self.view addSubview:alert];
+            [alert show];
+
         }
         
         
@@ -141,10 +161,22 @@
         [sinaWeibo removeAuthData];
         [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"userName"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"changeName" object:nil];
-        UIAlertView *alert = [UIAlertView new];
+        AMSmoothAlertView * alert = [AMSmoothAlertView new];
         
-        alert = [[UIAlertView alloc]initWithTitle:@"_(:з」∠)_" message:@"注销咯！！！！" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"成功!" andText:@"- ( ゜- ゜)つロ 乾杯~" andCancelButton:NO forAlertType:AlertSuccess];
+        [alert.defaultButton setTitle:@"朕知道了" forState:UIControlStateNormal];
+        alert.completionBlock = ^void (AMSmoothAlertView *alertObj, UIButton *button) {
+            if(button == alertObj.defaultButton) {
+                NSLog(@"Default");
+            } else {
+                NSLog(@"Others");
+            }
+        };
+        
+        alert.cornerRadius = 3.0f;
+        //        [self.view addSubview:alert];
         [alert show];
+
         [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"userName"];
              }
    

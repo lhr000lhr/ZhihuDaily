@@ -11,7 +11,11 @@
 #import "SinaWeiboRequest.h"
 #import "WeiboViewController.h"
 #import "OneViewController.h"
-@interface SettingTableViewController : UITableViewController<SinaWeiboRequestDelegate>
+
+
+#import "AMSmoothAlertView.h"
+#import "AMSmoothAlertConstants.h"
+@interface SettingTableViewController : UITableViewController<SinaWeiboRequestDelegate,AMSmoothAlertViewDelegate>
 - (IBAction)settingSwitch:(UISwitch *)sender;
 - (void) sendEmail:(NSString *)phoneNumber;
 - (void) sendEmail:(NSString *)to cc:(NSString*)cc subject:(NSString*)subject body:(NSString*)body;

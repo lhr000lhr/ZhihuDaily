@@ -7,7 +7,6 @@
 //
 
 #import "OneViewController.h"
-
 @interface OneViewController ()
 
 @end
@@ -61,7 +60,7 @@ static NSString *CellIdentifier = @"Cell";
     [super viewDidLoad];
   //  SinaWeibo *sinaWeibo =[self sinaweibo];
     
-    
+     self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:31.0/255.0 green:187.0/255.0 blue:166.0/255.0 alpha:1.0];
     ////////////加载设置
     picState = [[NSUserDefaults standardUserDefaults]boolForKey:@"picState"];
     
@@ -229,6 +228,29 @@ static NSString *CellIdentifier = @"Cell";
 }
 -(void)addStars :(UIButton *)sender
 {
+    
+    
+    
+//    [sender pop_removeAllAnimations];
+//    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+//    anim.springBounciness = 10;
+//    anim.springSpeed = 20;
+//    anim.fromValue = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
+//    anim.toValue = [NSValue valueWithCGPoint:CGPointMake(2.0, 2.0)];
+//    
+//    POPBasicAnimation *opacityAnim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+//    
+//    opacityAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    opacityAnim.duration = 0.3;
+//    opacityAnim.toValue = @1.0;
+//    
+//    [sender.layer pop_addAnimation:anim forKey:@"AnimationScale"];
+//    [sender.layer pop_addAnimation:opacityAnim forKey:@"AnimateOpacity"];
+    
+    
+    
+    
+    
     UITableViewCell * cell = (UITableViewCell *)[[sender superview] superview];
     NSIndexPath * path = [self.tableView indexPathForCell:cell];
     

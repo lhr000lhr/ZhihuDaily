@@ -428,7 +428,7 @@ static const float kAfterInteractiveMaxProgressValue    = 0.9f;
     //
         dispatch_async(downloadQueue, ^{
     UIImage *image = [_webView imageRepresentation];
-   NSData *imageData = UIImageJPEGRepresentation(image,0.8);
+   NSData *imageData = UIImageJPEGRepresentation(image,0.5);
     // imageData = UIImageJPEGRepresentation(image,1);
    // imageData = UIImageJPEGRepresentation(image,0.5);
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
@@ -466,13 +466,13 @@ static const float kAfterInteractiveMaxProgressValue    = 0.9f;
          
             UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
                view=[storyBoard instantiateViewControllerWithIdentifier:@"PostWeiboViewController"];
-          
-            view.imageData = imageData;
+            [[NSUserDefaults standardUserDefaults]setObject:imageData forKey:@"imageData"];
+//            view.imageData = imageData;
             NSString *transUrl = [self.url absoluteString];
-            view.textFieldContent = [NSString stringWithFormat:@"我发现了一个好文章:%@   %@",self.title,transUrl];
-            [self.navigationController pushViewController:view animated:YES];
-           
-           
+             NSString *textFieldContent = [NSString stringWithFormat:@"我发现了一个好文章:%@   %@",self.title,transUrl];
+            [[NSUserDefaults standardUserDefaults]setObject:textFieldContent forKey:@"textFieldContent"];
+            //[self.navigationController pushViewController:view animated:YES];
+            [self presentModalViewController:view animated:YES];
             
         });
         }
