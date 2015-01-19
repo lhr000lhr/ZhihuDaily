@@ -25,6 +25,8 @@
 #import "MJPhoto.h"
 #import "JScrollView+PageControl+AutoScroll.h"
 #import <POP/POP.h>
+#import "ParallaxHeaderView.h"
+
 @interface OneViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,CCAVSegmentControllerDelegate,EScrollerViewDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,JScrollViewViewDelegate>
 {
     CCAVSegmentController *segmentView;
@@ -41,7 +43,7 @@
     NSMutableDictionary *storeNewsByDate;
     NSMutableArray *historyArray;
     NSMutableArray *favoritesArray;
-    
+    JScrollView_PageControl_AutoScroll *scroller;
 
 }
 @property(strong,nonatomic)NSMutableArray *news;

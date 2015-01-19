@@ -51,6 +51,10 @@
 /** 
  Get/set the current URL being displayed. (Will automatically start loading) 
  */
+
+- (instancetype)initWithIdNumber:(NSString *)idNumber;
+
+
 @property (nonatomic,strong)    NSURL *url;
 
 /**
@@ -144,4 +148,6 @@
  */
 @property (nonatomic,assign)    CGFloat buttonBevelOpacity;
 
+
+@property (nonatomic,strong)  NSString *idNumber;
 @end

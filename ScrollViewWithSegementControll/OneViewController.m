@@ -59,6 +59,17 @@ static NSString *CellIdentifier = @"Cell";
 {
     [super viewDidLoad];
   //  SinaWeibo *sinaWeibo =[self sinaweibo];
+    scroller=[[JScrollView_PageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, 320, 175)];
+    scroller.autoScrollDelayTime=3.0;
+    scroller.delegate=self;
+    [scroller setViewsArray:[NSMutableArray arrayWithObjects:[UIImageView new], nil]];
+    
+    
+    
+    
+    [self.tableView setTableHeaderView:scroller];
+
+    [scroller shouldAutoShow:YES];
     
      self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:31.0/255.0 green:187.0/255.0 blue:166.0/255.0 alpha:1.0];
     ////////////加载设置
@@ -445,8 +456,13 @@ static NSString *CellIdentifier = @"Cell";
     //view.url =[NSString stringWithFormat:@"%@",i];
     
     
-    TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURLString:[NSString stringWithFormat:@"%@",i]];
+    TOWebViewController *webViewController = [[TOWebViewController alloc]initWithIdNumber:[rowData1 objectForKey:@"id"]];
+//    ScrollViewDetailViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ScrollViewDetailViewController"];
+//    webViewController.idNumber = [rowData1 objectForKey:@"id"];
     webViewController.hidesBottomBarWhenPushed = YES;
+    
+    
+    
     [self.navigationController pushViewController:webViewController animated:YES];
     
     
@@ -516,12 +532,14 @@ static NSString *CellIdentifier = @"Cell";
 //                scroller.delegate=self;
 //                self.tableView.tableHeaderView= scroller;
 ////
-         JScrollView_PageControl_AutoScroll *scroller=[[JScrollView_PageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, 320, 175)];
+        scroller=[[JScrollView_PageControl_AutoScroll alloc]initWithFrame:CGRectMake(0, 0, 320, 175)];
         scroller.autoScrollDelayTime=3.0;
         scroller.delegate=self;
         [scroller setViewsArray:indexImages];
         [scroller shouldAutoShow:YES];
-        self.tableView.tableHeaderView= scroller;
+        [self.tableView setTableHeaderView:scroller];
+
+//        ParallaxHeaderView *headerView = [ParallaxHeaderView parallaxHeaderViewWithSubView:scroller];
        
                 [[NSUserDefaults standardUserDefaults]setObject:_storeNewsArray forKey:@"storeNewsArray"];
                 [self.tableView reloadData];
@@ -927,9 +945,19 @@ static NSString *CellIdentifier = @"Cell";
     //view.url =[NSString stringWithFormat:@"%@",i];
     
     
-    TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURLString:[NSString stringWithFormat:@"%@",i]];
+    TOWebViewController *webViewController = [[TOWebViewController alloc]initWithIdNumber:[rowData1 objectForKey:@"id"]];
+ 
     webViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
+#pragma mark ParallaxHeaderView实现
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == self.tableView)
+    {
+        // pass the current offset of the UITableView so that the ParallaxHeaderView layouts the subViews.
+//        [(ParallaxHeaderView *)self.tableView.tableHeaderView layoutHeaderViewForScrollViewOffset:scrollView.contentOffset];
+    }
+}
 @end

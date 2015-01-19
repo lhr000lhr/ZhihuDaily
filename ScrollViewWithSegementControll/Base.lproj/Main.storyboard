@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6fh-R0-emk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6fh-R0-emk">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -1220,10 +1220,10 @@
             </objects>
             <point key="canvasLocation" x="-2564" y="234"/>
         </scene>
-        <!--Web View Controller-->
+        <!--Scroll View Detail View Controller-->
         <scene sceneID="SsZ-VX-q0t">
             <objects>
-                <viewController storyboardIdentifier="ScrollViewDetailViewController" id="iyO-bT-hhd" customClass="TOWebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScrollViewDetailViewController" id="iyO-bT-hhd" customClass="ScrollViewDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FEh-SE-MZP"/>
                         <viewControllerLayoutGuide type="bottom" id="WDs-2L-nZd"/>
@@ -1231,12 +1231,21 @@
                     <view key="view" contentMode="scaleToFill" id="wan-16-Bp6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView tag="25" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="baf-UR-MV9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="WebView" destination="baf-UR-MV9" id="9Zp-SK-zHb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GPj-bJ-8P5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1507" y="258"/>
+            <point key="canvasLocation" x="-1574" y="184"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="OuS-BF-H4C">

@@ -96,7 +96,7 @@ static const float kAfterInteractiveMaxProgressValue    = 0.9f;
 @interface TOWebViewController () <UIActionSheetDelegate,
                                    UIPopoverControllerDelegate,
                                    MFMailComposeViewControllerDelegate,
-                                   MFMessageComposeViewControllerDelegate>
+                                   MFMessageComposeViewControllerDelegate,SinaWeiboRequestDelegate>
 {
     
     //The state of the UIWebView's scroll view before the rotation animation has started
@@ -240,6 +240,45 @@ static const float kAfterInteractiveMaxProgressValue    = 0.9f;
 {
     return [self initWithURL:[NSURL URLWithString:urlString]];
 }
+
+
+- (instancetype)initWithIdNumber:(NSString *)idNumber
+{
+    SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:[NSString stringWithFormat:@"http://news-at.zhihu.com/api/3/news/%@",idNumber]
+                                                       httpMethod:@"GET"
+                                                           params:[NSMutableDictionary dictionaryWithObjectsAndKeys:nil]
+                                                         delegate:self];
+    NSMutableSet *requests;
+    [requests addObject:_request];
+    [_request connect];
+    
+    return [self initWithURL:[NSURL URLWithString:@""]];
+}
+
+-(void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
+{
+    
+    
+   NSDictionary* dic = result;
+    
+    if ([dic objectForKey:@"body"]) {
+        
+        
+        
+        
+        
+        //        [self.WebView loadHTMLString:[dic objectForKey:@"body"] baseURL:nil];
+//       NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:[dic objectForKey:@"share_url"]]];
+//      [self.webView loadRequest:request];
+      self.url =[NSURL URLWithString:[dic objectForKey:@"share_url"]];
+    }
+    
+    
+    
+    
+}
+
+
 
 - (NSURL *)cleanURL:(NSURL *)url
 {

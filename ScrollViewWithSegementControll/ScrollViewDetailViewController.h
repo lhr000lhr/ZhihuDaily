@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "TOWebViewController.h"
-@interface ScrollViewDetailViewController : UIViewController
+#import "SinaWeiboRequest.h"
+@interface ScrollViewDetailViewController : UIViewController<SinaWeiboRequestDelegate>
 
-
+{
+    
+    
+    
+    NSDictionary *dic;
+    
+    
+    
+}
 @property (strong, nonatomic) IBOutlet UIWebView *WebView;
 @property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) NSString *idNumber;
 @end

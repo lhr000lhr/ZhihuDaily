@@ -32,11 +32,58 @@
 {
     [super viewDidLoad];
   //self.url = [NSString stringWithFormat:@"http://www.qq.com" ];
-    NSURL *url1 =[NSURL URLWithString:self.url];
-    NSLog(@"%@",self.url);
-    NSURLRequest *request =[NSURLRequest requestWithURL:url1];
-    [self.WebView loadRequest:request];
+//    NSURL *url1 =[NSURL URLWithString:self.url];
+//    NSLog(@"%@",self.url);
+//    NSURLRequest *request =[NSURLRequest requestWithURL:url1];
+//    [self.WebView loadRequest:request];
     // Do any additional setup after loading the view.
+//    [self.WebView loadHTMLString:self.url baseURL:nil];//加载html字符串到UIWebView上(该方法极为重要)
+
+    
+    
+    [self requestDetail];
+    
+    
+    
+    
+}
+
+-(void)requestDetail
+{
+    
+
+    SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:[NSString stringWithFormat:@"http://news-at.zhihu.com/api/3/news/%@",self.idNumber]
+                                                       httpMethod:@"GET"
+                                                           params:[NSMutableDictionary dictionaryWithObjectsAndKeys:nil]
+                                                         delegate:self];
+    NSMutableSet *requests;
+    [requests addObject:_request];
+    [_request connect];
+
+    
+
+    
+    
+}
+-(void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
+{
+    
+    dic = result;
+    
+    if ([dic objectForKey:@"body"]) {
+        
+        
+        
+        
+        
+//        [self.WebView loadHTMLString:[dic objectForKey:@"body"] baseURL:nil];
+            NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:[dic objectForKey:@"share_url"]]];
+            [self.WebView loadRequest:request];
+    }
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

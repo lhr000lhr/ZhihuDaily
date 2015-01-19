@@ -91,7 +91,7 @@
     textView.font = [UIFont systemFontOfSize:13.0f];
     textView.backgroundColor = [UIColor clearColor];
     textView.delegage = self;
-    self.tableView.tableFooterView = textView;
+   // self.tableView.tableFooterView = textView;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
